@@ -1,0 +1,35 @@
+backend:
+  name: github
+  repo: Drezboss/one-for-all-coaching-redesign
+  branch: main
+  auth_endpoint: /api/auth
+
+media_folder: "public/assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "site"
+    label: "Site Content"
+    files:
+      - name: "hero"
+        label: "Hero Section"
+        file: "client/src/content/site-content.ts"
+        fields:
+          - { name: "title", label: "Title", widget: "string" }
+          - { name: "description", label: "Description", widget: "text" }
+
+  - name: "services"
+    label: "Services"
+    file: "client/src/content/services-content.ts"
+    fields:
+      - { name: "title", label: "Service Title", widget: "string" }
+      - { name: "subtitle", label: "Subtitle", widget: "string" }
+      - { name: "description", label: "Description", widget: "text" }
+
+  - name: "footer"
+    label: "Footer Links"
+    file: "client/src/content/footer-links.ts"
+    fields:
+      - { name: "services", widget: "list", fields: [{ name: "name", widget: "string" }, { name: "href", widget: "string" }] }
+      - { name: "quickLinks", widget: "list", fields: [{ name: "name", widget: "string" }, { name: "href", widget: "string" }] }
+      - { name: "parentLinks", widget: "list", fields: [{ name: "name", widget: "string" }, { name: "href", widget: "string" }] }
