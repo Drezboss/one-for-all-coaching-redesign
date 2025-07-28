@@ -2,6 +2,7 @@ backend:
   name: github
   repo: Drezboss/one-for-all-coaching-redesign
   branch: main
+  base_url: https://transcendent-hotteok-37b1b1.netlify.app
   auth_endpoint: /api/auth
 
 media_folder: "public/assets/uploads"
