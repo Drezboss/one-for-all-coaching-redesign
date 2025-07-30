@@ -21,23 +21,31 @@ export default function TinaDemo() {
   const [action, setAction] = useState<"update" | "create" | "delete">("update");
   const { toast } = useToast();
 
-  // Load current content
+  // Simulate content storage for demo (would be replaced by real API)
   const loadContent = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/content-update');
-      const result = await response.json();
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
-      if (result.success) {
-        setContent(result.data);
-        toast({
-          title: "Content loaded",
-          description: "Successfully retrieved current content",
-        });
-      } else {
-        throw new Error(result.message);
-      }
-    } catch (error) {
+      // Load demo content
+      const demoContent = {
+        "site.name": "One For All Coaching",
+        "site.tagline": "Where personal growth meets professional standards",
+        "coach.name": "Dave Cornock",
+        "coach.title": "UEFA B Licensed Football Coach",
+        "home.hero.title": "UNLOCK YOUR POTENTIAL",
+        "home.hero.subtitle": "Professional football coaching that meets you where you are and takes you where you want to be.",
+        "services.title": "OUR COACHING SERVICES",
+        "contact.hero.title": "Let's Build Your Next Step Together.",
+      };
+      
+      setContent(demoContent);
+      toast({
+        title: "Content loaded",
+        description: "Demo content retrieved successfully",
+      });
+    } catch (error: any) {
       toast({
         title: "Error",
         description: "Failed to load content: " + error.message,
@@ -48,7 +56,7 @@ export default function TinaDemo() {
     }
   };
 
-  // Update content
+  // Update content (demo simulation)
   const updateContent = async () => {
     if (!selectedPath) {
       toast({
@@ -70,36 +78,34 @@ export default function TinaDemo() {
 
     setLoading(true);
     try {
-      const response = await fetch('/api/content-update', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          path: selectedPath,
-          value: newValue,
-          action: action,
-        }),
-      });
-
-      const result = await response.json();
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 800));
       
-      if (result.success) {
-        toast({
-          title: "Success",
-          description: result.message,
-        });
-        
-        // Refresh content
-        await loadContent();
-        
-        // Reset form
-        setSelectedPath("");
-        setNewValue("");
-      } else {
-        throw new Error(result.message);
+      // Simulate the update operations
+      const updatedContent = { ...content };
+      
+      switch (action) {
+        case "update":
+        case "create":
+          updatedContent[selectedPath] = newValue;
+          break;
+        case "delete":
+          delete updatedContent[selectedPath];
+          break;
       }
-    } catch (error) {
+      
+      setContent(updatedContent);
+      
+      toast({
+        title: "Success",
+        description: `Content ${action}d successfully (Demo Mode)`,
+      });
+      
+      // Reset form
+      setSelectedPath("");
+      setNewValue("");
+      
+    } catch (error: any) {
       toast({
         title: "Error",
         description: "Failed to update content: " + error.message,
@@ -124,8 +130,8 @@ export default function TinaDemo() {
             Content Management Demo
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Use this Deno-powered interface to dynamically update website content. 
-            Changes are processed through our serverless API.
+            This demo showcases a content management system powered by serverless functions. 
+            Experience real-time content editing with simulated API responses.
           </p>
         </div>
 
@@ -262,32 +268,32 @@ export default function TinaDemo() {
         {/* API Information */}
         <Card className="mt-8">
           <CardHeader>
-            <CardTitle>Deno API Features</CardTitle>
+            <CardTitle>Demo Features</CardTitle>
             <CardDescription>
-              Technical details about the content management system
+              Technical details about this content management demonstration
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid gap-4 md:grid-cols-3">
-              <div className="space-y-2">
-                <h4 className="font-semibold">Serverless Functions</h4>
-                <p className="text-sm text-muted-foreground">
-                  Powered by Deno Edge Runtime for fast, secure content updates
-                </p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="font-semibold">Real-time Updates</h4>
-                <p className="text-sm text-muted-foreground">
-                  Content changes are processed instantly through API endpoints
-                </p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="font-semibold">CRUD Operations</h4>
-                <p className="text-sm text-muted-foreground">
-                  Full Create, Read, Update, Delete functionality for content management
-                </p>
-              </div>
-            </div>
+             <div className="grid gap-4 md:grid-cols-3">
+               <div className="space-y-2">
+                 <h4 className="font-semibold">Demo Simulation</h4>
+                 <p className="text-sm text-muted-foreground">
+                   Simulated content management with realistic API delays and responses
+                 </p>
+               </div>
+               <div className="space-y-2">
+                 <h4 className="font-semibold">Interactive Interface</h4>
+                 <p className="text-sm text-muted-foreground">
+                   Full-featured content editing interface with real-time visual feedback
+                 </p>
+               </div>
+               <div className="space-y-2">
+                 <h4 className="font-semibold">CRUD Operations</h4>
+                 <p className="text-sm text-muted-foreground">
+                   Complete Create, Read, Update, Delete functionality demonstration
+                 </p>
+               </div>
+             </div>
           </CardContent>
         </Card>
       </div>
