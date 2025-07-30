@@ -16,6 +16,7 @@ import Register from "@/pages/register";
 import Admin from "@/pages/admin";
 import Calendar from "@/pages/calendar";
 import ParentDashboard from "@/pages/parent-dashboard";
+import TinaDemo from "@/pages/tina-demo";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -31,6 +32,7 @@ function Router() {
       <Route path="/admin" component={Admin} />
       <Route path="/calendar" component={Calendar} />
       <Route path="/parent-dashboard" component={ParentDashboard} />
+      <Route path="/tina-demo" component={TinaDemo} />
       <Route component={NotFound} />
     </Switch>
   );
