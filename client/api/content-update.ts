@@ -1,4 +1,4 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 interface ContentUpdateRequest {
   path: string;
@@ -25,20 +25,20 @@ let contentStore: Record<string, any> = {
   "contact.hero.title": "Let's Build Your Next Step Together.",
 };
 
-export default function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
   // Handle CORS preflight
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
+  if (req.method === "OPTIONS") {
+    res.status(204).end();
     return;
   }
 
   try {
-    if (req.method === 'GET') {
+    if (req.method === "GET") {
       // Return current content
       const response: ContentUpdateResponse = {
         success: true,
@@ -50,7 +50,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
       return;
     }
 
-    if (req.method === 'POST') {
+    if (req.method === "POST") {
       const { path, value, action }: ContentUpdateRequest = req.body;
 
       if (!path) {

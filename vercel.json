@@ -3,15 +3,11 @@
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "functions": {
-    "client/api/content-update.ts": {
+    "client/api/*.ts": {
       "runtime": "nodejs18.x"
     }
   },
   "routes": [
-    {
-      "src": "/api/content-update",
-      "dest": "/client/api/content-update.ts"
-    },
     {
       "handle": "filesystem"
     },
