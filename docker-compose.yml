@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  directus:
+    image: directus/directus:latest
+    ports:
+      - 8055:8055
+    environment:
+      KEY: supersecretkey
+      ADMIN_EMAIL: admin@example.com
+      ADMIN_PASSWORD: strongpassword
+      DB_CLIENT: pg
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: directus
+      DB_USER: directus
+      DB_PASSWORD: directus
+    depends_on:
+      - db
+    volumes:
+      - ./directus/uploads:/directus/uploads
+      - ./directus/extensions:/directus/extensions
+
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: directus
+      POSTGRES_USER: directus
+      POSTGRES_PASSWORD: directus
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

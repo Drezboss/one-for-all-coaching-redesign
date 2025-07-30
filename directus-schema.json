@@ -1,0 +1,149 @@
+[
+  {
+    "collection": "team_members",
+    "fields": [
+      {
+        "field": "name",
+        "type": "string",
+        "schema": {
+          "is_nullable": false
+        }
+      },
+      {
+        "field": "role",
+        "type": "string",
+        "schema": {
+          "is_nullable": false
+        }
+      },
+      {
+        "field": "bio",
+        "type": "text",
+        "schema": {
+          "is_nullable": true
+        }
+      },
+      {
+        "field": "photo",
+        "type": "uuid",
+        "interface": "file-image",
+        "schema": {
+          "is_nullable": true
+        }
+      }
+    ]
+  },
+  {
+    "collection": "programs",
+    "fields": [
+      {
+        "field": "title",
+        "type": "string",
+        "schema": {
+          "is_nullable": false
+        }
+      },
+      {
+        "field": "description",
+        "type": "text",
+        "interface": "input-rich-text",
+        "schema": {
+          "is_nullable": true
+        }
+      },
+      {
+        "field": "image",
+        "type": "uuid",
+        "interface": "file-image",
+        "schema": {
+          "is_nullable": true
+        }
+      },
+      {
+        "field": "slug",
+        "type": "string",
+        "schema": {
+          "is_nullable": false,
+          "is_unique": true
+        }
+      }
+    ]
+  },
+  {
+    "collection": "testimonials",
+    "fields": [
+      {
+        "field": "author_name",
+        "type": "string",
+        "schema": {
+          "is_nullable": false
+        }
+      },
+      {
+        "field": "author_title",
+        "type": "string",
+        "schema": {
+          "is_nullable": true
+        }
+      },
+      {
+        "field": "quote",
+        "type": "text",
+        "schema": {
+          "is_nullable": false
+        }
+      },
+      {
+        "field": "photo",
+        "type": "uuid",
+        "interface": "file-image",
+        "schema": {
+          "is_nullable": true
+        }
+      }
+    ]
+  },
+  {
+    "collection": "blog_posts",
+    "fields": [
+      {
+        "field": "title",
+        "type": "string",
+        "schema": {
+          "is_nullable": false
+        }
+      },
+      {
+        "field": "content",
+        "type": "text",
+        "interface": "input-rich-text",
+        "schema": {
+          "is_nullable": true
+        }
+      },
+      {
+        "field": "cover_image",
+        "type": "uuid",
+        "interface": "file-image",
+        "schema": {
+          "is_nullable": true
+        }
+      },
+      {
+        "field": "published_date",
+        "type": "timestamp",
+        "schema": {
+          "is_nullable": false
+        }
+      },
+      {
+        "field": "slug",
+        "type": "string",
+        "schema": {
+          "is_nullable": false,
+          "is_unique": true
+        }
+      }
+    ]
+  }
+]
