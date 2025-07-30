@@ -2,9 +2,18 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "installCommand": "npm install",
+  "functions": {
+    "api/content-update.ts": {
+      "runtime": "edge"
+    }
+  },
   "routes": [
     {
       "handle": "filesystem"
+    },
+    {
+      "src": "/api/content-update",
+      "dest": "/api/content-update.ts"
     },
     {
       "src": "/admin/(.*)",
