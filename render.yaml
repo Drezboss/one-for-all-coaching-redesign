@@ -2,17 +2,19 @@ services:
   - type: web
     name: directus
     env: docker
-    plan: free
+    plan: starter
     autoDeploy: true
-    dockerfilePath: ./Dockerfile
+
+    disk:
+      name: directus-data
+      mountPath: /directus/uploads
+      sizeGB: 1
+
     envVars:
-      - key: KEY
-        value: supersecretkey
       - key: ADMIN_EMAIL
         value: admin@example.com
       - key: ADMIN_PASSWORD
-        value: strongpassword
-
+        value: StrongPassword123!
       - key: DB_CLIENT
         value: pg
       - key: DB_HOST
@@ -25,6 +27,7 @@ services:
         value: neondb_owner
       - key: DB_PASSWORD
         value: npg_mGO7Ceyk6AlR
-
       - key: PGSSLMODE
         value: require
+      - key: KEY
+        value: supersecretkey123!
