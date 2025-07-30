@@ -9,11 +9,11 @@
   },
   "routes": [
     {
-      "handle": "filesystem"
-    },
-    {
       "src": "/api/content-update",
       "dest": "/api/content-update.ts"
+    },
+    {
+      "handle": "filesystem"
     },
     {
       "src": "/admin/(.*)",

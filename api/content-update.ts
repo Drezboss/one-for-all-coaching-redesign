@@ -1,5 +1,3 @@
-import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
-
 interface ContentUpdateRequest {
   path: string;
   value: string | object;
@@ -25,7 +23,7 @@ let contentStore: Record<string, any> = {
   "contact.hero.title": "Let's Build Your Next Step Together.",
 };
 
-async function handleContentUpdate(request: Request): Promise<Response> {
+export default async function handler(request: Request): Promise<Response> {
   const headers = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
@@ -70,7 +68,7 @@ async function handleContentUpdate(request: Request): Promise<Response> {
           throw new Error("Invalid action. Use 'update', 'create', or 'delete'");
       }
 
-      // Simulate persistence (in production, save to database/file)
+      // Log the change
       console.log(`Content ${action}d: ${path} = ${JSON.stringify(value)}`);
 
       const response: ContentUpdateResponse = {
@@ -93,7 +91,7 @@ async function handleContentUpdate(request: Request): Promise<Response> {
       { status: 405, headers }
     );
 
-  } catch (error) {
+  } catch (error: any) {
     const response: ContentUpdateResponse = {
       success: false,
       message: error.message || "Internal server error",
@@ -105,15 +103,4 @@ async function handleContentUpdate(request: Request): Promise<Response> {
       headers,
     });
   }
-}
-
-// For Vercel deployment
-export default async function handler(request: Request) {
-  return await handleContentUpdate(request);
-}
-
-// For local Deno development
-if (import.meta.main) {
-  console.log("Content Update API starting on http://localhost:8000");
-  serve(handleContentUpdate, { port: 8000 });
 }
