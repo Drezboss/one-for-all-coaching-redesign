@@ -15,17 +15,12 @@ services:
       - key: DB_CLIENT
         value: pg
       - key: DB_HOST
-        value: directus-db
+        value: ep-royal-shadow-abhuk4sw-pooler.eu-west-2.aws.neon.tech
       - key: DB_PORT
         value: 5432
       - key: DB_DATABASE
         value: directus
       - key: DB_USER
-        value: directus
+        value: neondb_owner
       - key: DB_PASSWORD
-        value: directus
-
-databases:
-  - name: directus-db
-    databaseName: directus
-    user: directus
+        value: npg_mGO7Ceyk6AlR
