@@ -1,10 +1,10 @@
 services:
   - type: web
-    name: directus-cms
+    name: directus
     env: docker
     plan: free
     autoDeploy: true
-    dockerfilePath: ./docker-compose.yml
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: KEY
         value: supersecretkey
@@ -15,7 +15,7 @@ services:
       - key: DB_CLIENT
         value: pg
       - key: DB_HOST
-        value: db
+        value: directus-db
       - key: DB_PORT
         value: 5432
       - key: DB_DATABASE
@@ -24,3 +24,8 @@ services:
         value: directus
       - key: DB_PASSWORD
         value: directus
+
+databases:
+  - name: directus-db
+    databaseName: directus
+    user: directus
