@@ -1,0 +1,62 @@
+{
+  "template": {
+    "name": "Coaching Site Template",
+    "version": "1.0.0",
+    "description": "A modern coaching website template built with React, TypeScript, and TailwindCSS",
+    "author": "Template Creator",
+    "license": "MIT"
+  },
+  "customizable": {
+    "required": [
+      {
+        "file": "package.json",
+        "fields": ["name"],
+        "description": "Update project name"
+      },
+      {
+        "file": "client/src/content/site-content.ts",
+        "fields": ["site.name", "home.hero.title", "home.hero.description"],
+        "description": "Update site branding and hero content"
+      },
+      {
+        "file": "index.html",
+        "fields": ["title"],
+        "description": "Update page title"
+      }
+    ],
+    "optional": [
+      {
+        "file": "client/src/content/services-content.ts",
+        "description": "Customize services offered"
+      },
+      {
+        "file": "client/src/content/footer-links.ts",
+        "description": "Update footer links and contact info"
+      },
+      {
+        "file": "tailwind.config.ts",
+        "description": "Customize colors and styling"
+      },
+      {
+        "directory": "client/public/",
+        "description": "Replace logo and images"
+      }
+    ]
+  },
+  "setup": {
+    "scripts": {
+      "automated": "node template-setup.js",
+      "manual": "See README-TEMPLATE.md for manual setup instructions"
+    },
+    "dependencies": {
+      "install": "npm install",
+      "dev": "npm run dev",
+      "build": "npm run build"
+    }
+  },
+  "deployment": {
+    "platforms": ["Vercel", "Netlify", "Heroku"],
+    "configured_for": "Vercel",
+    "config_file": "vercel.json"
+  }
+}
