@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  /* Light mode - Liverpool FC inspired */
+  /* Light mode - APD Blue inspired */
   --background: hsl(0, 0%, 100%);
   --foreground: hsl(222.2, 84%, 4.9%);
   --card: hsl(0, 0%, 100%);
   --card-foreground: hsl(222.2, 84%, 4.9%);
   --popover: hsl(0, 0%, 100%);
   --popover-foreground: hsl(222.2, 84%, 4.9%);
-  --primary: hsl(351, 83%, 42%); /* Liverpool Red */
+  --primary: hsl(232, 84%, 19%); /* APD Blue */
   --primary-foreground: hsl(210, 40%, 98%);
   --secondary: hsl(210, 40%, 96%);
   --secondary-foreground: hsl(222.2, 84%, 4.9%);
@@ -22,10 +22,10 @@
   --destructive-foreground: hsl(210, 40%, 98%);
   --border: hsl(214.3, 31.8%, 91.4%);
   --input: hsl(214.3, 31.8%, 91.4%);
-  --ring: hsl(351, 83%, 42%);
+  --ring: hsl(232, 84%, 19%);
   --radius: 0.5rem;
-  --lfc-red: hsl(355, 87%, 48%);
-  --bright-red: hsl(0, 100%, 50%);
+  --apd-blue: hsl(232, 84%, 19%);
+  --apd-light-blue: hsl(232, 84%, 35%);
   --dark-navy: hsl(220, 47%, 9%);
   --almost-black: hsl(0, 0%, 7%);
 }
@@ -38,8 +38,8 @@
   --card-foreground: hsl(210, 40%, 98%);
   --popover: hsl(222.2, 84%, 4.9%);
   --popover-foreground: hsl(210, 40%, 98%);
-  --primary: hsl(351, 83%, 52%); /* Brighter red for dark mode */
-  --primary-foreground: hsl(222.2, 84%, 4.1%);
+  --primary: hsl(232, 84%, 35%); /* Brighter blue for dark mode */
+  --primary-foreground: hsl(210, 40%, 98%);
   --secondary: hsl(217.2, 32.6%, 17.5%);
   --secondary-foreground: hsl(210, 40%, 98%);
   --muted: hsl(217.2, 32.6%, 17.5%);
@@ -50,9 +50,9 @@
   --destructive-foreground: hsl(210, 40%, 98%);
   --border: hsl(217.2, 32.6%, 17.5%);
   --input: hsl(217.2, 32.6%, 17.5%);
-  --ring: hsl(351, 83%, 52%);
-  --lfc-red: hsl(355, 87%, 48%);
-  --bright-red: hsl(0, 100%, 50%);
+  --ring: hsl(232, 84%, 35%);
+  --apd-blue: hsl(232, 84%, 19%);
+  --apd-light-blue: hsl(232, 84%, 35%);
   --dark-navy: hsl(220, 47%, 9%);
   --almost-black: hsl(0, 0%, 7%);
 }
@@ -70,19 +70,19 @@
 @layer components {
   /* Button styling improvements for better visibility */
   .btn-primary {
-    background-color: hsl(355, 87%, 48%) !important;
+    background-color: var(--apd-blue) !important;
     color: white !important;
-    border: 2px solid hsl(355, 87%, 48%) !important;
+    border: 2px solid var(--apd-blue) !important;
     font-weight: 600 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.05em !important;
   }
   
   .btn-primary:hover {
-    background-color: hsl(355, 87%, 40%) !important;
-    border-color: hsl(355, 87%, 40%) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px rgba(200, 16, 46, 0.4) !important;
+    background-color: var(--apd-light-blue) !important;
+    border-color: var(--apd-light-blue) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
   }
 
   .lfc-red {

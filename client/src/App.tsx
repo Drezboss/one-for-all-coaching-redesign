@@ -17,6 +17,8 @@ import Admin from "@/pages/admin";
 import Calendar from "@/pages/calendar";
 import ParentDashboard from "@/pages/parent-dashboard";
 import TinaDemo from "@/pages/tina-demo";
+import HolidayCamps from "@/pages/holiday-camps";
+import TrainingCentres from "@/pages/training-centres";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -26,6 +28,8 @@ function Router() {
       <Route path="/about" component={About} />
       <Route path="/individual-coaching" component={IndividualCoaching} />
       <Route path="/group-sessions" component={GroupSessions} />
+      <Route path="/holiday-camps" component={HolidayCamps} />
+      <Route path="/training-centres" component={TrainingCentres} />
       <Route path="/contact" component={Contact} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />

@@ -4,30 +4,31 @@
 export const siteContent = {
   // Site-wide settings
   site: {
-    name: "One For All Coaching",
-    tagline: "Where personal growth meets professional standards",
-    domain: "all-4one-coaching.com",
-    email: "dave@all-4one-coaching.com",
-    phone: "+44 7750 887112", // Update with real phone
+    name: "A.P.D Advance Player Development",
+    tagline: "Enter The Next Level",
+    domain: "advanceplayerdevelopment.co.uk",
+    email: "admin@advanceplayerdevelopment.co.uk",
+    phone: "01322 761026",
     socialMedia: {
-      facebook: "https://facebook.com/oneforallcoaching",
-      instagram: "https://instagram.com/oneforallcoaching",
-      twitter: "https://twitter.com/oneforallcoaching"
+      facebook: "https://www.facebook.com/APDFootball/",
+      instagram: "https://www.instagram.com/apdfootball/",
+      twitter: "https://twitter.com/APDfootball",
+      youtube: "https://www.youtube.com/channel/UCLxwy-V0glbx_X85RJG1kwg/feed"
     }
   },
 
   // Coach information
   coach: {
-    name: "Dave Cornock",
-    title: "UEFA B Licensed Football Coach",
-    bio: "I'm Dave Graham, a UEFA B Licensed football coach with a broad coaching background that spans all levels of the game. My journey has taken me from grassroots football and local leagues, through the Junior Premier League (JPL) and Hellenic League, to coaching elite Tier 2 women's university teams and UDA overseas students.",
-    philosophy: "I'm passionate about helping players and coaches unlock their full potential. Whether it's delivering tailored 1-to-1 sessions, designing structured training plans, or mentoring coaches throughout a season, I'm here to support your growth and development.",
-    quote: "Your journey is unique. Your development should be too.",
+    name: "Harry Watling",
+    title: "Founder & Head Coach",
+    bio: "Harry has a real interest in the development of young players and is always striving to improve himself, in order to enhance both learning and enjoyment for the boys & girls that attend his sessions.",
+    philosophy: "The APD way is a philosophy built upon taking our love for the game and instilling it in our players.",
+    quote: "Enter The Next Level",
     credentials: [
-      "UEFA B License qualified",
-      "FA Level 2 Coaching Badge",
-      "Semi-professional playing experience",
-      "Grassroots to elite level coaching",
+      "UEFA Licensed",
+      "FA Qualified Coach",
+      "Over 10 years coaching experience",
+      "Professional Academy background",
       "DBS checked and safeguarding certified",
       "First Aid qualified"
     ]
@@ -36,26 +37,26 @@ export const siteContent = {
   // Home page content
   home: {
     hero: {
-      title: "UNLOCK YOUR POTENTIAL",
-      subtitle: "Professional football coaching that meets you where you are and takes you where you want to be.",
-      primaryButton: "Start Your Journey",
+      title: "ENTER THE NEXT LEVEL",
+      subtitle: "Advance Player Development is an independent football coaching company based in South East London and Kent. We pride ourselves on our coaching excellence.",
+      primaryButton: "Book Now",
       secondaryButton: "Learn More"
     },
     whyChoose: {
-      title: "WHY CHOOSE ONE FOR ALL?",
-      description: "At One For All Coaching, we are passionate about helping young players grow both on and off the pitch. Whether your child is just starting out or looking to develop their skills further, our programmes are built around fun, personal growth and long-term progression.",
+      title: "THE APD WAY",
+      description: "APD is a concept I have not seen before today. The 6 station circuit is something I really liked the look of and I can see how it hugely benefits the players.",
       features: [
         {
-          title: "Experienced and FA-qualified coaches",
-          description: "Our team includes semi-professional players and highly trained coaches focused on grassroots development and individual player growth."
+          title: "Professional Academy Standards",
+          description: "Track record of APD Scholars making the jump from grassroots football to professional Academy level."
         },
         {
-          title: "Tailored coaching for all ages",
-          description: "From toddler football (ages 2 and up) to personalized one-to-one sessions, every programme builds confidence, skill and a lifelong love for the game."
+          title: "Innovative Training Methods",
+          description: "Unique 6 station circuit training system designed to maximize player development and engagement."
         },
         {
-          title: "Trusted by parents and clubs",
-          description: "We deliver reliable sessions and holiday camps with a focus on quality, safety and a positive learning environment."
+          title: "Trusted by Professionals",
+          description: "Recommended by professional coaches including Michael Beale (QPR Manager) and Scott Parker (AFC Bournemouth)."
         }
       ]
     }
@@ -63,64 +64,108 @@ export const siteContent = {
 
   // Services content
   services: {
-    title: "OUR COACHING SERVICES",
-    subtitle: "Choose the training approach that fits your goals",
+    title: "OUR TRAINING PROGRAMMES",
+    subtitle: "Choose the training approach that fits your development needs",
+    trainingCentres: {
+      title: "⚽ Training Centres",
+      subtitle: "Professional coaching at our dedicated facilities",
+      description: "Join our training centres in Chatham and Eltham for regular coaching sessions designed to advance your game.",
+      locations: [
+        {
+          title: "Chatham Training Centre",
+          description: "State-of-the-art facilities with professional coaching staff delivering the APD methodology.",
+          features: ["All weather pitches", "Professional coaching", "Small group sizes", "Age-specific programmes"]
+        },
+        {
+          title: "Eltham Training Centre", 
+          description: "Our South East London centre offering the same high-quality APD coaching standards.",
+          features: ["Modern facilities", "Convenient location", "Evening sessions available", "Holiday programmes"]
+        }
+      ]
+    },
     individualCoaching: {
-      title: "💪 1-2-1 Individual Program Learning",
-      subtitle: "Personalised Coaching. Real Progress.",
-      description: "Unlock your potential with dedicated one-to-one coaching sessions designed around your unique strengths, goals, and playing style.",
+      title: "💪 121 Training Sessions",
+      subtitle: "Personalised Coaching. Accelerated Development.",
+      description: "One-to-one coaching sessions tailored to your specific needs and development goals.",
       features: [
-        "Personalised Training Plans",
-        "Video Analysis & Feedback", 
-        "Progress Tracking",
-        "Mental Conditioning"
+        "Personalised Development Plans",
+        "Technical Skills Focus", 
+        "Position-Specific Training",
+        "Video Analysis Available"
       ],
       whoItsFor: [
         {
-          title: "Ambitious Players",
-          description: "Players looking to take their game to the next level with professional-standard training and personalized development."
+          title: "Academy Aspirants",
+          description: "Players aiming for professional academy selection with focused preparation and development."
         },
         {
-          title: "Skill Development",
-          description: "Players wanting to improve specific aspects of their game or overcome particular challenges in their development."
+          title: "Technical Excellence",
+          description: "Players wanting to master specific skills or overcome technical challenges in their game."
         },
         {
-          title: "Confidence Building",
-          description: "Players who want to build confidence, overcome mental barriers, and develop a stronger mindset for competition."
+          title: "Fast-Track Development",
+          description: "Players who want accelerated improvement through intensive personalised coaching."
         }
       ]
     },
     groupSessions: {
-      title: "👥 Group Sessions",
-      subtitle: "Learn Together. Push Each Other. Grow as One.",
-      description: "Small group training sessions that combine individual development with the dynamic energy of training alongside peers.",
+      title: "👥 Team Training",
+      subtitle: "Develop Together. Compete Together. Win Together.",
+      description: "Professional team training sessions that build chemistry while developing individual skills.",
       groupTypes: [
         {
-          title: "Friends & Siblings",
-          description: "Perfect for friends who want to train together or siblings looking to develop alongside each other.",
-          ideal: "Ages 8-16 who know each other well"
+          title: "Club Teams",
+          description: "Complete team training packages for grassroots clubs looking to implement professional methods.",
+          features: ["Tactical development", "Team cohesion", "Match preparation", "Season-long programmes"]
         },
         {
-          title: "Small Team Units", 
-          description: "Ideal for club teams, school squads, or established groups wanting specialized additional training.",
-          ideal: "Established teams seeking extra development"
-        },
-        {
-          title: "Skill-Level Groups",
-          description: "Players of similar ability levels training together to push each other's development forward.",
-          ideal: "Players ready for the next level challenge"
+          title: "Small Groups",
+          description: "Small group sessions (4-8 players) focusing on position-specific skills and game understanding.",
+          features: ["Position-specific training", "Game scenarios", "Competitive drills", "Peer learning"]
         }
       ]
     },
-    mentorship: {
-      title: "🤝 Coach Mentorship",
-      subtitle: "You Coach Others. We Coach You.",
-      description: "Our mentorship program is designed to support, challenge, and grow coaches through regular 1-to-1 support.",
+    goalkeeping: {
+      title: "🧤 Goalkeeper Academy",
+      subtitle: "Specialist Goalkeeper Development Programme",
+      description: "Dedicated goalkeeper training with specialist coaches using modern techniques and methodologies.",
       features: [
-        "Monthly check-ins and development goals",
-        "Session reviews & tactical discussions", 
-        "Career support and leadership development",
-        "A space to reflect, improve, and stay accountable"
+        "Technical shot-stopping",
+        "Distribution and footwork",
+        "Command of area",
+        "Match psychology"
+      ]
+    },
+    post16Academy: {
+      title: "🎓 Post-16 Football Academy",
+      subtitle: "Education and Elite Football Combined",
+      description: "Continue your education while pursuing elite football development at our partner colleges.",
+      partners: [
+        "Leigh Academy Halley",
+        "The Victory Academy", 
+        "Welling School",
+        "Cray Wanderers FC"
+      ],
+      features: [
+        "Full-time football programme",
+        "Academic qualifications",
+        "Professional coaching daily",
+        "Competitive fixtures",
+        "International tours",
+        "Career pathways"
+      ]
+    },
+    holidayCamps: {
+      title: "☀️ Holiday Camps",
+      subtitle: "Keep developing during school holidays",
+      description: "Fun, engaging holiday camps that maintain development momentum during school breaks.",
+      features: [
+        "Full day programmes",
+        "Age-appropriate groups",
+        "Skills challenges",
+        "Tournaments",
+        "Prizes and awards",
+        "Qualified supervision"
       ]
     }
   },
