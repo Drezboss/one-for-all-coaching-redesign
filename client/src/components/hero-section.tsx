@@ -25,7 +25,7 @@ export function HeroSection() {
           </div>
           <h1 className="text-6xl md:text-8xl font-black text-white leading-none mb-6">
             {siteContent.home.hero.title.split(' ').map((word, index) => 
-              word === 'POTENTIAL' ? 
+              word === 'LEVEL' ? 
                 <span key={index} className="text-lfc-red">{word}</span> : 
                 word + (index < siteContent.home.hero.title.split(' ').length - 1 ? ' ' : '')
             )}
