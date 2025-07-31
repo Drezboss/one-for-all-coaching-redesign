@@ -24,7 +24,7 @@
   --input: hsl(214.3, 31.8%, 91.4%);
   --ring: hsl(351, 83%, 42%);
   --radius: 0.5rem;
-  --lfc-red: hsl(355, 87%, 48%);
+  --lfc-red: hsl(152, 63%, 38%);
   --bright-red: hsl(0, 100%, 50%);
   --dark-navy: hsl(220, 47%, 9%);
   --almost-black: hsl(0, 0%, 7%);
@@ -51,7 +51,7 @@
   --border: hsl(217.2, 32.6%, 17.5%);
   --input: hsl(217.2, 32.6%, 17.5%);
   --ring: hsl(351, 83%, 52%);
-  --lfc-red: hsl(355, 87%, 48%);
+  --lfc-red: hsl(152, 63%, 38%);
   --bright-red: hsl(0, 100%, 50%);
   --dark-navy: hsl(220, 47%, 9%);
   --almost-black: hsl(0, 0%, 7%);
@@ -70,39 +70,39 @@
 @layer components {
   /* Button styling improvements for better visibility */
   .btn-primary {
-    background-color: hsl(355, 87%, 48%) !important;
+    background-color: hsl(152, 63%, 38%) !important;
     color: white !important;
-    border: 2px solid hsl(355, 87%, 48%) !important;
+    border: 2px solid hsl(152, 63%, 38%) !important;
     font-weight: 600 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.05em !important;
   }
   
   .btn-primary:hover {
-    background-color: hsl(355, 87%, 40%) !important;
-    border-color: hsl(355, 87%, 40%) !important;
+    background-color: hsl(152, 63%, 40%) !important;
+    border-color: hsl(152, 63%, 40%) !important;
     transform: translateY(-1px) !important;
     box-shadow: 0 4px 12px rgba(200, 16, 46, 0.4) !important;
   }
 
   .lfc-red {
-    color: hsl(355, 87%, 48%);
+    color: hsl(152, 63%, 38%);
   }
   
   .bg-lfc-red {
-    background-color: hsl(355, 87%, 48%);
+    background-color: hsl(152, 63%, 38%);
   }
   
   .border-lfc-red {
-    border-color: hsl(355, 87%, 48%);
+    border-color: hsl(152, 63%, 38%);
   }
   
   .hover\:bg-lfc-red:hover {
-    background-color: hsl(355, 87%, 48%);
+    background-color: hsl(152, 63%, 38%);
   }
   
   .hover\:text-lfc-red:hover {
-    color: hsl(355, 87%, 48%);
+    color: hsl(152, 63%, 38%);
   }
   
   .bright-red {
@@ -135,14 +135,14 @@
 
   /* Button specific styling for better contrast */
   .btn-primary {
-    background-color: hsl(355, 87%, 48%);
+    background-color: hsl(152, 63%, 38%);
     color: white;
     border: none;
     font-weight: 700;
   }
   
   .btn-primary:hover {
-    background-color: hsl(355, 87%, 42%);
+    background-color: hsl(152, 63%, 30%);
     color: white;
   }
   
