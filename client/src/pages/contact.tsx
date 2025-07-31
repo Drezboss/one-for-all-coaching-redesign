@@ -14,6 +14,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { insertContactSchema, insertBookingSchema } from "@shared/schema";
 import { z } from "zod";
 import { Mail, Phone, MapPin, Clock, Calendar, User, MessageSquare } from "lucide-react";
+import { siteContent } from "@shared/content";
 
 const contactFormSchema = insertContactSchema.extend({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -61,22 +62,22 @@ export default function Contact() {
 
   const contactMutation = useMutation({
     mutationFn: async (data: ContactFormData) => {
-      // Static site - no backend API calls
-      console.log("Contact form submission:", data);
-      await new Promise(resolve => setTimeout(resolve, 800));
-      return { success: true };
+      return apiRequest("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
     },
     onSuccess: () => {
       toast({
-        title: "Message Received!",
-        description: "Thank you for your interest. Please call us directly at +44 7750 887112 for immediate assistance.",
+        title: "Message sent!",
+        description: "We'll get back to you as soon as possible.",
       });
       contactForm.reset();
     },
     onError: () => {
       toast({
-        title: "Please Contact Us Directly",
-        description: "Call +44 7750 887112 or email dave@all-4one-coaching.com",
+        title: "Error",
+        description: "Failed to send message. Please try again.",
         variant: "destructive",
       });
     },
@@ -84,200 +85,140 @@ export default function Contact() {
 
   const bookingMutation = useMutation({
     mutationFn: async (data: BookingFormData) => {
-      // Static site - no backend API calls
-      console.log("Booking form submission:", data);
-      await new Promise(resolve => setTimeout(resolve, 800));
-      return { success: true };
+      return apiRequest("/api/bookings", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
     },
     onSuccess: () => {
       toast({
-        title: "Booking Interest Noted!",
-        description: "Please call us at +44 7750 887112 to discuss availability and book your session.",
+        title: "Booking request sent!",
+        description: "We'll contact you within 24 hours to confirm your booking.",
       });
       bookingForm.reset();
     },
     onError: () => {
       toast({
-        title: "Please Contact Us Directly",
-        description: "Call +44 7750 887112 or email dave@all-4one-coaching.com",
+        title: "Error",
+        description: "Failed to send booking request. Please try again.",
         variant: "destructive",
       });
     },
   });
 
-  const onContactSubmit = (data: ContactFormData) => {
-    contactMutation.mutate(data);
-  };
-
-  const onBookingSubmit = (data: BookingFormData) => {
-    bookingMutation.mutate(data);
-  };
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: "Email",
-      value: "info@oneforallcoaching.com",
-      description: "Get in touch via email",
-    },
-    {
-      icon: Phone,
-      title: "Phone",
-      value: "+123-456-7890",
-      description: "Call us directly",
-    },
-    {
-      icon: MapPin,
-      title: "Location",
-      value: "Gloucestershire",
-      description: "Available Online & In Person",
-    },
-    {
-      icon: Clock,
-      title: "Response Time",
-      value: "Within 24 hours",
-      description: "We'll get back to you quickly",
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-black via-dark-navy to-almost-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-black text-white mb-6">
-            📞 <span className="text-lfc-red">CONTACT</span> US
-          </h1>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Let's Build Your Next Step Together.
-          </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Ready to unlock your potential? Get in touch and let's discuss how we can help you become the best version of yourself.
-          </p>
+      <section className="bg-gradient-to-br from-[var(--apd-blue)] to-blue-800 text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <blockquote className="text-2xl italic text-gray-200 mb-4">
-              "Your journey is unique. Your development should be too."
-            </blockquote>
+            <h1 className="text-5xl md:text-6xl font-black mb-6">
+              GET IN TOUCH
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 opacity-90">
+              Ready to enter the next level? Contact us today
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Contact Info Cards */}
-      <section className="py-20 bg-almost-black">
+      {/* Contact Information */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {contactInfo.map((info, index) => (
-              <Card key={index} className="bg-black border-gray-800 hover:border-lfc-red transition-colors duration-200">
-                <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <info.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-white font-semibold mb-2">{info.title}</h3>
-                  <div className="text-lfc-red font-bold mb-1">{info.value}</div>
-                  <div className="text-gray-400 text-sm">{info.description}</div>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <Card className="text-center hover:shadow-lg transition-shadow">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-[var(--apd-blue)] rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Phone className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Call Us</h3>
+                <a href={`tel:${siteContent.site.phone}`} className="text-[var(--apd-blue)] hover:underline text-lg">
+                  {siteContent.site.phone}
+                </a>
+                <p className="text-gray-600 mt-2">Mon-Fri 9am-6pm</p>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center hover:shadow-lg transition-shadow">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-[var(--apd-blue)] rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Mail className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Email Us</h3>
+                <a href={`mailto:${siteContent.site.email}`} className="text-[var(--apd-blue)] hover:underline">
+                  {siteContent.site.email}
+                </a>
+                <p className="text-gray-600 mt-2">We'll respond within 24 hours</p>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center hover:shadow-lg transition-shadow">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-[var(--apd-blue)] rounded-full flex items-center justify-center mx-auto mb-4">
+                  <MapPin className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Visit Us</h3>
+                <p className="text-gray-600">Chatham, Kent</p>
+                <p className="text-gray-600">Eltham, SE London</p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* Contact Forms */}
-      <section className="py-20 bg-black">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-              GET IN <span className="text-lfc-red">TOUCH</span>
-            </h2>
-            <p className="text-xl text-gray-300">Choose how you'd like to connect with us</p>
-          </div>
-
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-2 bg-almost-black border border-gray-800">
-              <TabsTrigger 
-                value="contact" 
-                className="data-[state=active]:bg-lfc-red data-[state=active]:text-white text-gray-300"
-              >
-                <MessageSquare className="w-4 h-4 mr-2" />
-                General Inquiry
-              </TabsTrigger>
-              <TabsTrigger 
-                value="booking" 
-                className="data-[state=active]:bg-lfc-red data-[state=active]:text-white text-gray-300"
-              >
-                <Calendar className="w-4 h-4 mr-2" />
-                Book Session
-              </TabsTrigger>
+            <TabsList className="grid w-full grid-cols-2 mb-8">
+              <TabsTrigger value="contact">General Enquiry</TabsTrigger>
+              <TabsTrigger value="booking">Book a Session</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="contact" className="mt-8">
-              <Card className="bg-almost-black border-gray-800">
+            <TabsContent value="contact">
+              <Card>
                 <CardContent className="p-8">
-                  <div className="mb-6" id="contact-form">
-                    <h3 className="text-2xl font-bold text-white mb-2">Send us a Message</h3>
-                    <p className="text-gray-300">Have questions about our services? Want to learn more about our coaching approach? Drop us a message and we'll get back to you.</p>
-                  </div>
-
+                  <h2 className="text-2xl font-bold text-gray-800 mb-6">Send us a message</h2>
+                  
                   <Form {...contactForm}>
-                    <form onSubmit={contactForm.handleSubmit(onContactSubmit)} className="space-y-6">
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <FormField
-                          control={contactForm.control}
-                          name="name"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="text-white font-semibold">Full Name</FormLabel>
-                              <FormControl>
-                                <Input
-                                  {...field}
-                                  placeholder="Enter your full name"
-                                  className="bg-black border-gray-700 text-white focus:border-lfc-red"
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                    <form onSubmit={contactForm.handleSubmit((data) => contactMutation.mutate(data))} className="space-y-6">
+                      <FormField
+                        control={contactForm.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Your Name</FormLabel>
+                            <FormControl>
+                              <Input placeholder="John Smith" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
 
-                        <FormField
-                          control={contactForm.control}
-                          name="email"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="text-white font-semibold">Email Address</FormLabel>
-                              <FormControl>
-                                <Input
-                                  {...field}
-                                  type="email"
-                                  placeholder="Enter your email"
-                                  className="bg-black border-gray-700 text-white focus:border-lfc-red"
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
+                      <FormField
+                        control={contactForm.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Email Address</FormLabel>
+                            <FormControl>
+                              <Input type="email" placeholder="john@example.com" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
 
                       <FormField
                         control={contactForm.control}
                         name="service"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white font-semibold">Service Interest (Optional)</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
-                              <FormControl>
-                                <SelectTrigger className="bg-black border-gray-700 text-white focus:border-lfc-red">
-                                  <SelectValue placeholder="Select a service" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent className="bg-black border-gray-700">
-                                <SelectItem value="individual">1-2-1 Individual Coaching</SelectItem>
-                                <SelectItem value="group">Group Sessions</SelectItem>
-                                <SelectItem value="education">Coach Education</SelectItem>
-                                <SelectItem value="mentorship">Coach Mentorship</SelectItem>
-                              </SelectContent>
-                            </Select>
+                            <FormLabel>Subject</FormLabel>
+                            <FormControl>
+                              <Input placeholder="What is your enquiry about?" {...field} />
+                            </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
@@ -288,13 +229,12 @@ export default function Contact() {
                         name="message"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white font-semibold">Message</FormLabel>
+                            <FormLabel>Message</FormLabel>
                             <FormControl>
                               <Textarea
+                                placeholder="Tell us more about your enquiry..."
+                                className="min-h-[150px]"
                                 {...field}
-                                rows={5}
-                                placeholder="Tell us about your goals and how we can help..."
-                                className="bg-black border-gray-700 text-white focus:border-lfc-red"
                               />
                             </FormControl>
                             <FormMessage />
@@ -304,8 +244,8 @@ export default function Contact() {
 
                       <Button
                         type="submit"
+                        className="w-full bg-[var(--apd-blue)] text-white hover:bg-[var(--apd-light-blue)] font-bold"
                         disabled={contactMutation.isPending}
-                        className="btn-primary w-full bg-lfc-red text-white hover:bg-bright-red font-bold text-lg py-4 transition-all duration-200"
                       >
                         {contactMutation.isPending ? "Sending..." : "Send Message"}
                       </Button>
@@ -315,29 +255,22 @@ export default function Contact() {
               </Card>
             </TabsContent>
 
-            <TabsContent value="booking" className="mt-8">
-              <Card className="bg-almost-black border-gray-800">
+            <TabsContent value="booking">
+              <Card>
                 <CardContent className="p-8">
-                  <div className="mb-6">
-                    <h3 className="text-2xl font-bold text-white mb-2">Book a Session</h3>
-                    <p className="text-gray-300">Ready to start your development journey? Fill out this form and we'll contact you within 24 hours to schedule your session.</p>
-                  </div>
-
+                  <h2 className="text-2xl font-bold text-gray-800 mb-6">Book a Session</h2>
+                  
                   <Form {...bookingForm}>
-                    <form onSubmit={bookingForm.handleSubmit(onBookingSubmit)} className="space-y-6">
+                    <form onSubmit={bookingForm.handleSubmit((data) => bookingMutation.mutate(data))} className="space-y-6">
                       <div className="grid md:grid-cols-2 gap-6">
                         <FormField
                           control={bookingForm.control}
                           name="name"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-white font-semibold">Full Name</FormLabel>
+                              <FormLabel>Player Name</FormLabel>
                               <FormControl>
-                                <Input
-                                  {...field}
-                                  placeholder="Enter your full name"
-                                  className="bg-black border-gray-700 text-white focus:border-lfc-red"
-                                />
+                                <Input placeholder="Player's full name" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -349,14 +282,9 @@ export default function Contact() {
                           name="email"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-white font-semibold">Email Address</FormLabel>
+                              <FormLabel>Parent/Guardian Email</FormLabel>
                               <FormControl>
-                                <Input
-                                  {...field}
-                                  type="email"
-                                  placeholder="Enter your email"
-                                  className="bg-black border-gray-700 text-white focus:border-lfc-red"
-                                />
+                                <Input type="email" placeholder="parent@example.com" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -370,13 +298,9 @@ export default function Contact() {
                           name="phone"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-white font-semibold">Phone Number (Optional)</FormLabel>
+                              <FormLabel>Contact Number (Optional)</FormLabel>
                               <FormControl>
-                                <Input
-                                  {...field}
-                                  placeholder="Enter your phone number"
-                                  className="bg-black border-gray-700 text-white focus:border-lfc-red"
-                                />
+                                <Input type="tel" placeholder="07123 456789" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -388,17 +312,20 @@ export default function Contact() {
                           name="serviceType"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-white font-semibold">Service Type</FormLabel>
+                              <FormLabel>Service Type</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
-                                  <SelectTrigger className="bg-black border-gray-700 text-white focus:border-lfc-red">
-                                    <SelectValue placeholder="Select service type" />
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select a service" />
                                   </SelectTrigger>
                                 </FormControl>
-                                <SelectContent className="bg-black border-gray-700">
-                                  <SelectItem value="individual">1-2-1 Individual Coaching</SelectItem>
-                                  <SelectItem value="group">Group Sessions</SelectItem>
-                                  <SelectItem value="mentorship">Coach Mentorship</SelectItem>
+                                <SelectContent>
+                                  <SelectItem value="training-centre">Training Centre Sessions</SelectItem>
+                                  <SelectItem value="121-coaching">121 Coaching</SelectItem>
+                                  <SelectItem value="team-training">Team Training</SelectItem>
+                                  <SelectItem value="goalkeeper">Goalkeeper Academy</SelectItem>
+                                  <SelectItem value="holiday-camp">Holiday Camp</SelectItem>
+                                  <SelectItem value="post-16">Post-16 Academy</SelectItem>
                                 </SelectContent>
                               </Select>
                               <FormMessage />
@@ -412,13 +339,9 @@ export default function Contact() {
                         name="preferredDate"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white font-semibold">Preferred Date/Time (Optional)</FormLabel>
+                            <FormLabel>Preferred Start Date (Optional)</FormLabel>
                             <FormControl>
-                              <Input
-                                {...field}
-                                placeholder="e.g., Weekday evenings, Saturday mornings"
-                                className="bg-black border-gray-700 text-white focus:border-lfc-red"
-                              />
+                              <Input type="date" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -430,13 +353,12 @@ export default function Contact() {
                         name="message"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white font-semibold">Additional Information (Optional)</FormLabel>
+                            <FormLabel>Additional Information (Optional)</FormLabel>
                             <FormControl>
                               <Textarea
+                                placeholder="Tell us about the player's age, experience level, or any specific requirements..."
+                                className="min-h-[100px]"
                                 {...field}
-                                rows={4}
-                                placeholder="Tell us about your current level, goals, or any specific requirements..."
-                                className="bg-black border-gray-700 text-white focus:border-lfc-red"
                               />
                             </FormControl>
                             <FormMessage />
@@ -446,10 +368,10 @@ export default function Contact() {
 
                       <Button
                         type="submit"
+                        className="w-full bg-[var(--apd-blue)] text-white hover:bg-[var(--apd-light-blue)] font-bold"
                         disabled={bookingMutation.isPending}
-                        className="btn-primary w-full bg-lfc-red text-white hover:bg-bright-red font-bold text-lg py-4 transition-all duration-200"
                       >
-                        {bookingMutation.isPending ? "Submitting..." : "Submit Booking Inquiry"}
+                        {bookingMutation.isPending ? "Sending..." : "Submit Booking Request"}
                       </Button>
                     </form>
                   </Form>
@@ -460,95 +382,41 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Additional Info */}
-      <section className="py-20 bg-almost-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12">
-            <Card className="bg-black border-gray-800">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-white mb-6">What Happens Next?</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <div className="w-8 h-8 bg-lfc-red rounded-full flex items-center justify-center mr-4 mt-1">
-                      <span className="text-white font-bold text-sm">1</span>
-                    </div>
-                    <div>
-                      <h4 className="text-white font-semibold mb-1">We'll Contact You</h4>
-                      <p className="text-gray-300 text-sm">Within 24 hours, we'll reach out to discuss your goals and answer any questions.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-8 h-8 bg-lfc-red rounded-full flex items-center justify-center mr-4 mt-1">
-                      <span className="text-white font-bold text-sm">2</span>
-                    </div>
-                    <div>
-                      <h4 className="text-white font-semibold mb-1">Schedule Your Session</h4>
-                      <p className="text-gray-300 text-sm">We'll find a time that works for you and book your first session.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-8 h-8 bg-lfc-red rounded-full flex items-center justify-center mr-4 mt-1">
-                      <span className="text-white font-bold text-sm">3</span>
-                    </div>
-                    <div>
-                      <h4 className="text-white font-semibold mb-1">Start Your Journey</h4>
-                      <p className="text-gray-300 text-sm">Begin your personalized development program with professional coaching.</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-black border-gray-800">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-white mb-6">Frequently Asked Questions</h3>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="text-white font-semibold mb-2">How quickly can I start?</h4>
-                    <p className="text-gray-300 text-sm">Most new clients can start within a week of their initial inquiry, depending on availability.</p>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-2">What equipment do I need?</h4>
-                    <p className="text-gray-300 text-sm">Just bring yourself! We provide all professional equipment and training materials.</p>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-2">Can parents observe sessions?</h4>
-                    <p className="text-gray-300 text-sm">Absolutely! Parents are welcome to observe and we encourage their involvement in the development process.</p>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-2">Do you offer trial sessions?</h4>
-                    <p className="text-gray-300 text-sm">Yes, we offer discounted trial sessions so you can experience our coaching approach firsthand.</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-lfc-red">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
-            YOUR DEVELOPMENT STARTS HERE
+      {/* FAQ Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
+            Frequently Asked Questions
           </h2>
-          <p className="text-xl text-white/90 mb-8">
-            Don't wait to unlock your potential. The best time to start your football development journey is now.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              className="bg-white text-lfc-red hover:bg-gray-100 font-bold text-lg px-8 py-4"
-              onClick={() => setActiveTab("booking")}
-            >
-              Book Your Session Now
-            </Button>
-            <Button
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-lfc-red font-bold text-lg px-8 py-4"
-              onClick={() => setActiveTab("contact")}
-            >
-              Ask a Question First
-            </Button>
+          
+          <div className="space-y-6">
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-3">What age groups do you cater for?</h3>
+                <p className="text-gray-600">We offer programmes for all age groups from U7s through to U18s, with age-appropriate training at every level.</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-3">Do you offer trial sessions?</h3>
+                <p className="text-gray-600">Yes! We offer a free trial session for new players to experience the APD way before committing to regular training.</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-3">What should players bring to training?</h3>
+                <p className="text-gray-600">Players should bring appropriate football boots, shin pads, water bottle, and weather-appropriate training kit.</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-3">How do I book a place?</h3>
+                <p className="text-gray-600">You can book through the form above, call us directly, or email us. We'll confirm your booking within 24 hours.</p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>

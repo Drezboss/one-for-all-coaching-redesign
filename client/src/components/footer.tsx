@@ -1,79 +1,106 @@
 import { Link } from "wouter";
-import { Trophy, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Twitter, Instagram, Youtube, Phone, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { siteContent } from "@shared/content";
 
 export function Footer() {
-  const services = [
-    { name: "1-2-1 Coaching", href: "/individual-coaching" },
-    { name: "Group Sessions", href: "/group-sessions" },
-    { name: "Coach Education", href: "/about" },
-    { name: "Coach Mentorship", href: "/about" },
+  const trainingCentres = [
+    { name: "Chatham Training Centre", href: "/training-centres/chatham" },
+    { name: "Eltham Training Centre", href: "/training-centres/eltham" },
+    { name: "121 Training Sessions", href: "/training-centres/121-sessions" },
+    { name: "Team Training", href: "/training-centres/team-training" },
+    { name: "Goalkeeper Academy", href: "/training-centres/goalkeeper-academy" },
   ];
 
-  const quickLinks = [
-    { name: "About Dave", href: "/about" },
-    { name: "Contact", href: "/contact" },
-    { name: "Book Now", href: "/contact" },
+  const academy = [
+    { name: "Apply Now", href: "/post-16-academy/apply" },
+    { name: "Leigh Academy Halley", href: "/post-16-academy/leigh-academy" },
+    { name: "The Victory Academy", href: "/post-16-academy/victory-academy" },
+    { name: "Welling School", href: "/post-16-academy/welling-school" },
+    { name: "Cray Wanderers FC", href: "/post-16-academy/cray-wanderers" },
   ];
 
-  const parentLinks = [
-    { name: "Parent Login", href: "/login" },
-    { name: "Create Account", href: "/register" },
+  const about = [
+    { name: "Harry Watling", href: "/about/harry-watling" },
+    { name: "Success Stories", href: "/about/success-stories" },
+    { name: "Our Partners", href: "/about/partners" },
+    { name: "Testimonials", href: "/about/testimonials" },
+    { name: "APD Kit Shop", href: "/kit-shop" },
   ];
 
   return (
-    <footer className="bg-black border-t border-gray-800 py-12">
+    <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center mb-4">
               <div className="text-3xl font-bold text-white">
-                <Trophy className="inline-block w-8 h-8 text-lfc-red mr-2" />
-                ONE FOR ALL
-                <span className="block text-lg text-gray-300 font-normal">COACHING</span>
+                A.P.D
+                <span className="block text-sm text-gray-400 font-normal">Advance Player Development</span>
               </div>
             </Link>
             <p className="text-gray-400 mb-6 max-w-md">
-              Helping You Become the Best Version of Yourself through professional football coaching and development.
+              {siteContent.site.tagline}
             </p>
-            <div className="flex space-x-4">
+            
+            {/* Contact Info */}
+            <div className="space-y-3 mb-6">
+              <a href={`tel:${siteContent.site.phone}`} className="flex items-center text-gray-300 hover:text-white transition-colors">
+                <Phone className="w-4 h-4 mr-2" />
+                {siteContent.site.phone}
+              </a>
+              <a href={`mailto:${siteContent.site.email}`} className="flex items-center text-gray-300 hover:text-white transition-colors">
+                <Mail className="w-4 h-4 mr-2" />
+                {siteContent.site.email}
+              </a>
+            </div>
+            
+            <div className="flex space-x-3">
               <a
-                href="#"
-                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200"
+                href={siteContent.site.socialMedia.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-[var(--apd-blue)] rounded-full flex items-center justify-center hover:bg-[var(--apd-light-blue)] transition-colors duration-200"
               >
                 <Facebook className="w-5 h-5 text-white" />
               </a>
               <a
-                href="#"
-                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200"
+                href={siteContent.site.socialMedia.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-[var(--apd-blue)] rounded-full flex items-center justify-center hover:bg-[var(--apd-light-blue)] transition-colors duration-200"
               >
                 <Twitter className="w-5 h-5 text-white" />
               </a>
               <a
-                href="#"
-                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200"
+                href={siteContent.site.socialMedia.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-[var(--apd-blue)] rounded-full flex items-center justify-center hover:bg-[var(--apd-light-blue)] transition-colors duration-200"
               >
                 <Instagram className="w-5 h-5 text-white" />
               </a>
               <a
-                href="#"
-                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200"
+                href={siteContent.site.socialMedia.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-[var(--apd-blue)] rounded-full flex items-center justify-center hover:bg-[var(--apd-light-blue)] transition-colors duration-200"
               >
-                <Linkedin className="w-5 h-5 text-white" />
+                <Youtube className="w-5 h-5 text-white" />
               </a>
             </div>
           </div>
 
           <div>
-            <h4 className="text-white font-bold text-lg mb-4">Services</h4>
+            <h3 className="text-lg font-bold mb-4">Training Centres</h3>
             <ul className="space-y-2">
-              {services.map((service) => (
-                <li key={service.name}>
+              {trainingCentres.map((item) => (
+                <li key={item.name}>
                   <Link
-                    href={service.href}
-                    className="text-gray-400 hover:text-lfc-red transition-colors duration-200"
+                    href={item.href}
+                    className="text-gray-400 hover:text-white transition-colors duration-200"
                   >
-                    {service.name}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -81,15 +108,15 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-bold text-lg mb-4">Quick Links</h4>
+            <h3 className="text-lg font-bold mb-4">Post-16 Academy</h3>
             <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
+              {academy.map((item) => (
+                <li key={item.name}>
                   <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-lfc-red transition-colors duration-200"
+                    href={item.href}
+                    className="text-gray-400 hover:text-white transition-colors duration-200"
                   >
-                    {link.name}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -97,41 +124,31 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-bold text-lg mb-4">Parents</h4>
+            <h3 className="text-lg font-bold mb-4">About APD</h3>
             <ul className="space-y-2">
-              {parentLinks.map((link) => (
-                <li key={link.name}>
+              {about.map((item) => (
+                <li key={item.name}>
                   <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-lfc-red transition-colors duration-200"
+                    href={item.href}
+                    className="text-gray-400 hover:text-white transition-colors duration-200"
                   >
-                    {link.name}
+                    {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
-            <div className="mt-4 p-3 bg-almost-black rounded-lg border border-gray-700">
-              <p className="text-sm text-gray-400 mb-2">Already registered?</p>
-              <Link href="/login">
-                <Button variant="outline" className="w-full border-lfc-red text-lfc-red hover:bg-lfc-red hover:text-white text-sm">
-                  Access Parent Dashboard
-                </Button>
-              </Link>
-            </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400">
-            © 2025 One For All Coaching. All rights reserved. |{" "}
-            <a href="#" className="text-lfc-red hover:text-bright-red transition-colors duration-200">
-              Privacy Policy
-            </a>{" "}
-            |{" "}
-            <a href="#" className="text-lfc-red hover:text-bright-red transition-colors duration-200">
-              Terms of Service
-            </a>
-          </p>
+        <div className="mt-12 pt-8 border-t border-gray-800">
+          <div className="text-center text-gray-400">
+            <p>&copy; {new Date().getFullYear()} {siteContent.site.name}. All rights reserved.</p>
+            <p className="mt-2">
+              <Link href="/terms" className="hover:text-white transition-colors duration-200">Terms and Conditions</Link>
+              {" | "}
+              <Link href="/privacy" className="hover:text-white transition-colors duration-200">Privacy Policy</Link>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
