@@ -29,7 +29,7 @@ export function Footer() {
             <Link href="/" className="flex items-center mb-4">
               <div className="text-3xl font-bold text-white">
                 <Trophy className="inline-block w-8 h-8 text-lfc-red mr-2" />
-                ONE FOR ALL
+                ALL FOR ONE
                 <span className="block text-lg text-gray-300 font-normal">COACHING</span>
               </div>
             </Link>
@@ -123,7 +123,7 @@ export function Footer() {
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            © 2025 One For All Coaching. All rights reserved. |{" "}
+            © 2025 All For One Coaching. All rights reserved. |{" "}
             <a href="#" className="text-lfc-red hover:text-bright-red transition-colors duration-200">
               Privacy Policy
             </a>{" "}
