@@ -6,8 +6,8 @@ export const siteContent = {
   site: {
     name: "One For All Coaching",
     tagline: "Where personal growth meets professional standards",
-    domain: "all-4one-coaching.com",
-    email: "dave@all-4one-coaching.com",
+    domain: "oneforallcoaching.com",
+    email: "dave@oneforallcoaching.com",
     phone: "+44 7750 887112", // Update with real phone
     socialMedia: {
       facebook: "https://facebook.com/oneforallcoaching",
@@ -172,7 +172,7 @@ export const siteContent = {
       description: "Ready to start your football journey? Get in touch and let's discuss how we can help you reach your goals."
     },
     contactInfo: {
-      email: "dave@all-4one-coaching.com",
+      email: "dave@oneforallcoaching.com",
       phone: "+44 7123 456789", // Update with real phone
       availability: "Monday - Sunday, 8 AM - 8 PM"
     }
