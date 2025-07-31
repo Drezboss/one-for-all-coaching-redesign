@@ -273,7 +273,7 @@ export function GdprConsent({ userId, currentConsents, onConsentUpdate }: GdprCo
               <li>• Right to withdraw consent at any time</li>
             </ul>
             <p className="text-gray-400 text-xs mt-3">
-              For any privacy concerns or to exercise your rights, contact our Data Protection Officer at privacy@all-4one-coaching.com
+              For any privacy concerns or to exercise your rights, contact our Data Protection Officer at privacy@oneforallcoaching.com
             </p>
           </div>
         </CardContent>
