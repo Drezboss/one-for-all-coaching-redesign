@@ -54,7 +54,7 @@ export function Navigation() {
           <Link href="/" className="flex items-center">
             <div className="text-2xl font-bold text-foreground">
               <Trophy className="inline-block w-6 h-6 text-primary mr-2" />
-              ONE FOR ALL
+              ALL FOR ONE
               <span className="block text-sm text-muted-foreground font-normal">COACHING</span>
             </div>
           </Link>
