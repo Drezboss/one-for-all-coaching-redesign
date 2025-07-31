@@ -63,7 +63,7 @@ export default function Register() {
     onSuccess: (response: any) => {
       toast({
         title: "Registration Successful!",
-        description: "Welcome to One For All Coaching. You can now log in.",
+                  description: "Welcome to All for One Coaching. You can now log in.",
       });
       localStorage.setItem("user", JSON.stringify(response.user));
       setLocation("/parent-dashboard");
@@ -91,7 +91,7 @@ export default function Register() {
           </Link>
           <div className="flex items-center justify-center mb-4">
             <Trophy className="w-8 h-8 text-lfc-red mr-2" />
-            <h1 className="text-3xl font-bold text-white">ONE FOR ALL COACHING</h1>
+                            <h1 className="text-3xl font-bold text-white">ALL FOR ONE COACHING</h1>
           </div>
           <p className="text-gray-400">Create your parent account to track your child's progress</p>
         </div>
