@@ -4,15 +4,15 @@
 export const siteContent = {
   // Site-wide settings
   site: {
-    name: "One For All Coaching",
+    name: "All for One Coaching",
     tagline: "Where personal growth meets professional standards",
     domain: "all-4one-coaching.com",
     email: "dave@all-4one-coaching.com",
     phone: "+44 7750 887112", // Update with real phone
     socialMedia: {
-      facebook: "https://facebook.com/oneforallcoaching",
-      instagram: "https://instagram.com/oneforallcoaching",
-      twitter: "https://twitter.com/oneforallcoaching"
+      facebook: "https://facebook.com/allforonecoaching",
+      instagram: "https://instagram.com/allforonecoaching",
+      twitter: "https://twitter.com/allforonecoaching"
     }
   },
 
@@ -42,8 +42,8 @@ export const siteContent = {
       secondaryButton: "Learn More"
     },
     whyChoose: {
-      title: "WHY CHOOSE ONE FOR ALL?",
-      description: "At One For All Coaching, we are passionate about helping young players grow both on and off the pitch. Whether your child is just starting out or looking to develop their skills further, our programmes are built around fun, personal growth and long-term progression.",
+      title: "WHY CHOOSE ALL FOR ONE?",
+      description: "At All for One Coaching, we are passionate about helping young players grow both on and off the pitch. Whether your child is just starting out or looking to develop their skills further, our programmes are built around fun, personal growth and long-term progression.",
       features: [
         {
           title: "Experienced and FA-qualified coaches",
