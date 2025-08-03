@@ -2,8 +2,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Users, MessageSquare, Trophy, Target, Clock, MapPin, CheckCircle, Star } from "lucide-react";
+import { usePageMeta } from "@/hooks/useMetaDescription";
 
 export default function GroupSessions() {
+  usePageMeta(
+    "Group Football Training Sessions",
+    "Dynamic group football coaching sessions for up to 4 players. Develop communication skills, enjoy competitive training, and improve through game-realistic scenarios. Maximum individual attention in a team environment."
+  );
+
   const benefits = [
     {
       icon: Users,

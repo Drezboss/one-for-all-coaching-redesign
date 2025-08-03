@@ -16,6 +16,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { z } from "zod";
 import type { ContactSubmission, BookingInquiry, Appointment } from "@shared/schema";
+import { usePageMeta } from "@/hooks/useMetaDescription";
 
 const replySchema = z.object({
   message: z.string().min(10, "Reply must be at least 10 characters"),
@@ -24,6 +25,11 @@ const replySchema = z.object({
 type ReplyFormData = z.infer<typeof replySchema>;
 
 export default function Admin() {
+  usePageMeta(
+    "Admin Dashboard",
+    "Manage One For All Coaching operations. Track bookings, student progress, communications, and schedule training sessions. Administrative control panel for football coaching services."
+  );
+
   const [, setLocation] = useLocation();
   const [user, setUser] = useState<any>(null);
   const [replyDialogOpen, setReplyDialogOpen] = useState(false);

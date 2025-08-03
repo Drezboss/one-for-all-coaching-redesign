@@ -14,6 +14,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { insertContactSchema, insertBookingSchema } from "@shared/schema";
 import { z } from "zod";
 import { Mail, Phone, MapPin, Clock, Calendar, User, MessageSquare } from "lucide-react";
+import { usePageMeta } from "@/hooks/useMetaDescription";
 
 const contactFormSchema = insertContactSchema.extend({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -34,6 +35,11 @@ type ContactFormData = z.infer<typeof contactFormSchema>;
 type BookingFormData = z.infer<typeof bookingFormSchema>;
 
 export default function Contact() {
+  usePageMeta(
+    "Contact Us",
+    "Get in touch with One For All Coaching. Book your football coaching sessions, ask questions, or discuss your training goals. Contact Dave Cornock for professional football coaching in North London."
+  );
+
   const [activeTab, setActiveTab] = useState("contact");
   const { toast } = useToast();
 

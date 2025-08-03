@@ -12,6 +12,7 @@ import { Link, useLocation } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { z } from "zod";
+import { usePageMeta } from "@/hooks/useMetaDescription";
 
 const registerSchema = z.object({
   username: z.string().min(3, "Username must be at least 3 characters"),
@@ -31,6 +32,11 @@ const registerSchema = z.object({
 type RegisterFormData = z.infer<typeof registerSchema>;
 
 export default function Register() {
+  usePageMeta(
+    "Register",
+    "Create your One For All Coaching account. Sign up for professional football coaching sessions, track your progress, and join our community of dedicated players in North London."
+  );
+
   const [, setLocation] = useLocation();
   const [showPassword, setShowPassword] = useState(false);
   const { toast } = useToast();
