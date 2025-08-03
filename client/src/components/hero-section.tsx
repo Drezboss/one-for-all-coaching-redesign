@@ -41,7 +41,7 @@ export function HeroSection() {
           </blockquote>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/individual-coaching">
-              <Button className="btn-primary bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4 transition-all duration-200">
+              <Button className="bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105">
                 {siteContent.home.hero.primaryButton}
               </Button>
             </Link>
@@ -52,7 +52,7 @@ export function HeroSection() {
                   element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
-              className="border-2 border-white text-white hover:bg-white hover:text-black font-bold text-lg px-8 py-4 transition-all duration-200 rounded-md"
+              className="border-2 border-white text-white hover:bg-white hover:text-black font-bold text-lg px-8 py-4 transition-all duration-200 rounded-md shadow-lg hover:shadow-xl hover:scale-105"
             >
               {siteContent.home.hero.secondaryButton}
             </button>
@@ -103,7 +103,7 @@ export function ExpectationSection() {
               key={index}
               className="text-center group hover:transform hover:scale-105 transition-all duration-200"
             >
-              <div className="w-16 h-16 bg-lfc-red rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-bright-red transition-colors duration-200">
+              <div className="w-16 h-16 bg-lfc-red rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-bright-red transition-colors duration-200 shadow-lg">
                 <span className="text-2xl">{item.icon}</span>
               </div>
               <h3 className="text-xl font-bold text-white mb-4">{item.title}</h3>
