@@ -1,28 +1,62 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Rocket } from "lucide-react";
+import { Rocket, ArrowDown } from "lucide-react";
 import { siteContent } from "@shared/content";
+import { useState, useEffect } from "react";
 
 export function HeroSection() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Simulate image loading for better UX
+    const timer = setTimeout(() => setIsLoaded(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleScrollToServices = () => {
+    const element = document.getElementById('services');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Focus the element for screen readers
+      element.focus();
+    }
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      role="banner"
+      aria-label="Hero section"
+    >
+      {/* Background with improved performance */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-dark-navy to-almost-black"></div>
       <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+      
+      {/* Optimized background image */}
       <div className="absolute top-0 right-0 w-1/2 h-full">
         <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 opacity-50 overflow-hidden">
           <img 
             src="/attached_assets/Coach dave all weather coaching_1753424086964.jpg"
             alt="Dave Cornock - All Weather Professional Football Coach"
-            className="w-full h-full object-cover opacity-60"
+            className={`w-full h-full object-cover opacity-60 transition-opacity duration-1000 ${
+              isLoaded ? 'opacity-60' : 'opacity-0'
+            }`}
+            loading="eager"
+            decoding="async"
           />
         </div>
       </div>
 
       <div className="relative z-10 text-left max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
-          <div className="text-sm text-lfc-red font-semibold tracking-wider uppercase mb-4">
+          <div 
+            className="text-sm text-lfc-red font-semibold tracking-wider uppercase mb-4"
+            role="text"
+            aria-label="Company name"
+          >
             {siteContent.site.name.toUpperCase()}
           </div>
+          
           <h1 className="text-6xl md:text-8xl font-black text-white leading-none mb-6">
             {siteContent.home.hero.title.split(' ').map((word, index) => 
               word === 'POTENTIAL' ? 
@@ -30,31 +64,48 @@ export function HeroSection() {
                 word + (index < siteContent.home.hero.title.split(' ').length - 1 ? ' ' : '')
             )}
           </h1>
+          
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             {siteContent.site.tagline.toUpperCase()}
           </h2>
+          
           <p className="text-lg text-gray-300 mb-8 max-w-2xl leading-relaxed">
             {siteContent.home.hero.subtitle}
           </p>
-          <blockquote className="text-2xl md:text-3xl font-bold text-lfc-red mb-10 max-w-2xl italic">
+          
+          <blockquote 
+            className="text-2xl md:text-3xl font-bold text-lfc-red mb-10 max-w-2xl italic"
+            cite="Dave Cornock"
+          >
             "{siteContent.coach.quote}"
           </blockquote>
+          
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/individual-coaching">
-              <Button className="btn-primary bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4 transition-all duration-200">
+              <Button 
+                className="btn-primary bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4 transition-all duration-200 focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                aria-label="Book individual coaching session"
+              >
                 {siteContent.home.hero.primaryButton}
               </Button>
             </Link>
             <button
-              onClick={() => {
-                const element = document.getElementById('services');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-              }}
-              className="border-2 border-white text-white hover:bg-white hover:text-black font-bold text-lg px-8 py-4 transition-all duration-200 rounded-md"
+              onClick={handleScrollToServices}
+              className="border-2 border-white text-white hover:bg-white hover:text-black font-bold text-lg px-8 py-4 transition-all duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
+              aria-label="View our services"
             >
               {siteContent.home.hero.secondaryButton}
+            </button>
+          </div>
+          
+          {/* Scroll indicator */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <button
+              onClick={handleScrollToServices}
+              className="text-white hover:text-lfc-red transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 rounded-full p-2"
+              aria-label="Scroll to services section"
+            >
+              <ArrowDown className="w-6 h-6" />
             </button>
           </div>
         </div>
@@ -88,11 +139,19 @@ export function ExpectationSection() {
   ];
 
   return (
-    <section id="expectations" className="py-20 bg-almost-black">
+    <section 
+      id="expectations" 
+      className="py-20 bg-almost-black"
+      role="region"
+      aria-labelledby="expectations-heading"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            <Rocket className="inline-block w-12 h-12 text-lfc-red mr-4" />
+          <h2 
+            id="expectations-heading"
+            className="text-4xl md:text-5xl font-black text-white mb-4"
+          >
+            <Rocket className="inline-block w-12 h-12 text-lfc-red mr-4" aria-hidden="true" />
             WHAT TO EXPECT
           </h2>
         </div>
@@ -101,12 +160,20 @@ export function ExpectationSection() {
           {expectations.map((item, index) => (
             <div
               key={index}
-              className="text-center group hover:transform hover:scale-105 transition-all duration-200"
+              className="text-center group hover:transform hover:scale-105 transition-all duration-200 focus-within:scale-105"
+              tabIndex={0}
+              role="article"
+              aria-labelledby={`expectation-${index}`}
             >
               <div className="w-16 h-16 bg-lfc-red rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-bright-red transition-colors duration-200">
-                <span className="text-2xl">{item.icon}</span>
+                <span className="text-2xl" aria-hidden="true">{item.icon}</span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">{item.title}</h3>
+              <h3 
+                id={`expectation-${index}`}
+                className="text-xl font-bold text-white mb-4"
+              >
+                {item.title}
+              </h3>
               <p className="text-gray-300">{item.description}</p>
             </div>
           ))}
