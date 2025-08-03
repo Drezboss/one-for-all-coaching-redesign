@@ -95,7 +95,7 @@ export default function GroupSessions() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-black via-dark-navy to-almost-black">
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>

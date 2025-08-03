@@ -141,7 +141,7 @@ export default function Contact() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-black via-dark-navy to-almost-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
