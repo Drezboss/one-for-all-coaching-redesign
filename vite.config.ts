@@ -24,5 +24,10 @@ export default defineConfig({
       }
     }
   },
-  publicDir: path.resolve(__dirname, "attached_assets")
+  publicDir: path.resolve(__dirname, "attached_assets"),
+  server: {
+    fs: {
+      allow: ['..']
+    }
+  }
 });

@@ -14,6 +14,8 @@ import { apiRequest } from "@/lib/queryClient";
 import { insertContactSchema, insertBookingSchema } from "@shared/schema";
 import { z } from "zod";
 import { Mail, Phone, MapPin, Clock, Calendar, User, MessageSquare } from "lucide-react";
+import { useContent, loadPageContent, loadSiteConfig, loadCoachInfo } from "@/lib/content";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const contactFormSchema = insertContactSchema.extend({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -36,6 +38,11 @@ type BookingFormData = z.infer<typeof bookingFormSchema>;
 export default function Contact() {
   const [activeTab, setActiveTab] = useState("contact");
   const { toast } = useToast();
+  
+  // Load dynamic content
+  const { data: pageContent, loading: pageLoading } = useContent(() => loadPageContent('contact'));
+  const { data: siteConfig, loading: siteLoading } = useContent(() => loadSiteConfig());
+  const { data: coachInfo, loading: coachLoading } = useContent(() => loadCoachInfo());
 
   const contactForm = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -113,17 +120,29 @@ export default function Contact() {
     bookingMutation.mutate(data);
   };
 
+  if (pageLoading || siteLoading || coachLoading) {
+    return (
+      <div className="min-h-screen bg-black text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Skeleton className="h-12 w-3/4 mb-4" />
+          <Skeleton className="h-6 w-full mb-8" />
+          <Skeleton className="h-96 w-full" />
+        </div>
+      </div>
+    );
+  }
+  
   const contactInfo = [
     {
       icon: Mail,
       title: "Email",
-      value: "info@oneforallcoaching.com",
+      value: siteConfig?.email || "dave@all-4one-coaching.com",
       description: "Get in touch via email",
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+123-456-7890",
+      value: siteConfig?.phone || "+44 7750 887112",
       description: "Call us directly",
     },
     {
@@ -149,14 +168,14 @@ export default function Contact() {
             📞 <span className="text-lfc-red">CONTACT</span> US
           </h1>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Let's Build Your Next Step Together.
+            {pageContent?.title}
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Ready to unlock your potential? Get in touch and let's discuss how we can help you become the best version of yourself.
+            {pageContent?.description}
           </p>
           <div className="text-center">
             <blockquote className="text-2xl italic text-gray-200 mb-4">
-              "Your journey is unique. Your development should be too."
+              "{coachInfo?.quote}"
             </blockquote>
           </div>
         </div>

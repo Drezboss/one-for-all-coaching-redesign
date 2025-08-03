@@ -1,0 +1,62 @@
+{
+  "title": "OUR COACHING SERVICES",
+  "subtitle": "Choose the training approach that fits your goals",
+  "individualCoaching": {
+    "title": "💪 1-2-1 Individual Program Learning",
+    "subtitle": "Personalised Coaching. Real Progress.",
+    "description": "Unlock your potential with dedicated one-to-one coaching sessions designed around your unique strengths, goals, and playing style.",
+    "features": [
+      "Personalised Training Plans",
+      "Video Analysis & Feedback",
+      "Progress Tracking",
+      "Mental Conditioning"
+    ],
+    "whoItsFor": [
+      {
+        "title": "Ambitious Players",
+        "description": "Players looking to take their game to the next level with professional-standard training and personalized development."
+      },
+      {
+        "title": "Skill Development",
+        "description": "Players wanting to improve specific aspects of their game or overcome particular challenges in their development."
+      },
+      {
+        "title": "Confidence Building",
+        "description": "Players who want to build confidence, overcome mental barriers, and develop a stronger mindset for competition."
+      }
+    ]
+  },
+  "groupSessions": {
+    "title": "👥 Group Sessions",
+    "subtitle": "Learn Together. Push Each Other. Grow as One.",
+    "description": "Small group training sessions that combine individual development with the dynamic energy of training alongside peers.",
+    "groupTypes": [
+      {
+        "title": "Friends & Siblings",
+        "description": "Perfect for friends who want to train together or siblings looking to develop alongside each other.",
+        "ideal": "Ages 8-16 who know each other well"
+      },
+      {
+        "title": "Small Team Units",
+        "description": "Ideal for club teams, school squads, or established groups wanting specialized additional training.",
+        "ideal": "Established teams seeking extra development"
+      },
+      {
+        "title": "Skill-Level Groups",
+        "description": "Players of similar ability levels training together to push each other's development forward.",
+        "ideal": "Players ready for the next level challenge"
+      }
+    ]
+  },
+  "mentorship": {
+    "title": "🤝 Coach Mentorship",
+    "subtitle": "You Coach Others. We Coach You.",
+    "description": "Our mentorship program is designed to support, challenge, and grow coaches through regular 1-to-1 support.",
+    "features": [
+      "Monthly check-ins and development goals",
+      "Session reviews & tactical discussions",
+      "Career support and leadership development",
+      "A space to reflect, improve, and stay accountable"
+    ]
+  }
+}

@@ -2,39 +2,26 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Medal, Trophy, Users, Target, CheckCircle, Star, Award } from "lucide-react";
+import { useContent, loadPageContent, loadCoachInfo, loadImages } from "@/lib/content";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function About() {
-  const credentials = [
-    "UEFA B License qualified",
-    "FA Level 2 Coaching Badge",
-    "Semi-professional playing experience",
-    "Grassroots to elite level coaching",
-    "DBS checked and safeguarding certified",
-    "First Aid qualified",
-  ];
+  // Load dynamic content
+  const { data: pageContent, loading: pageLoading } = useContent(() => loadPageContent('about'));
+  const { data: coachInfo, loading: coachLoading } = useContent(() => loadCoachInfo());
+  const { data: images, loading: imagesLoading } = useContent(() => loadImages());
 
-  const achievements = [
-    {
-      icon: Users,
-      title: "Player Development",
-      description: "Dedicated to helping players at all levels reach their potential through personalized coaching approaches",
-    },
-    {
-      icon: Star,
-      title: "Individual Focus",
-      description: "Every session is tailored to the specific needs and goals of each player",
-    },
-    {
-      icon: Award,
-      title: "UEFA B Licensed",
-      description: "Qualified with UEFA B License, bringing professional standards to every training session",
-    },
-    {
-      icon: Trophy,
-      title: "Grassroots Excellence",
-      description: "Passionate about developing football at the grassroots level across all age groups",
-    },
-  ];
+  if (pageLoading || coachLoading || imagesLoading) {
+    return (
+      <div className="min-h-screen bg-black text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Skeleton className="h-12 w-3/4 mb-4" />
+          <Skeleton className="h-6 w-full mb-8" />
+          <Skeleton className="h-96 w-full" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -44,10 +31,10 @@ export default function About() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl md:text-6xl font-black text-white mb-6">
-                MEET <span className="text-lfc-red">DAVE</span>
+                {pageContent?.title.replace('DAVE', '')} <span className="text-lfc-red">DAVE</span>
               </h1>
               <p className="text-xl text-gray-300 mb-8">
-                Your dedicated coach with the experience, qualifications, and passion to help you unlock your potential on and off the pitch.
+                {pageContent?.description}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/contact">
@@ -68,7 +55,7 @@ export default function About() {
             <div>
               <div className="rounded-lg shadow-2xl w-full h-96 overflow-hidden">
                 <img 
-                  src="/attached_assets/In the dugouts_1753424086963.jpg"
+                  src={images?.coach?.main}
                   alt="Dave Cornock - UEFA B Licensed Football Coach in Professional Setting"
                   className="w-full h-full object-cover"
                 />
@@ -89,7 +76,7 @@ export default function About() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {credentials.map((credential, index) => (
+            {coachInfo?.credentials.map((credential, index) => (
               <Card key={index} className="bg-black border-gray-800 hover:border-lfc-red transition-colors duration-200">
                 <CardContent className="p-6 flex items-center">
                   <CheckCircle className="w-6 h-6 text-lfc-red mr-4 flex-shrink-0" />
@@ -107,13 +94,13 @@ export default function About() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
-                ABOUT ME – <span className="text-lfc-red">DAVE CORNOCK</span>
+                ABOUT ME – <span className="text-lfc-red">{coachInfo?.name.toUpperCase()}</span>
               </h2>
               <p className="text-lg text-gray-300 mb-6">
-                I'm Dave Cornock, a UEFA B Licensed football coach with a broad coaching background that spans all levels of the game. My journey has taken me from grassroots football and local leagues, through the Junior Premier League (JPL) and Hellenic League, to coaching elite Tier 2 women's university teams and UDA overseas students.
+                {coachInfo?.bio}
               </p>
               <p className="text-lg text-gray-300 mb-8">
-                I'm passionate about helping players and coaches unlock their full potential. Whether it's delivering tailored 1-to-1 sessions, designing structured training plans, or mentoring coaches throughout a season, I'm here to support your growth and development.
+                {coachInfo?.philosophy}
               </p>
               <p className="text-lg text-lfc-red font-semibold mb-8">
                 Let's build a stronger, smarter game — together.
@@ -121,15 +108,15 @@ export default function About() {
               
               <div className="bg-almost-black p-6 rounded-lg border border-gray-800">
                 <blockquote className="text-xl italic text-gray-200 mb-4">
-                  "Your journey is unique. Your development should be too."
+                  "{coachInfo?.quote}"
                 </blockquote>
-                <cite className="text-lfc-red font-semibold">— Dave, Head Coach</cite>
+                <cite className="text-lfc-red font-semibold">— {coachInfo?.name.split(' ')[0]}, Head Coach</cite>
               </div>
             </div>
             <div>
               <div className="rounded-lg shadow-2xl w-full h-96 overflow-hidden">
                 <img 
-                  src="/attached_assets/Coach dave on sidelines_1753424086964.jpg"
+                  src={images?.coach?.sideline}
                   alt="Dave Cornock - Professional Coaching from the Sidelines"
                   className="w-full h-full object-cover"
                 />
@@ -139,70 +126,14 @@ export default function About() {
         </div>
       </section>
 
-      {/* Achievements Section */}
+      {/* Dynamic Content Section */}
       <section className="py-20 bg-almost-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-              PROVEN <span className="text-lfc-red">RESULTS</span>
-            </h2>
-            <p className="text-xl text-gray-300">Track record of excellence in player development</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {achievements.map((achievement, index) => (
-              <Card key={index} className="bg-black border-gray-800 hover:border-lfc-red transition-colors duration-200">
-                <CardContent className="p-8">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mr-4">
-                      <achievement.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-white">{achievement.title}</h3>
-                  </div>
-                  <p className="text-gray-300 text-lg">{achievement.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <div dangerouslySetInnerHTML={{ __html: pageContent?.content || '' }} className="prose prose-invert prose-lg max-w-none prose-headings:font-black prose-h2:text-4xl prose-h2:mb-8 prose-h3:text-2xl prose-h3:text-lfc-red prose-p:text-gray-300" />
         </div>
       </section>
 
-      {/* Philosophy Section */}
-      <section className="py-20 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-              COACHING <span className="text-lfc-red">PHILOSOPHY</span>
-            </h2>
-          </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-almost-black border-gray-800 text-center">
-              <CardContent className="p-8">
-                <Target className="w-12 h-12 text-lfc-red mx-auto mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">Individual Focus</h3>
-                <p className="text-gray-300">Every player is unique with their own strengths, challenges, and goals. Our approach is tailored to bring out the best in each individual.</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-almost-black border-gray-800 text-center">
-              <CardContent className="p-8">
-                <Medal className="w-12 h-12 text-lfc-red mx-auto mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">Technical Excellence</h3>
-                <p className="text-gray-300">Building solid technical foundations while developing tactical understanding that will serve players throughout their football journey.</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-almost-black border-gray-800 text-center">
-              <CardContent className="p-8">
-                <Users className="w-12 h-12 text-lfc-red mx-auto mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">Holistic Development</h3>
-                <p className="text-gray-300">Football is a vehicle for personal growth. We focus on confidence, discipline, and life skills that extend beyond the pitch.</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
 
       {/* Coaching Gallery Section */}
       <section className="py-20 bg-almost-black">

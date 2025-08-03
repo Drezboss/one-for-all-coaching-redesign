@@ -3,10 +3,27 @@ import { ServicesSection } from "@/components/services-section";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Medal, Users, Shield } from "lucide-react";
-import { siteContent } from "@shared/content";
+import { useContent, loadPageContent, loadImages } from "@/lib/content";
+import { Skeleton } from "@/components/ui/skeleton";
 
 
 export default function Home() {
+  // Load page content and images
+  const { data: pageContent, loading: pageLoading } = useContent(() => loadPageContent('home'));
+  const { data: images, loading: imagesLoading } = useContent(() => loadImages());
+
+  if (pageLoading || imagesLoading) {
+    return (
+      <div className="min-h-screen bg-black text-white">
+        <div className="max-w-7xl mx-auto px-4 py-20">
+          <Skeleton className="h-12 w-3/4 mb-4" />
+          <Skeleton className="h-6 w-full mb-8" />
+          <Skeleton className="h-96 w-full" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-black text-white">
       <HeroSection />
@@ -20,37 +37,14 @@ export default function Home() {
             <div>
               <div className="rounded-lg shadow-2xl w-full h-96 overflow-hidden">
                 <img 
-                  src={siteContent.images.coach.celebration}
+                  src={images?.coach?.celebration}
                   alt="Dave Cornock - Celebrating Success with Players"
                   className="w-full h-full object-cover"
                 />
               </div>
             </div>
             <div>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
-                {siteContent.home.whyChoose.title}
-              </h2>
-              <p className="text-lg text-gray-300 mb-6">
-                {siteContent.home.whyChoose.description}
-              </p>
-
-              <div className="space-y-6">
-                {siteContent.home.whyChoose.features.map((feature, index) => {
-                  const icons = [Medal, Users, Shield];
-                  const Icon = icons[index];
-                  return (
-                    <div key={index} className="flex items-start">
-                      <div className="w-6 h-6 bg-lfc-red rounded-full flex items-center justify-center mr-4 mt-1">
-                        <Icon className="w-4 h-4 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="text-xl font-bold text-white mb-2">{feature.title}</h4>
-                        <p className="text-gray-300">{feature.description}</p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+              <div dangerouslySetInnerHTML={{ __html: pageContent?.content || '' }} className="prose prose-invert prose-lg max-w-none" />
 
               <div className="mt-8">
                 <Link href="/about">

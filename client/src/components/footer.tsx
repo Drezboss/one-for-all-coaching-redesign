@@ -1,8 +1,11 @@
 import { Link } from "wouter";
 import { Trophy, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useContent, loadSiteConfig } from "@/lib/content";
 
 export function Footer() {
+  // Load site configuration
+  const { data: siteConfig } = useContent(() => loadSiteConfig());
   const services = [
     { name: "1-2-1 Coaching", href: "/individual-coaching" },
     { name: "Group Sessions", href: "/group-sessions" },
@@ -38,19 +41,25 @@ export function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href={siteConfig?.socialMedia?.facebook || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200"
               >
                 <Facebook className="w-5 h-5 text-white" />
               </a>
               <a
-                href="#"
+                href={siteConfig?.socialMedia?.twitter || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200"
               >
                 <Twitter className="w-5 h-5 text-white" />
               </a>
               <a
-                href="#"
+                href={siteConfig?.socialMedia?.instagram || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200"
               >
                 <Instagram className="w-5 h-5 text-white" />
@@ -123,7 +132,7 @@ export function Footer() {
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            © 2025 One For All Coaching. All rights reserved. |{" "}
+            © {new Date().getFullYear()} {siteConfig?.name || "One For All Coaching"}. All rights reserved. |{" "}
             <a href="#" className="text-lfc-red hover:text-bright-red transition-colors duration-200">
               Privacy Policy
             </a>{" "}
