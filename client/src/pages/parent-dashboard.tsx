@@ -16,7 +16,10 @@ import {
   LogOut,
   Phone,
   Mail,
-  Shield
+  Shield,
+  TrendingUp,
+  FileText,
+  MessageSquare
 } from "lucide-react";
 import { GdprConsent } from "@/components/gdpr-consent";
 import { useLocation } from "wouter";
@@ -28,10 +31,14 @@ import type {
   PaymentRecord, 
   Appointment 
 } from "@shared/schema";
+import { cn } from "@/lib/utils";
+import { CardDescription } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 export default function ParentDashboard() {
   const [, setLocation] = useLocation();
   const [user, setUser] = useState<UserType | null>(null);
+  const [showNotifications, setShowNotifications] = useState(false);
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -80,7 +87,7 @@ export default function ParentDashboard() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-almost-black flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 flex items-center justify-center">
         <div className="animate-spin w-8 h-8 border-4 border-lfc-red border-t-transparent rounded-full"></div>
       </div>
     );
@@ -91,34 +98,55 @@ export default function ParentDashboard() {
     .filter(apt => new Date(apt.date) > new Date())
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())[0];
 
+  const progressReports = progress.map(p => ({
+    id: p.id,
+    sessionType: p.serviceType,
+    date: p.sessionDate,
+    summary: p.coachNotes || "No notes provided.",
+    rating: p.rating || 0,
+    coachName: p.coachName,
+    strengths: p.skillsWorkedOn ? p.skillsWorkedOn.split(',').map(s => s.trim()) : [],
+    areasToImprove: p.nextSessionGoals ? p.nextSessionGoals.split(',').map(s => s.trim()) : [],
+  }));
+
+  const messages = [
+    { id: 1, sender: 'coach', senderName: 'Coach Smith', content: 'Hello! How was your session today?', timestamp: '2023-10-26T10:00:00Z' },
+    { id: 2, sender: 'parent', senderName: 'You', content: 'Hi Coach, it was great!', timestamp: '2023-10-26T10:05:00Z' },
+    { id: 3, sender: 'coach', senderName: 'Coach Smith', content: 'That\'s wonderful to hear!', timestamp: '2023-10-26T10:10:00Z' },
+  ];
+
+  const logout = () => {
+    handleLogout();
+    setShowNotifications(false);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-almost-black">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       {/* Header */}
-      <div className="bg-almost-black border-b border-gray-800">
+      <div className="bg-gray-50 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center">
-              <Trophy className="w-8 h-8 text-lfc-red mr-3" />
-              <div>
-                <h1 className="text-2xl font-bold text-white">Parent Dashboard</h1>
-                <p className="text-gray-400">Welcome back, {user.parentName}</p>
-              </div>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">Parent Dashboard</h1>
+              <p className="text-gray-600">Welcome back, {user.firstName || user.username}</p>
             </div>
             <div className="flex items-center space-x-4">
-              {unreadNotifications > 0 && (
-                <div className="relative">
-                  <Bell className="w-6 h-6 text-gray-400" />
-                  <span className="absolute -top-2 -right-2 bg-lfc-red text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              <button
+                onClick={() => setShowNotifications(!showNotifications)}
+                className="relative p-2 text-gray-600 hover:text-gray-900"
+              >
+                <Bell className="w-6 h-6" />
+                {unreadNotifications > 0 && (
+                  <span className="absolute top-0 right-0 w-4 h-4 bg-lfc-red text-white text-xs rounded-full flex items-center justify-center">
                     {unreadNotifications}
                   </span>
-                </div>
-              )}
-              <Button
-                onClick={handleLogout}
+                )}
+              </button>
+              <Button 
+                onClick={logout} 
                 variant="outline"
-                className="border-gray-600 text-white hover:bg-gray-700"
+                className="border-gray-200 text-gray-900 hover:bg-gray-100"
               >
-                <LogOut className="w-4 h-4 mr-2" />
                 Logout
               </Button>
             </div>
@@ -126,351 +154,342 @@ export default function ParentDashboard() {
         </div>
       </div>
 
+      {/* Notifications Dropdown */}
+      {showNotifications && (
+        <div className="absolute top-16 right-4 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+          <div className="p-4 border-b border-gray-200">
+            <h3 className="font-semibold text-gray-900">Notifications</h3>
+          </div>
+          <div className="max-h-96 overflow-y-auto">
+            {notifications.length === 0 ? (
+              <p className="p-4 text-gray-600 text-center">No notifications</p>
+            ) : (
+              notifications.map((notification) => (
+                <div
+                  key={notification.id}
+                  className={cn(
+                    "p-4 border-b border-gray-200 hover:bg-gray-50",
+                    !notification.isRead && "bg-blue-50"
+                  )}
+                >
+                  <div className="flex items-start space-x-3">
+                    {notification.type === 'appointment' && <Calendar className="w-5 h-5 text-lfc-red mt-0.5" />}
+                    {notification.type === 'session' && <Clock className="w-5 h-5 text-blue-500 mt-0.5" />}
+                    {notification.type === 'message' && <MessageSquare className="w-5 h-5 text-green-500 mt-0.5" />}
+                    <div className="flex-1">
+                      <p className="text-sm text-gray-900">{notification.message}</p>
+                      <p className="text-xs text-gray-600 mt-1">
+                        {format(new Date(notification.createdAt), "MMM d, h:mm a")}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Quick Stats */}
-        <div className="grid md:grid-cols-4 gap-6 mb-8">
-          <Card className="bg-almost-black border-gray-700">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <Card className="bg-white border-gray-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-400 text-sm">Total Sessions</p>
-                  <p className="text-2xl font-bold text-white">{progress.length}</p>
+                  <p className="text-sm text-gray-600">Next Session</p>
+                  <p className="text-lg font-semibold text-gray-900">
+                    {nextAppointment ? format(new Date(nextAppointment.date), "MMM d") : "None scheduled"}
+                  </p>
                 </div>
                 <Calendar className="w-8 h-8 text-lfc-red" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-almost-black border-gray-700">
+          <Card className="bg-white border-gray-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-400 text-sm">Average Rating</p>
-                  <p className="text-2xl font-bold text-white">
-                    {progress.length > 0 
-                      ? (progress.reduce((sum, p) => sum + (p.rating || 0), 0) / progress.length).toFixed(1)
-                      : "N/A"
-                    }
-                  </p>
+                  <p className="text-sm text-gray-600">Total Sessions</p>
+                  <p className="text-lg font-semibold text-gray-900">{appointments.length}</p>
                 </div>
-                <Star className="w-8 h-8 text-lfc-red" />
+                <TrendingUp className="w-8 h-8 text-green-500" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-almost-black border-gray-700">
+          <Card className="bg-white border-gray-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-400 text-sm">Next Session</p>
-                  <p className="text-lg font-bold text-white">
-                    {nextAppointment 
-                      ? format(new Date(nextAppointment.date), "MMM dd")
-                      : "None scheduled"
-                    }
-                  </p>
+                  <p className="text-sm text-gray-600">Progress Reports</p>
+                  <p className="text-lg font-semibold text-gray-900">{progressReports.length}</p>
                 </div>
-                <Clock className="w-8 h-8 text-lfc-red" />
+                <FileText className="w-8 h-8 text-blue-500" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-almost-black border-gray-700">
+          <Card className="bg-white border-gray-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-400 text-sm">Notifications</p>
-                  <p className="text-2xl font-bold text-white">{unreadNotifications}</p>
+                  <p className="text-sm text-gray-600">Messages</p>
+                  <p className="text-lg font-semibold text-gray-900">{messages.length}</p>
                 </div>
-                <Bell className="w-8 h-8 text-lfc-red" />
+                <MessageSquare className="w-8 h-8 text-purple-500" />
               </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Student Info Card */}
-        <Card className="bg-almost-black border-gray-700 mb-8">
-          <CardHeader>
-            <CardTitle className="text-white flex items-center">
-              <User className="w-5 h-5 mr-2" />
-              Student Information
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-3">
-                <div>
-                  <p className="text-gray-400 text-sm">Student Name</p>
-                  <p className="text-white font-semibold">{user.studentName}</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm">Age</p>
-                  <p className="text-white">{user.studentAge} years old</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm">Parent/Guardian</p>
-                  <p className="text-white">{user.parentName}</p>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center text-gray-300">
-                  <Mail className="w-4 h-4 mr-2" />
-                  {user.email}
-                </div>
-                <div className="flex items-center text-gray-300">
-                  <Phone className="w-4 h-4 mr-2" />
-                  {user.phone}
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm">Emergency Contact</p>
-                  <p className="text-white">{user.emergencyContact}</p>
-                  <p className="text-gray-300 text-sm">{user.emergencyPhone}</p>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Main Content Tabs */}
-        <Tabs defaultValue="progress" className="space-y-6">
-          <TabsList className="bg-almost-black border border-gray-700">
+        {/* Tabs */}
+        <Tabs defaultValue="overview" className="space-y-4">
+          <TabsList className="bg-gray-100 border border-gray-200">
+            <TabsTrigger value="overview" className="data-[state=active]:bg-lfc-red data-[state=active]:text-white">
+              Overview
+            </TabsTrigger>
+            <TabsTrigger value="sessions" className="data-[state=active]:bg-lfc-red data-[state=active]:text-white">
+              Sessions
+            </TabsTrigger>
             <TabsTrigger value="progress" className="data-[state=active]:bg-lfc-red data-[state=active]:text-white">
-              Progress Reports
+              Progress
             </TabsTrigger>
-            <TabsTrigger value="schedule" className="data-[state=active]:bg-lfc-red data-[state=active]:text-white">
-              Schedule
-            </TabsTrigger>
-            <TabsTrigger value="notifications" className="data-[state=active]:bg-lfc-red data-[state=active]:text-white">
-              Notifications {unreadNotifications > 0 && `(${unreadNotifications})`}
-            </TabsTrigger>
-            <TabsTrigger value="payments" className="data-[state=active]:bg-lfc-red data-[state=active]:text-white">
-              Payment History
-            </TabsTrigger>
-            <TabsTrigger value="privacy" className="data-[state=active]:bg-lfc-red data-[state=active]:text-white">
-              Privacy Settings
+            <TabsTrigger value="messages" className="data-[state=active]:bg-lfc-red data-[state=active]:text-white">
+              Messages
             </TabsTrigger>
           </TabsList>
 
-          {/* Progress Reports */}
-          <TabsContent value="progress">
-            <Card className="bg-almost-black border-gray-700">
+          {/* Overview Tab */}
+          <TabsContent value="overview" className="space-y-6">
+            {/* Upcoming Sessions */}
+            <Card className="bg-white border-gray-200">
               <CardHeader>
-                <CardTitle className="text-white">Session Progress Reports</CardTitle>
+                <CardTitle className="text-gray-900">Upcoming Sessions</CardTitle>
               </CardHeader>
               <CardContent>
-                {progress.length > 0 ? (
+                {appointments.filter(apt => new Date(apt.date) > new Date()).length === 0 ? (
+                  <p className="text-gray-600">No upcoming sessions scheduled</p>
+                ) : (
                   <div className="space-y-4">
-                    {progress.map((session) => (
-                      <div key={session.id} className="border border-gray-700 rounded-lg p-4">
-                        <div className="flex justify-between items-start mb-3">
+                    {appointments
+                      .filter(apt => new Date(apt.date) > new Date())
+                      .slice(0, 3)
+                      .map((appointment) => (
+                        <div key={appointment.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                           <div>
-                            <h3 className="text-lg font-semibold text-white">
-                              {format(new Date(session.sessionDate), "MMMM dd, yyyy")}
-                            </h3>
-                            <p className="text-gray-400 text-sm">
-                              {format(new Date(session.sessionDate), "EEEE, h:mm a")}
+                            <h4 className="font-semibold text-gray-900">{appointment.serviceType}</h4>
+                            <p className="text-sm text-gray-600">
+                              {format(new Date(appointment.date), "EEEE, MMMM d 'at' h:mm a")}
                             </p>
                           </div>
-                          {session.rating && (
-                            <div className="flex items-center">
-                              <Star className="w-4 h-4 text-yellow-400 mr-1" />
-                              <span className="text-white font-semibold">{session.rating}/5</span>
-                            </div>
-                          )}
+                          <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                            Confirmed
+                          </Badge>
                         </div>
-                        
-                        <div className="space-y-3">
-                          <div>
-                            <h4 className="text-white font-medium mb-1">Skills Worked On</h4>
-                            <p className="text-gray-300">{session.skillsWorkedOn}</p>
+                      ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Recent Progress */}
+            <Card className="bg-white border-gray-200">
+              <CardHeader>
+                <CardTitle className="text-gray-900">Recent Progress</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {progressReports.length === 0 ? (
+                  <p className="text-gray-600">No progress reports yet</p>
+                ) : (
+                  <div className="space-y-4">
+                    {progressReports.slice(0, 2).map((report) => (
+                      <div key={report.id} className="p-4 bg-gray-50 rounded-lg">
+                        <div className="flex items-center justify-between mb-2">
+                          <h4 className="font-semibold text-gray-900">{report.sessionType}</h4>
+                          <span className="text-sm text-gray-600">
+                            {format(new Date(report.date), "MMM d, yyyy")}
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-700 mb-2">{report.summary}</p>
+                        <div className="flex items-center space-x-2">
+                          <div className="flex items-center">
+                            <Star className="w-4 h-4 text-yellow-500" />
+                            <span className="text-sm text-gray-600 ml-1">Rating: {report.rating}/5</span>
                           </div>
-                          
-                          {session.coachNotes && (
-                            <div>
-                              <h4 className="text-white font-medium mb-1">Coach Notes</h4>
-                              <p className="text-gray-300">{session.coachNotes}</p>
-                            </div>
-                          )}
-                          
-                          {session.nextSessionGoals && (
-                            <div>
-                              <h4 className="text-white font-medium mb-1 flex items-center">
-                                <Target className="w-4 h-4 mr-1" />
-                                Next Session Goals
-                              </h4>
-                              <p className="text-gray-300">{session.nextSessionGoals}</p>
-                            </div>
-                          )}
                         </div>
                       </div>
                     ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-8">
-                    <Target className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-                    <p className="text-gray-400">No progress reports yet</p>
-                    <p className="text-gray-500 text-sm">Progress reports will appear here after your first session</p>
                   </div>
                 )}
               </CardContent>
             </Card>
           </TabsContent>
 
-          {/* Schedule */}
-          <TabsContent value="schedule">
-            <Card className="bg-almost-black border-gray-700">
+          {/* Sessions Tab */}
+          <TabsContent value="sessions">
+            <Card className="bg-white border-gray-200">
               <CardHeader>
-                <CardTitle className="text-white">Upcoming Sessions</CardTitle>
+                <CardTitle className="text-gray-900">All Sessions</CardTitle>
+                <CardDescription className="text-gray-600">View and manage your child's training sessions</CardDescription>
               </CardHeader>
               <CardContent>
-                {appointments.length > 0 ? (
-                  <div className="space-y-4">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="text-gray-600">Date</TableHead>
+                      <TableHead className="text-gray-600">Type</TableHead>
+                      <TableHead className="text-gray-600">Coach</TableHead>
+                      <TableHead className="text-gray-600">Status</TableHead>
+                      <TableHead className="text-gray-600">Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
                     {appointments.map((appointment) => (
-                      <div key={appointment.id} className="border border-gray-700 rounded-lg p-4">
-                        <div className="flex justify-between items-start">
-                          <div>
-                            <h3 className="text-lg font-semibold text-white">
-                              {appointment.serviceType}
-                            </h3>
-                            <p className="text-gray-400">
-                              {format(new Date(appointment.date), "EEEE, MMMM dd, yyyy 'at' h:mm a")}
-                            </p>
-                            <p className="text-gray-300 text-sm mt-1">
-                              Duration: {appointment.duration} minutes
-                            </p>
-                          </div>
-                          <Badge 
-                            variant={appointment.status === "scheduled" ? "default" : "secondary"}
-                            className={appointment.status === "scheduled" ? "bg-green-700" : ""}
+                      <TableRow key={appointment.id}>
+                        <TableCell className="text-gray-900">
+                          {format(new Date(appointment.date), "MMM d, yyyy h:mm a")}
+                        </TableCell>
+                        <TableCell className="text-gray-900">{appointment.serviceType}</TableCell>
+                        <TableCell className="text-gray-900">{appointment.coachName}</TableCell>
+                        <TableCell>
+                          <Badge
+                            variant={appointment.status === 'completed' ? 'default' : 'outline'}
+                            className={cn(
+                              appointment.status === 'completed' && "bg-green-100 text-green-700",
+                              appointment.status === 'scheduled' && "bg-blue-100 text-blue-700",
+                              appointment.status === 'cancelled' && "bg-red-100 text-red-700"
+                            )}
                           >
                             {appointment.status}
                           </Badge>
-                        </div>
-                        {appointment.notes && (
-                          <p className="text-gray-300 mt-3">{appointment.notes}</p>
-                        )}
-                      </div>
+                        </TableCell>
+                        <TableCell>
+                          <Button size="sm" variant="outline" className="border-gray-200 text-gray-900 hover:bg-gray-100">
+                            View Details
+                          </Button>
+                        </TableCell>
+                      </TableRow>
                     ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-8">
-                    <Calendar className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-                    <p className="text-gray-400">No upcoming sessions</p>
-                    <p className="text-gray-500 text-sm">Book a session through our contact form</p>
-                  </div>
-                )}
+                  </TableBody>
+                </Table>
               </CardContent>
             </Card>
           </TabsContent>
 
-          {/* Notifications */}
-          <TabsContent value="notifications">
-            <Card className="bg-almost-black border-gray-700">
+          {/* Progress Tab */}
+          <TabsContent value="progress">
+            <Card className="bg-white border-gray-200">
               <CardHeader>
-                <CardTitle className="text-white">Notifications</CardTitle>
+                <CardTitle className="text-gray-900">Progress Reports</CardTitle>
+                <CardDescription className="text-gray-600">Track your child's development and achievements</CardDescription>
               </CardHeader>
               <CardContent>
-                {notifications.length > 0 ? (
-                  <div className="space-y-4">
-                    {notifications.map((notification) => (
-                      <div 
-                        key={notification.id} 
-                        className={`border rounded-lg p-4 ${
-                          notification.isRead ? "border-gray-700" : "border-lfc-red bg-red-950/20"
-                        }`}
-                      >
-                        <div className="flex justify-between items-start">
-                          <div className="flex-1">
-                            <h3 className="text-white font-semibold">{notification.title}</h3>
-                            <p className="text-gray-300 mt-1">{notification.message}</p>
-                            <p className="text-gray-500 text-sm mt-2">
-                              {format(new Date(notification.createdAt), "MMM dd, yyyy 'at' h:mm a")}
-                            </p>
-                          </div>
-                          {!notification.isRead && (
-                            <div className="w-2 h-2 bg-lfc-red rounded-full ml-2 mt-2"></div>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                {progressReports.length === 0 ? (
+                  <p className="text-gray-600 text-center py-8">No progress reports available yet</p>
                 ) : (
-                  <div className="text-center py-8">
-                    <Bell className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-                    <p className="text-gray-400">No notifications</p>
-                    <p className="text-gray-500 text-sm">You'll receive updates about sessions and progress here</p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Payment History */}
-          <TabsContent value="payments">
-            <Card className="bg-almost-black border-gray-700">
-              <CardHeader>
-                <CardTitle className="text-white">Payment History</CardTitle>
-              </CardHeader>
-              <CardContent>
-                {payments.length > 0 ? (
-                  <div className="space-y-4">
-                    {payments.map((payment) => (
-                      <div key={payment.id} className="border border-gray-700 rounded-lg p-4">
-                        <div className="flex justify-between items-start">
+                  <div className="space-y-6">
+                    {progressReports.map((report) => (
+                      <div key={report.id} className="border border-gray-200 rounded-lg p-6">
+                        <div className="flex items-start justify-between mb-4">
                           <div>
-                            <h3 className="text-lg font-semibold text-white">
-                              {payment.serviceType}
-                            </h3>
-                            <p className="text-gray-400">
-                              {format(new Date(payment.createdAt), "MMMM dd, yyyy")}
+                            <h3 className="text-lg font-semibold text-gray-900">{report.sessionType}</h3>
+                            <p className="text-sm text-gray-600">
+                              {format(new Date(report.date), "EEEE, MMMM d, yyyy")}
                             </p>
-                            {payment.stripePaymentId && (
-                              <p className="text-gray-500 text-sm">
-                                Payment ID: {payment.stripePaymentId}
-                              </p>
-                            )}
                           </div>
-                          <div className="text-right">
-                            <p className="text-2xl font-bold text-white">
-                              £{(payment.amount / 100).toFixed(2)}
+                          <div className="flex items-center">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={cn(
+                                  "w-5 h-5",
+                                  i < report.rating ? "text-yellow-500 fill-current" : "text-gray-300"
+                                )}
+                              />
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="space-y-4">
+                          <div>
+                            <h4 className="font-semibold text-gray-900 mb-2">Session Summary</h4>
+                            <p className="text-gray-700">{report.summary}</p>
+                          </div>
+
+                          {report.strengths && (
+                            <div>
+                              <h4 className="font-semibold text-gray-900 mb-2">Strengths</h4>
+                              <ul className="list-disc list-inside text-gray-700 space-y-1">
+                                {report.strengths.map((strength, index) => (
+                                  <li key={index}>{strength}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+
+                          {report.areasToImprove && (
+                            <div>
+                              <h4 className="font-semibold text-gray-900 mb-2">Areas to Improve</h4>
+                              <ul className="list-disc list-inside text-gray-700 space-y-1">
+                                {report.areasToImprove.map((area, index) => (
+                                  <li key={index}>{area}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+
+                          <div className="pt-4 border-t border-gray-200">
+                            <p className="text-sm text-gray-600">
+                              Coach: <span className="font-semibold text-gray-900">{report.coachName}</span>
                             </p>
-                            <Badge 
-                              variant={payment.status === "completed" ? "default" : "secondary"}
-                              className={payment.status === "completed" ? "bg-green-700" : ""}
-                            >
-                              {payment.status}
-                            </Badge>
                           </div>
                         </div>
                       </div>
                     ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-8">
-                    <CreditCard className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-                    <p className="text-gray-400">No payment history</p>
-                    <p className="text-gray-500 text-sm">Your payment history will appear here after making payments</p>
                   </div>
                 )}
               </CardContent>
             </Card>
           </TabsContent>
 
-          {/* Privacy Settings */}
-          <TabsContent value="privacy">
-            <GdprConsent 
-              userId={user.id}
-              currentConsents={{
-                gdprConsent: user.gdprConsent || false,
-                dataProcessingConsent: user.dataProcessingConsent || false,
-                marketingConsent: user.marketingConsent || false,
-                gdprConsentDate: user.gdprConsentDate ? user.gdprConsentDate.toString() : undefined,
-              }}
-              onConsentUpdate={() => {
-                // Optionally refresh user data or show success message
-                console.log("Consent updated");
-              }}
-            />
+          {/* Messages Tab */}
+          <TabsContent value="messages">
+            <Card className="bg-white border-gray-200">
+              <CardHeader>
+                <CardTitle className="text-gray-900">Messages</CardTitle>
+                <CardDescription className="text-gray-600">Communication with your coach</CardDescription>
+              </CardHeader>
+              <CardContent>
+                {messages.length === 0 ? (
+                  <p className="text-gray-600 text-center py-8">No messages yet</p>
+                ) : (
+                  <div className="space-y-4">
+                    {messages.map((message) => (
+                      <div
+                        key={message.id}
+                        className={cn(
+                          "p-4 rounded-lg",
+                          message.sender === 'coach' ? "bg-gray-50 ml-8" : "bg-blue-50 mr-8"
+                        )}
+                      >
+                        <div className="flex items-start justify-between mb-2">
+                          <span className="font-semibold text-gray-900">
+                            {message.sender === 'coach' ? message.senderName : 'You'}
+                          </span>
+                          <span className="text-xs text-gray-600">
+                            {format(new Date(message.timestamp), "MMM d, h:mm a")}
+                          </span>
+                        </div>
+                        <p className="text-gray-700">{message.content}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       </div>

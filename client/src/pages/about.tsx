@@ -37,16 +37,16 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white text-gray-900">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-black via-dark-navy to-almost-black">
+      <section className="relative py-20 bg-gradient-to-br from-gray-50 via-gray-100 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-5xl md:text-6xl font-black text-white mb-6">
+              <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-6">
                 MEET <span className="text-lfc-red">DAVE</span>
               </h1>
-              <p className="text-xl text-gray-300 mb-8">
+              <p className="text-xl text-gray-600 mb-8">
                 Your dedicated coach with the experience, qualifications, and passion to help you unlock your potential on and off the pitch.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -58,7 +58,7 @@ export default function About() {
                 <Link href="/individual-coaching">
                   <Button
                     variant="outline"
-                    className="border-white text-white hover:bg-white hover:text-black font-bold text-lg px-8 py-4"
+                    className="border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white font-bold text-lg px-8 py-4"
                   >
                     View Services
                   </Button>
@@ -79,21 +79,21 @@ export default function About() {
       </section>
 
       {/* Credentials Section */}
-      <section className="py-20 bg-almost-black">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
               PROFESSIONAL <span className="text-lfc-red">CREDENTIALS</span>
             </h2>
-            <p className="text-xl text-gray-300">Qualified, experienced, and committed to excellence</p>
+            <p className="text-xl text-gray-600">Qualified, experienced, and committed to excellence</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {credentials.map((credential, index) => (
-              <Card key={index} className="bg-black border-gray-800 hover:border-lfc-red transition-colors duration-200">
-                <CardContent className="p-6 flex items-center">
-                  <CheckCircle className="w-6 h-6 text-lfc-red mr-4 flex-shrink-0" />
-                  <span className="text-white font-medium">{credential}</span>
+                              <Card key={index} className="bg-white border-gray-200 hover:border-lfc-red transition-colors duration-200">
+                  <CardContent className="p-6 flex items-center">
+                    <CheckCircle className="w-6 h-6 text-lfc-red mr-4 flex-shrink-0" />
+                    <span className="text-gray-900 font-medium">{credential}</span>
                 </CardContent>
               </Card>
             ))}
@@ -102,17 +102,17 @@ export default function About() {
       </section>
 
       {/* Experience Section */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
                 ABOUT ME – <span className="text-lfc-red">DAVE CORNOCK</span>
               </h2>
-              <p className="text-lg text-gray-300 mb-6">
+              <p className="text-lg text-gray-600 mb-6">
                 I'm Dave Cornock, a UEFA B Licensed football coach with a broad coaching background that spans all levels of the game. My journey has taken me from grassroots football and local leagues, through the Junior Premier League (JPL) and Hellenic League, to coaching elite Tier 2 women's university teams and UDA overseas students.
               </p>
-              <p className="text-lg text-gray-300 mb-8">
+              <p className="text-lg text-gray-600 mb-8">
                 I'm passionate about helping players and coaches unlock their full potential. Whether it's delivering tailored 1-to-1 sessions, designing structured training plans, or mentoring coaches throughout a season, I'm here to support your growth and development.
               </p>
               <p className="text-lg text-lfc-red font-semibold mb-8">
@@ -140,26 +140,26 @@ export default function About() {
       </section>
 
       {/* Achievements Section */}
-      <section className="py-20 bg-almost-black">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
               PROVEN <span className="text-lfc-red">RESULTS</span>
             </h2>
-            <p className="text-xl text-gray-300">Track record of excellence in player development</p>
+            <p className="text-xl text-gray-600">Track record of excellence in player development</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {achievements.map((achievement, index) => (
-              <Card key={index} className="bg-black border-gray-800 hover:border-lfc-red transition-colors duration-200">
+              <Card key={index} className="bg-white border-gray-200 hover:border-lfc-red transition-colors duration-200">
                 <CardContent className="p-8">
                   <div className="flex items-center mb-6">
                     <div className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mr-4">
                       <achievement.icon className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-white">{achievement.title}</h3>
+                    <h3 className="text-2xl font-bold text-gray-900">{achievement.title}</h3>
                   </div>
-                  <p className="text-gray-300 text-lg">{achievement.description}</p>
+                  <p className="text-gray-600 text-lg">{achievement.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -168,36 +168,36 @@ export default function About() {
       </section>
 
       {/* Philosophy Section */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
               COACHING <span className="text-lfc-red">PHILOSOPHY</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-almost-black border-gray-800 text-center">
-              <CardContent className="p-8">
-                <Target className="w-12 h-12 text-lfc-red mx-auto mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">Individual Focus</h3>
-                <p className="text-gray-300">Every player is unique with their own strengths, challenges, and goals. Our approach is tailored to bring out the best in each individual.</p>
+                      <div className="grid md:grid-cols-3 gap-8">
+              <Card className="bg-white border-gray-200 text-center">
+                <CardContent className="p-8">
+                  <Target className="w-12 h-12 text-lfc-red mx-auto mb-6" />
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Individual Focus</h3>
+                <p className="text-gray-600">Every player is unique with their own strengths, challenges, and goals. Our approach is tailored to bring out the best in each individual.</p>
               </CardContent>
             </Card>
 
-            <Card className="bg-almost-black border-gray-800 text-center">
+            <Card className="bg-white border-gray-200 text-center">
               <CardContent className="p-8">
                 <Medal className="w-12 h-12 text-lfc-red mx-auto mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">Technical Excellence</h3>
-                <p className="text-gray-300">Building solid technical foundations while developing tactical understanding that will serve players throughout their football journey.</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Technical Excellence</h3>
+                <p className="text-gray-600">Building solid technical foundations while developing tactical understanding that will serve players throughout their football journey.</p>
               </CardContent>
             </Card>
 
-            <Card className="bg-almost-black border-gray-800 text-center">
+            <Card className="bg-white border-gray-200 text-center">
               <CardContent className="p-8">
                 <Users className="w-12 h-12 text-lfc-red mx-auto mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">Holistic Development</h3>
-                <p className="text-gray-300">Football is a vehicle for personal growth. We focus on confidence, discipline, and life skills that extend beyond the pitch.</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Holistic Development</h3>
+                <p className="text-gray-600">Football is a vehicle for personal growth. We focus on confidence, discipline, and life skills that extend beyond the pitch.</p>
               </CardContent>
             </Card>
           </div>
@@ -205,13 +205,13 @@ export default function About() {
       </section>
 
       {/* Coaching Gallery Section */}
-      <section className="py-20 bg-almost-black">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
               COACHING IN <span className="text-lfc-red">ACTION</span>
             </h2>
-            <p className="text-xl text-gray-300">See Dave's professional coaching across all levels and age groups</p>
+            <p className="text-xl text-gray-600">See Dave's professional coaching across all levels and age groups</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -262,7 +262,7 @@ export default function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-lfc-red">
+      <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
             READY TO START YOUR JOURNEY?

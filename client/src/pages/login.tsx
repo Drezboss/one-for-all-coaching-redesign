@@ -65,16 +65,16 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-4">
-      <Card className="w-full max-w-md bg-almost-black border-gray-800">
+    <div className="min-h-screen bg-white flex items-center justify-center px-4">
+      <Card className="w-full max-w-md bg-gray-50 border-gray-200">
         <CardHeader className="text-center">
           <div className="w-16 h-16 bg-lfc-red rounded-full flex items-center justify-center mx-auto mb-4">
-            <Shield className="w-8 h-8 text-white" />
+            <User className="w-8 h-8 text-white" />
           </div>
-          <CardTitle className="text-3xl font-black text-white">
-            Coach <span className="text-lfc-red">LOGIN</span>
-          </CardTitle>
-          <p className="text-gray-300">Access your coaching dashboard</p>
+          <CardTitle className="text-2xl font-bold text-gray-900">Welcome Back</CardTitle>
+          <CardDescription className="text-gray-600">
+            Access your coaching dashboard
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <Form {...form}>
@@ -84,15 +84,15 @@ export default function Login() {
                 name="username"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-white font-semibold">Username</FormLabel>
+                                          <FormLabel className="text-gray-900 font-semibold">Username</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                        <Input
-                          {...field}
-                          placeholder="Enter your username"
-                          className="bg-black border-gray-700 text-white pl-10 focus:border-lfc-red"
-                        />
+                                                  <Input
+                            {...field}
+                            placeholder="Enter your username"
+                            className="bg-gray-900 text-white border-gray-700 focus:border-lfc-red pl-10"
+                          />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -105,20 +105,20 @@ export default function Login() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-white font-semibold">Password</FormLabel>
+                                          <FormLabel className="text-gray-900 font-semibold">Password</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Shield className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                        <Input
-                          {...field}
-                          type={showPassword ? "text" : "password"}
-                          placeholder="Enter your password"
-                          className="bg-black border-gray-700 text-white pl-10 pr-10 focus:border-lfc-red"
-                        />
+                                                  <Input
+                            {...field}
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Enter your password"
+                            className="bg-gray-900 text-white border-gray-700 focus:border-lfc-red pl-10 pr-10"
+                          />
                         <button
                           type="button"
                           onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                                                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-700"
                         >
                           {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                         </button>
@@ -139,11 +139,17 @@ export default function Login() {
             </form>
           </Form>
 
-          <div className="text-center">
-            <p className="text-gray-400 text-sm">
-              For coach access only. Contact admin for account setup.
-            </p>
-          </div>
+                      <div className="text-center space-y-4">
+              <p className="text-gray-600 text-sm">
+                For coach access only. Contact admin for account setup.
+              </p>
+              <p className="text-sm text-gray-600">
+                Don't have an account?{" "}
+                <Link href="/register" className="text-lfc-red hover:underline font-semibold">
+                  Register
+                </Link>
+              </p>
+            </div>
         </CardContent>
       </Card>
     </div>
