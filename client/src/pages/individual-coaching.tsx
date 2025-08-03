@@ -2,8 +2,18 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Target, Video, TrendingUp, Brain, Clock, MapPin, CheckCircle, Star } from "lucide-react";
+import { SEO } from "@/components/seo";
 
 export default function IndividualCoaching() {
+  return (
+    <>
+      <SEO 
+        title="Individual Football Coaching - 1-2-1 Training Programs | One For All Coaching"
+        description="Transform your football skills with personalized 1-2-1 coaching sessions. Video analysis, progress tracking, and mental conditioning with UEFA B Licensed coach Dave Cornock."
+        keywords="individual football coaching, 1-2-1 training, personalized coaching, video analysis, progress tracking, mental conditioning, football skills development"
+        canonical="https://oneforallcoaching.com/individual-coaching"
+      />
+      <div className="min-h-screen bg-black text-white">
   const features = [
     {
       icon: Target,
@@ -345,6 +355,7 @@ export default function IndividualCoaching() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

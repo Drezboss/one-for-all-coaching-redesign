@@ -4,11 +4,19 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Medal, Users, Shield } from "lucide-react";
 import { siteContent } from "@shared/content";
+import { SEO } from "@/components/seo";
 
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <>
+      <SEO 
+        title="One For All Coaching - Professional Football Coaching Services"
+        description="Transform your football skills with UEFA B Licensed coach Dave Cornock. Professional individual coaching, group sessions, and youth development programs. Book your session today!"
+        keywords="football coaching, UEFA B license, individual coaching, group sessions, youth development, Dave Cornock, professional football training, football skills, coaching sessions"
+        canonical="https://oneforallcoaching.com/"
+      />
+      <div className="min-h-screen bg-black text-white">
       <HeroSection />
       <ExpectationSection />
       <ServicesSection />
@@ -65,6 +73,7 @@ export default function Home() {
       </section>
 
 
-    </div>
+      </div>
+    </>
   );
 }

@@ -8,6 +8,7 @@ import { Clock, User, Phone, Mail, Calendar as CalendarIcon } from "lucide-react
 import { format, startOfDay, endOfDay } from "date-fns";
 import type { Appointment } from "@shared/schema";
 import 'react-calendar/dist/Calendar.css';
+import { SEO } from "@/components/seo";
 
 export default function CalendarPage() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -37,7 +38,14 @@ export default function CalendarPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <>
+      <SEO 
+        title="Coaching Calendar - Schedule Management | One For All Coaching"
+        description="Manage your football coaching schedule and sessions. View upcoming training sessions, book appointments, and coordinate with UEFA B Licensed coach Dave Cornock."
+        keywords="coaching calendar, session scheduling, football training schedule, appointment booking, coaching management, training coordination"
+        canonical="https://oneforallcoaching.com/calendar"
+      />
+      <div className="min-h-screen bg-black text-white">
       {/* Header */}
       <header className="bg-almost-black border-b border-gray-800 p-4">
         <div className="max-w-7xl mx-auto">
@@ -214,6 +222,7 @@ export default function CalendarPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

@@ -12,6 +12,7 @@ import { Link, useLocation } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { z } from "zod";
+import { SEO } from "@/components/seo";
 
 const registerSchema = z.object({
   username: z.string().min(3, "Username must be at least 3 characters"),
@@ -82,7 +83,14 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-almost-black flex items-center justify-center p-4">
+    <>
+      <SEO 
+        title="Register - Create Your Parent Account | One For All Coaching"
+        description="Create your parent account to track your child's football development progress. Join One For All Coaching and start your journey with professional UEFA B Licensed coaching."
+        keywords="parent registration, football coaching account, child development tracking, coaching progress, parent dashboard, football training registration"
+        canonical="https://oneforallcoaching.com/register"
+      />
+      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-almost-black flex items-center justify-center p-4">
       <div className="w-full max-w-2xl">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center text-lfc-red hover:text-bright-red mb-4">
@@ -421,6 +429,7 @@ export default function Register() {
           </CardContent>
         </Card>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

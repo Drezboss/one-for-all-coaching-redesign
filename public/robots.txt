@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://oneforallcoaching.com/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /admin
+Disallow: /parent-dashboard
+Disallow: /api/
+Disallow: /_next/
+Disallow: /node_modules/
+
+# Allow important pages
+Allow: /
+Allow: /about
+Allow: /individual-coaching
+Allow: /group-sessions
+Allow: /contact
+Allow: /login
+Allow: /register
+Allow: /calendar

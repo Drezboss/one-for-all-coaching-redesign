@@ -1,9 +1,17 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
+import { SEO } from "@/components/seo";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
+    <>
+      <SEO 
+        title="404 - Page Not Found | One For All Coaching"
+        description="The page you're looking for doesn't exist. Return to our homepage to explore our professional football coaching services."
+        keywords="404, page not found, football coaching, One For All Coaching"
+        canonical="https://oneforallcoaching.com/404"
+      />
+      <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
       <Card className="w-full max-w-md mx-4">
         <CardContent className="pt-6">
           <div className="flex mb-4 gap-2">
@@ -16,6 +24,7 @@ export default function NotFound() {
           </p>
         </CardContent>
       </Card>
-    </div>
+      </div>
+    </>
   );
 }

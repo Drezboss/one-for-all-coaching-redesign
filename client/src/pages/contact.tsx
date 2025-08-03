@@ -14,6 +14,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { insertContactSchema, insertBookingSchema } from "@shared/schema";
 import { z } from "zod";
 import { Mail, Phone, MapPin, Clock, Calendar, User, MessageSquare } from "lucide-react";
+import { SEO } from "@/components/seo";
 
 const contactFormSchema = insertContactSchema.extend({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -141,7 +142,14 @@ export default function Contact() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <>
+      <SEO 
+        title="Contact Us - Book Football Coaching Sessions | One For All Coaching"
+        description="Get in touch to book your football coaching session with UEFA B Licensed coach Dave Cornock. Contact us for individual coaching, group sessions, and youth development programs."
+        keywords="contact football coach, book coaching session, football training booking, Dave Cornock contact, coaching inquiry, football development consultation"
+        canonical="https://oneforallcoaching.com/contact"
+      />
+      <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-black via-dark-navy to-almost-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -552,6 +560,7 @@ export default function Contact() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }
