@@ -2,8 +2,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Medal, Trophy, Users, Target, CheckCircle, Star, Award } from "lucide-react";
+import { useAboutContent, useSiteInfo, useHomeContent } from "@/hooks/useContent";
+import { ContentLoader } from "@/components/ui/content-loader";
+import { MarkdownRenderer } from "@/components/ui/markdown-renderer";
 
 export default function About() {
+  const aboutContent = useAboutContent();
+  const siteInfo = useSiteInfo();
+  const homeContent = useHomeContent();
+
   const credentials = [
     "UEFA B License qualified",
     "FA Level 2 Coaching Badge",
@@ -13,24 +20,20 @@ export default function About() {
     "First Aid qualified",
   ];
 
-  const achievements = [
+  const achievements = homeContent.data?.achievements || [
     {
-      icon: Users,
       title: "Player Development",
       description: "Dedicated to helping players at all levels reach their potential through personalized coaching approaches",
     },
     {
-      icon: Star,
       title: "Individual Focus",
       description: "Every session is tailored to the specific needs and goals of each player",
     },
     {
-      icon: Award,
       title: "UEFA B Licensed",
       description: "Qualified with UEFA B License, bringing professional standards to every training session",
     },
     {
-      icon: Trophy,
       title: "Grassroots Excellence",
       description: "Passionate about developing football at the grassroots level across all age groups",
     },
@@ -41,40 +44,47 @@ export default function About() {
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-black via-dark-navy to-almost-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-5xl md:text-6xl font-black text-white mb-6">
-                MEET <span className="text-lfc-red">DAVE</span>
-              </h1>
-              <p className="text-xl text-gray-300 mb-8">
-                Your dedicated coach with the experience, qualifications, and passion to help you unlock your potential on and off the pitch.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/contact">
-                  <Button className="bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4">
-                    Book a Session
-                  </Button>
-                </Link>
-                <Link href="/individual-coaching">
-                  <Button
-                    variant="outline"
-                    className="border-white text-white hover:bg-white hover:text-black font-bold text-lg px-8 py-4"
-                  >
-                    View Services
-                  </Button>
-                </Link>
+          <ContentLoader 
+            loading={aboutContent.loading} 
+            error={aboutContent.error} 
+            onRetry={aboutContent.reload}
+            loadingMessage="Loading about content..."
+          >
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h1 className="text-5xl md:text-6xl font-black text-white mb-6">
+                  {aboutContent.data?.data.title || "MEET DAVE"}
+                </h1>
+                <p className="text-xl text-gray-300 mb-8">
+                  {aboutContent.data?.data.subtitle || "Your dedicated coach with the experience, qualifications, and passion to help you unlock your potential on and off the pitch."}
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link href="/contact">
+                    <Button className="bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4">
+                      Book a Session
+                    </Button>
+                  </Link>
+                  <Link href="/individual-coaching">
+                    <Button
+                      variant="outline"
+                      className="border-white text-white hover:bg-white hover:text-black font-bold text-lg px-8 py-4"
+                    >
+                      View Services
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+              <div>
+                <div className="rounded-lg shadow-2xl w-full h-96 overflow-hidden">
+                  <img 
+                    src={aboutContent.data?.data.hero_image || "/attached_assets/In the dugouts_1753424086963.jpg"}
+                    alt="Dave Cornock - UEFA B Licensed Football Coach in Professional Setting"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             </div>
-            <div>
-              <div className="rounded-lg shadow-2xl w-full h-96 overflow-hidden">
-                <img 
-                  src="/attached_assets/In the dugouts_1753424086963.jpg"
-                  alt="Dave Cornock - UEFA B Licensed Football Coach in Professional Setting"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
+          </ContentLoader>
         </div>
       </section>
 
@@ -139,6 +149,25 @@ export default function About() {
         </div>
       </section>
 
+      {/* About Content from Markdown */}
+      <section className="py-20 bg-black">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ContentLoader 
+            loading={aboutContent.loading} 
+            error={aboutContent.error} 
+            onRetry={aboutContent.reload}
+            loadingMessage="Loading about details..."
+          >
+            {aboutContent.data?.content && (
+              <MarkdownRenderer 
+                content={aboutContent.data.content}
+                className="text-center"
+              />
+            )}
+          </ContentLoader>
+        </div>
+      </section>
+
       {/* Achievements Section */}
       <section className="py-20 bg-almost-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -150,19 +179,23 @@ export default function About() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {achievements.map((achievement, index) => (
-              <Card key={index} className="bg-black border-gray-800 hover:border-lfc-red transition-colors duration-200">
-                <CardContent className="p-8">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mr-4">
-                      <achievement.icon className="w-6 h-6 text-white" />
+            {achievements.map((achievement, index) => {
+              const icons = [Users, Star, Award, Trophy];
+              const Icon = icons[index] || Star;
+              return (
+                <Card key={index} className="bg-black border-gray-800 hover:border-lfc-red transition-colors duration-200">
+                  <CardContent className="p-8">
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mr-4">
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-white">{achievement.title}</h3>
                     </div>
-                    <h3 className="text-2xl font-bold text-white">{achievement.title}</h3>
-                  </div>
-                  <p className="text-gray-300 text-lg">{achievement.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+                    <p className="text-gray-300 text-lg">{achievement.description}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -1,0 +1,33 @@
+{
+  "site": {
+    "name": "One For All Coaching",
+    "tagline": "Where personal growth meets professional standards",
+    "domain": "all-4one-coaching.com",
+    "email": "dave@all-4one-coaching.com",
+    "phone": "+44 7750 887112",
+    "socialMedia": {
+      "facebook": "https://facebook.com/oneforallcoaching",
+      "instagram": "https://instagram.com/oneforallcoaching",
+      "twitter": "https://twitter.com/oneforallcoaching"
+    }
+  },
+  "coach": {
+    "name": "Dave Cornock",
+    "title": "UEFA B Licensed Football Coach",
+    "quote": "Your journey is unique. Your development should be too.",
+    "bio": "I'm Dave Graham, a UEFA B Licensed football coach with a broad coaching background that spans all levels of the game. My journey has taken me from grassroots football and local leagues, through the Junior Premier League (JPL) and Hellenic League, to coaching elite Tier 2 women's university teams and UDA overseas students.",
+    "philosophy": "I'm passionate about helping players and coaches unlock their full potential. Whether it's delivering tailored 1-to-1 sessions, designing structured training plans, or mentoring coaches throughout a season, I'm here to support your growth and development."
+  },
+  "images": {
+    "coach": {
+      "main": "/attached_assets/In the dugouts_1753424086963.jpg",
+      "sideline": "/attached_assets/Coach dave on sidelines_1753424086964.jpg",
+      "celebration": "/attached_assets/3-0 goals Coach Dave_1753424086963.jpg"
+    },
+    "coaching": {
+      "group": "/attached_assets/Group coaching with Dave_1753424086962.jpg",
+      "individual": "/attached_assets/coaching photo coach dave_1753424086969.jpg",
+      "youth": "/attached_assets/Tiny titans sat with Coach Dave_1753424086965.jpg"
+    }
+  }
+}
