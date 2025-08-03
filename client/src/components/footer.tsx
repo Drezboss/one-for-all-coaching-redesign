@@ -22,7 +22,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-black border-t border-gray-800 py-12">
+    <footer className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border-t border-gray-700 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
@@ -110,10 +110,10 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <div className="mt-4 p-3 bg-almost-black rounded-lg border border-gray-700">
+            <div className="mt-4 p-3 bg-gray-800 rounded-lg border border-gray-600">
               <p className="text-sm text-gray-400 mb-2">Already registered?</p>
               <Link href="/login">
-                <Button variant="outline" className="w-full border-lfc-red text-lfc-red hover:bg-lfc-red hover:text-white text-sm">
+                <Button variant="outline" className="w-full border-2 border-lfc-red text-lfc-red hover:bg-lfc-red hover:text-white text-sm font-bold transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105">
                   Access Parent Dashboard
                 </Button>
               </Link>

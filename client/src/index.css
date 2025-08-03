@@ -73,16 +73,44 @@
     background-color: hsl(355, 87%, 48%) !important;
     color: white !important;
     border: 2px solid hsl(355, 87%, 48%) !important;
-    font-weight: 600 !important;
+    font-weight: 700 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.05em !important;
+    padding: 0.75rem 2rem !important;
+    box-shadow: 0 4px 14px 0 rgba(200, 16, 46, 0.39) !important;
+    transition: all 0.3s ease !important;
   }
   
   .btn-primary:hover {
-    background-color: hsl(355, 87%, 40%) !important;
-    border-color: hsl(355, 87%, 40%) !important;
+    background-color: hsl(355, 87%, 55%) !important;
+    border-color: hsl(355, 87%, 55%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(200, 16, 46, 0.5) !important;
+  }
+
+  .btn-primary:active {
     transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px rgba(200, 16, 46, 0.4) !important;
+    box-shadow: 0 5px 15px rgba(200, 16, 46, 0.4) !important;
+  }
+
+  /* Enhanced button variants */
+  .btn-secondary {
+    background-color: transparent !important;
+    color: white !important;
+    border: 2px solid white !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    padding: 0.75rem 2rem !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .btn-secondary:hover {
+    background-color: white !important;
+    color: hsl(355, 87%, 48%) !important;
+    border-color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3) !important;
   }
 
   .lfc-red {

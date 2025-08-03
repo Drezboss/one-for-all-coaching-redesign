@@ -41,7 +41,7 @@ export function HeroSection() {
           </blockquote>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/individual-coaching">
-              <Button className="btn-primary bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4 transition-all duration-200">
+              <Button className="btn-primary bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-10 py-6 shadow-2xl transition-all duration-300 transform hover:scale-105">
                 {siteContent.home.hero.primaryButton}
               </Button>
             </Link>
@@ -52,7 +52,7 @@ export function HeroSection() {
                   element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
-              className="border-2 border-white text-white hover:bg-white hover:text-black font-bold text-lg px-8 py-4 transition-all duration-200 rounded-md"
+              className="btn-secondary border-2 border-white text-white hover:bg-white hover:text-lfc-red font-bold text-lg px-10 py-6 transition-all duration-300 transform hover:scale-105 rounded-md shadow-lg"
             >
               {siteContent.home.hero.secondaryButton}
             </button>
@@ -88,7 +88,7 @@ export function ExpectationSection() {
   ];
 
   return (
-    <section id="expectations" className="py-20 bg-almost-black">
+    <section id="expectations" className="py-20 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
