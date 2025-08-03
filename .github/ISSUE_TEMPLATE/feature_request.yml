@@ -1,0 +1,172 @@
+name: ✨ Feature Request
+description: Suggest a new feature or enhancement for the application
+title: "[FEATURE] "
+labels: ["enhancement", "needs-review"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature! 🚀
+        
+        Before submitting, please:
+        - Search existing issues and discussions
+        - Consider if this is a bug report instead
+        - Think about the broader impact on users
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched for existing feature requests
+          required: true
+        - label: This is not a bug report (use bug report template instead)
+          required: true
+        - label: I understand this may take time to implement
+          required: true
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: Feature Type
+      description: What type of feature is this?
+      options:
+        - New UI Component
+        - Backend API Enhancement
+        - CMS/Admin Feature
+        - Performance Improvement
+        - Security Enhancement
+        - Developer Experience
+        - User Experience
+        - Integration
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user-type
+    attributes:
+      label: Target Users
+      description: Who would benefit from this feature?
+      options:
+        - End Users (Website Visitors)
+        - Content Managers (CMS Users)
+        - Developers
+        - Administrators
+        - All Users
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve?
+      placeholder: "Describe the problem or pain point this feature would address..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the feature you'd like to see implemented
+      placeholder: "A clear and concise description of what you want to happen..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: user-stories
+    attributes:
+      label: User Stories
+      description: Describe the feature from a user's perspective
+      placeholder: |
+        As a [type of user], I want [some goal] so that [some reason].
+        
+        Example:
+        - As a content manager, I want to schedule blog posts so that I can plan content releases in advance.
+        - As a website visitor, I want to filter coaching programs so that I can find relevant services quickly.
+      value: |
+        - As a [user type], I want [goal] so that [benefit].
+        - 
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Define when this feature would be considered complete
+      placeholder: |
+        Given [context]
+        When [action]
+        Then [expected result]
+        
+        Example:
+        - Given I am on the blog management page
+        - When I set a future publish date for a post
+        - Then the post should not be visible until that date
+      value: |
+        - [ ] 
+        - [ ] 
+        - [ ] 
+
+  - type: textarea
+    id: mockups-wireframes
+    attributes:
+      label: Mockups/Wireframes
+      description: Visual representations of the feature (if applicable)
+      placeholder: "Attach or link to mockups, wireframes, or examples..."
+
+  - type: textarea
+    id: technical-considerations
+    attributes:
+      label: Technical Considerations
+      description: Any technical aspects to consider
+      placeholder: |
+        - Database changes required
+        - API modifications needed
+        - Third-party integrations
+        - Performance implications
+        - Security considerations
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Other ways this problem could be solved
+      placeholder: "Describe alternative solutions you've considered..."
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature?
+      options:
+        - Low - Nice to have
+        - Medium - Useful improvement
+        - High - Important for user experience
+        - Critical - Blocking important workflows
+    validations:
+      required: true
+
+  - type: dropdown
+    id: effort-estimate
+    attributes:
+      label: Estimated Effort
+      description: How complex do you think this feature is?
+      options:
+        - Small - Simple change, minimal effort
+        - Medium - Moderate complexity
+        - Large - Complex feature, significant effort
+        - Extra Large - Major undertaking
+        - Unknown - Needs technical investigation
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other information about the feature request
+      placeholder: "Links, research, examples from other applications, etc."

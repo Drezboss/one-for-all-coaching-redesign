@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Running pre-commit checks..."
+
+# Run lint-staged for staged files
+npx lint-staged
+
+# Additional security check
+echo "🔒 Running security checks..."
+npm run audit --silent || {
+  echo "❌ Security vulnerabilities found! Please run 'npm audit fix' and commit the changes."
+  exit 1
+}
+
+echo "✅ Pre-commit checks passed!"

@@ -12,22 +12,22 @@ services:
 
     envVars:
       - key: ADMIN_EMAIL
-        value: admin@example.com
+        fromDatabase: ADMIN_EMAIL
       - key: ADMIN_PASSWORD
-        value: StrongPassword123!
+        fromDatabase: ADMIN_PASSWORD
       - key: DB_CLIENT
         value: pg
       - key: DB_HOST
-        value: ep-royal-shadow-abhuk4sw-pooler.eu-west-2.aws.neon.tech
+        fromDatabase: DB_HOST
       - key: DB_PORT
         value: 5432
       - key: DB_DATABASE
-        value: directus
+        fromDatabase: DB_DATABASE
       - key: DB_USER
-        value: neondb_owner
+        fromDatabase: DB_USER
       - key: DB_PASSWORD
-        value: npg_mGO7Ceyk6AlR
+        fromDatabase: DB_PASSWORD
       - key: PGSSLMODE
         value: require
       - key: KEY
-        value: supersecretkey123!
+        fromDatabase: SECRET_KEY

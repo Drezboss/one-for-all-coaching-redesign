@@ -1,0 +1,5 @@
+# This file ensures the directus/uploads directory is tracked by Git
+# while keeping the directory empty of user-generated content.
+# 
+# This directory is used by Directus CMS to store uploaded files.
+# The actual uploads are ignored by .gitignore for security reasons.

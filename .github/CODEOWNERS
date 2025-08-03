@@ -1,0 +1,37 @@
+# Global code owners
+* @Drezboss
+
+# Security-sensitive files
+/.github/ @Drezboss
+/SECURITY.md @Drezboss
+/.env.example @Drezboss
+/render.yaml @Drezboss
+/vercel.json @Drezboss
+/docker-compose.yml @Drezboss
+
+# Configuration files
+/package.json @Drezboss
+/tsconfig.json @Drezboss
+/vite.config.ts @Drezboss
+/tailwind.config.ts @Drezboss
+/eslint.config.js @Drezboss
+/.prettierrc @Drezboss
+/.lighthouserc.js @Drezboss
+
+# CI/CD workflows
+/.github/workflows/ @Drezboss
+/.github/dependabot.yml @Drezboss
+
+# Documentation
+/README.md @Drezboss
+/CONTRIBUTING.md @Drezboss
+/LICENSE @Drezboss
+
+# API and backend code
+/api/ @Drezboss
+/shared/ @Drezboss
+
+# Frontend critical paths
+/client/src/App.tsx @Drezboss
+/client/src/main.tsx @Drezboss
+/index.html @Drezboss

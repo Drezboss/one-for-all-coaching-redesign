@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/Drezboss/one-for-all-coaching-redesign/discussions
+    about: Ask questions, share ideas, and discuss with the community
+  - name: 🔒 Security Issues
+    url: https://github.com/Drezboss/one-for-all-coaching-redesign/security/advisories/new
+    about: Report security vulnerabilities privately
+  - name: 📖 Documentation
+    url: https://github.com/Drezboss/one-for-all-coaching-redesign#readme
+    about: Read the project documentation and guides
+  - name: 💌 Email Support
+    url: mailto:support@oneforallcoaching.com
+    about: Contact us directly for support and business inquiries
