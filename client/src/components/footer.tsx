@@ -22,18 +22,18 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-black border-t border-gray-800 py-12">
+    <footer className="bg-secondary text-foreground border-t border-border py-12 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center mb-4">
-              <div className="text-3xl font-bold text-white">
+              <div className="text-3xl font-bold text-primary">
                 <Trophy className="inline-block w-8 h-8 text-lfc-red mr-2" />
                 ONE FOR ALL
-                <span className="block text-lg text-gray-300 font-normal">COACHING</span>
+                <span className="block text-lg text-muted-foreground font-normal">COACHING</span>
               </div>
             </Link>
-            <p className="text-gray-400 mb-6 max-w-md">
+            <p className="text-muted-foreground mb-6 max-w-md">
               Helping You Become the Best Version of Yourself through professional football coaching and development.
             </p>
             <div className="flex space-x-4">
@@ -65,13 +65,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-bold text-lg mb-4">Services</h4>
+            <h4 className="text-foreground font-bold text-lg mb-4">Services</h4>
             <ul className="space-y-2">
               {services.map((service) => (
                 <li key={service.name}>
                   <Link
                     href={service.href}
-                    className="text-gray-400 hover:text-lfc-red transition-colors duration-200"
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200"
                   >
                     {service.name}
                   </Link>
@@ -81,13 +81,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-bold text-lg mb-4">Quick Links</h4>
+            <h4 className="text-foreground font-bold text-lg mb-4">Quick Links</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-lfc-red transition-colors duration-200"
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200"
                   >
                     {link.name}
                   </Link>
@@ -97,21 +97,21 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-bold text-lg mb-4">Parents</h4>
+            <h4 className="text-foreground font-bold text-lg mb-4">Parents</h4>
             <ul className="space-y-2">
               {parentLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-lfc-red transition-colors duration-200"
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200"
                   >
                     {link.name}
                   </Link>
                 </li>
               ))}
             </ul>
-            <div className="mt-4 p-3 bg-almost-black rounded-lg border border-gray-700">
-              <p className="text-sm text-gray-400 mb-2">Already registered?</p>
+            <div className="mt-4 p-3 bg-muted rounded-lg border border-border">
+              <p className="text-sm text-muted-foreground mb-2">Already registered?</p>
               <Link href="/login">
                 <Button variant="outline" className="w-full border-lfc-red text-lfc-red hover:bg-lfc-red hover:text-white text-sm">
                   Access Parent Dashboard
@@ -121,8 +121,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400">
+        <div className="border-t border-border mt-8 pt-8 text-center">
+          <p className="text-muted-foreground">
             © 2025 One For All Coaching. All rights reserved. |{" "}
             <a href="#" className="text-lfc-red hover:text-bright-red transition-colors duration-200">
               Privacy Policy
