@@ -158,4 +158,32 @@
     color: black;
     border-color: white;
   }
+
+  /* Accessible Skip Link */
+  .skip-link {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    z-index: -1000;
+  }
+
+  .skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+    width: auto;
+    height: auto;
+    clip: auto;
+    white-space: normal;
+    z-index: 10000;
+  }
 }

@@ -43,9 +43,13 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <TooltipProvider>
-          <div className="min-h-screen bg-background text-foreground">
+          <div className="min-h-screen flex flex-col bg-background text-foreground">
+            {/* Skip link for keyboard users */}
+            <a href="#main" className="skip-link">Skip to content</a>
             <Navigation />
-            <Router />
+            <main id="main" className="flex-1">
+              <Router />
+            </main>
             <Footer />
           </div>
           <Toaster />

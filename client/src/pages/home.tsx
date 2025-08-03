@@ -22,6 +22,7 @@ export default function Home() {
                 <img 
                   src={siteContent.images.coach.celebration}
                   alt="Dave Cornock - Celebrating Success with Players"
+                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
               </div>
