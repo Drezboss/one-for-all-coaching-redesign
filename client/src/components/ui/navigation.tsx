@@ -3,7 +3,6 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Trophy } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Navigation() {
   const [location] = useLocation();
@@ -91,7 +90,6 @@ export function Navigation() {
                   <div className="w-px h-4 bg-border"></div>
                 </div>
               )}
-              <ThemeToggle />
               <Link href="/login" onClick={() => handleLinkClick("/login")}>
                 <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold">
                   Parent Login
@@ -148,11 +146,6 @@ export function Navigation() {
                   )}
                   
                   <div className="border-t border-border my-4"></div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm text-muted-foreground">Theme:</span>
-                    <ThemeToggle />
-                  </div>
-                  
                   <Link href="/login" onClick={() => handleLinkClick("/login")}>
                     <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold w-full mb-2">
                       Parent Login
