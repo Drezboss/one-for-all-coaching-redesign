@@ -404,7 +404,7 @@ export default function Register() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-lfc-red hover:bg-bright-red text-white py-3"
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 shadow-lg hover:shadow-xl transition-all duration-200"
                   disabled={registerMutation.isPending}
                 >
                   {registerMutation.isPending ? "Creating Account..." : "Create Parent Account"}
