@@ -13,7 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { insertContactSchema, insertBookingSchema } from "@shared/schema";
 import { z } from "zod";
-import { Mail, Phone, MapPin, Clock, Calendar, User, MessageSquare } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Calendar, User, MessageSquare, Loader2, CheckCircle } from "lucide-react";
 
 const contactFormSchema = insertContactSchema.extend({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -167,9 +167,9 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {contactInfo.map((info, index) => (
-              <Card key={index} className="bg-black border-gray-800 hover:border-lfc-red transition-colors duration-200">
+              <Card key={index} className="bg-black border-gray-800 hover:border-lfc-red transition-all duration-300 hover:shadow-lg hover:shadow-lfc-red/10 group">
                 <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-lfc-red to-bright-red rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                     <info.icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-white font-semibold mb-2">{info.title}</h3>
@@ -193,17 +193,17 @@ export default function Contact() {
           </div>
 
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-2 bg-almost-black border border-gray-800">
+            <TabsList className="grid w-full grid-cols-2 bg-almost-black border border-gray-800 p-1 rounded-lg">
               <TabsTrigger 
                 value="contact" 
-                className="data-[state=active]:bg-lfc-red data-[state=active]:text-white text-gray-300"
+                className="data-[state=active]:bg-lfc-red data-[state=active]:text-white text-gray-300 rounded-md transition-all duration-200"
               >
                 <MessageSquare className="w-4 h-4 mr-2" />
                 General Inquiry
               </TabsTrigger>
               <TabsTrigger 
                 value="booking" 
-                className="data-[state=active]:bg-lfc-red data-[state=active]:text-white text-gray-300"
+                className="data-[state=active]:bg-lfc-red data-[state=active]:text-white text-gray-300 rounded-md transition-all duration-200"
               >
                 <Calendar className="w-4 h-4 mr-2" />
                 Book Session
@@ -226,12 +226,12 @@ export default function Contact() {
                           name="name"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-white font-semibold">Full Name</FormLabel>
+                              <FormLabel className="text-white font-semibold">Full Name *</FormLabel>
                               <FormControl>
                                 <Input
                                   {...field}
                                   placeholder="Enter your full name"
-                                  className="bg-black border-gray-700 text-white focus:border-lfc-red"
+                                  className="bg-black border-gray-700 text-white focus:border-lfc-red focus:ring-lfc-red/20 transition-all duration-200"
                                 />
                               </FormControl>
                               <FormMessage />
@@ -244,13 +244,13 @@ export default function Contact() {
                           name="email"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-white font-semibold">Email Address</FormLabel>
+                              <FormLabel className="text-white font-semibold">Email Address *</FormLabel>
                               <FormControl>
                                 <Input
                                   {...field}
                                   type="email"
-                                  placeholder="Enter your email"
-                                  className="bg-black border-gray-700 text-white focus:border-lfc-red"
+                                  placeholder="Enter your email address"
+                                  className="bg-black border-gray-700 text-white focus:border-lfc-red focus:ring-lfc-red/20 transition-all duration-200"
                                 />
                               </FormControl>
                               <FormMessage />
@@ -264,18 +264,19 @@ export default function Contact() {
                         name="service"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white font-semibold">Service Interest (Optional)</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
+                            <FormLabel className="text-white font-semibold">Service of Interest</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
                               <FormControl>
-                                <SelectTrigger className="bg-black border-gray-700 text-white focus:border-lfc-red">
+                                <SelectTrigger className="bg-black border-gray-700 text-white focus:border-lfc-red focus:ring-lfc-red/20">
                                   <SelectValue placeholder="Select a service" />
                                 </SelectTrigger>
                               </FormControl>
-                              <SelectContent className="bg-black border-gray-700">
+                              <SelectContent className="bg-almost-black border-gray-700">
                                 <SelectItem value="individual">1-2-1 Individual Coaching</SelectItem>
                                 <SelectItem value="group">Group Sessions</SelectItem>
-                                <SelectItem value="education">Coach Education</SelectItem>
+                                <SelectItem value="coach-education">Coach Education</SelectItem>
                                 <SelectItem value="mentorship">Coach Mentorship</SelectItem>
+                                <SelectItem value="other">Other</SelectItem>
                               </SelectContent>
                             </Select>
                             <FormMessage />
@@ -288,13 +289,12 @@ export default function Contact() {
                         name="message"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white font-semibold">Message</FormLabel>
+                            <FormLabel className="text-white font-semibold">Message *</FormLabel>
                             <FormControl>
                               <Textarea
                                 {...field}
-                                rows={5}
                                 placeholder="Tell us about your goals and how we can help..."
-                                className="bg-black border-gray-700 text-white focus:border-lfc-red"
+                                className="bg-black border-gray-700 text-white focus:border-lfc-red focus:ring-lfc-red/20 min-h-[120px] transition-all duration-200"
                               />
                             </FormControl>
                             <FormMessage />
@@ -302,12 +302,22 @@ export default function Contact() {
                         )}
                       />
 
-                      <Button
-                        type="submit"
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-lfc-red text-white hover:bg-bright-red font-semibold py-3 transition-all duration-200"
                         disabled={contactMutation.isPending}
-                        className="btn-primary w-full bg-lfc-red text-white hover:bg-bright-red font-bold text-lg py-4 transition-all duration-200"
                       >
-                        {contactMutation.isPending ? "Sending..." : "Send Message"}
+                        {contactMutation.isPending ? (
+                          <>
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                            Sending Message...
+                          </>
+                        ) : (
+                          <>
+                            <Mail className="w-4 h-4 mr-2" />
+                            Send Message
+                          </>
+                        )}
                       </Button>
                     </form>
                   </Form>
@@ -319,8 +329,8 @@ export default function Contact() {
               <Card className="bg-almost-black border-gray-800">
                 <CardContent className="p-8">
                   <div className="mb-6">
-                    <h3 className="text-2xl font-bold text-white mb-2">Book a Session</h3>
-                    <p className="text-gray-300">Ready to start your development journey? Fill out this form and we'll contact you within 24 hours to schedule your session.</p>
+                    <h3 className="text-2xl font-bold text-white mb-2">Book Your Session</h3>
+                    <p className="text-gray-300">Ready to start your journey? Let us know your preferences and we'll get back to you to confirm your session.</p>
                   </div>
 
                   <Form {...bookingForm}>
@@ -331,12 +341,12 @@ export default function Contact() {
                           name="name"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-white font-semibold">Full Name</FormLabel>
+                              <FormLabel className="text-white font-semibold">Full Name *</FormLabel>
                               <FormControl>
                                 <Input
                                   {...field}
                                   placeholder="Enter your full name"
-                                  className="bg-black border-gray-700 text-white focus:border-lfc-red"
+                                  className="bg-black border-gray-700 text-white focus:border-lfc-red focus:ring-lfc-red/20 transition-all duration-200"
                                 />
                               </FormControl>
                               <FormMessage />
@@ -349,13 +359,13 @@ export default function Contact() {
                           name="email"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-white font-semibold">Email Address</FormLabel>
+                              <FormLabel className="text-white font-semibold">Email Address *</FormLabel>
                               <FormControl>
                                 <Input
                                   {...field}
                                   type="email"
-                                  placeholder="Enter your email"
-                                  className="bg-black border-gray-700 text-white focus:border-lfc-red"
+                                  placeholder="Enter your email address"
+                                  className="bg-black border-gray-700 text-white focus:border-lfc-red focus:ring-lfc-red/20 transition-all duration-200"
                                 />
                               </FormControl>
                               <FormMessage />
@@ -370,12 +380,12 @@ export default function Contact() {
                           name="phone"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-white font-semibold">Phone Number (Optional)</FormLabel>
+                              <FormLabel className="text-white font-semibold">Phone Number</FormLabel>
                               <FormControl>
                                 <Input
                                   {...field}
                                   placeholder="Enter your phone number"
-                                  className="bg-black border-gray-700 text-white focus:border-lfc-red"
+                                  className="bg-black border-gray-700 text-white focus:border-lfc-red focus:ring-lfc-red/20 transition-all duration-200"
                                 />
                               </FormControl>
                               <FormMessage />
@@ -388,16 +398,17 @@ export default function Contact() {
                           name="serviceType"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-white font-semibold">Service Type</FormLabel>
+                              <FormLabel className="text-white font-semibold">Service Type *</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
-                                  <SelectTrigger className="bg-black border-gray-700 text-white focus:border-lfc-red">
+                                  <SelectTrigger className="bg-black border-gray-700 text-white focus:border-lfc-red focus:ring-lfc-red/20">
                                     <SelectValue placeholder="Select service type" />
                                   </SelectTrigger>
                                 </FormControl>
-                                <SelectContent className="bg-black border-gray-700">
+                                <SelectContent className="bg-almost-black border-gray-700">
                                   <SelectItem value="individual">1-2-1 Individual Coaching</SelectItem>
                                   <SelectItem value="group">Group Sessions</SelectItem>
+                                  <SelectItem value="coach-education">Coach Education</SelectItem>
                                   <SelectItem value="mentorship">Coach Mentorship</SelectItem>
                                 </SelectContent>
                               </Select>
@@ -412,12 +423,12 @@ export default function Contact() {
                         name="preferredDate"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white font-semibold">Preferred Date/Time (Optional)</FormLabel>
+                            <FormLabel className="text-white font-semibold">Preferred Date</FormLabel>
                             <FormControl>
                               <Input
                                 {...field}
-                                placeholder="e.g., Weekday evenings, Saturday mornings"
-                                className="bg-black border-gray-700 text-white focus:border-lfc-red"
+                                type="date"
+                                className="bg-black border-gray-700 text-white focus:border-lfc-red focus:ring-lfc-red/20 transition-all duration-200"
                               />
                             </FormControl>
                             <FormMessage />
@@ -430,13 +441,12 @@ export default function Contact() {
                         name="message"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white font-semibold">Additional Information (Optional)</FormLabel>
+                            <FormLabel className="text-white font-semibold">Additional Information</FormLabel>
                             <FormControl>
                               <Textarea
                                 {...field}
-                                rows={4}
-                                placeholder="Tell us about your current level, goals, or any specific requirements..."
-                                className="bg-black border-gray-700 text-white focus:border-lfc-red"
+                                placeholder="Any specific goals, preferences, or questions..."
+                                className="bg-black border-gray-700 text-white focus:border-lfc-red focus:ring-lfc-red/20 min-h-[100px] transition-all duration-200"
                               />
                             </FormControl>
                             <FormMessage />
@@ -444,12 +454,22 @@ export default function Contact() {
                         )}
                       />
 
-                      <Button
-                        type="submit"
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-lfc-red text-white hover:bg-bright-red font-semibold py-3 transition-all duration-200"
                         disabled={bookingMutation.isPending}
-                        className="btn-primary w-full bg-lfc-red text-white hover:bg-bright-red font-bold text-lg py-4 transition-all duration-200"
                       >
-                        {bookingMutation.isPending ? "Submitting..." : "Submit Booking Inquiry"}
+                        {bookingMutation.isPending ? (
+                          <>
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                            Submitting Booking...
+                          </>
+                        ) : (
+                          <>
+                            <Calendar className="w-4 h-4 mr-2" />
+                            Submit Booking Request
+                          </>
+                        )}
                       </Button>
                     </form>
                   </Form>
