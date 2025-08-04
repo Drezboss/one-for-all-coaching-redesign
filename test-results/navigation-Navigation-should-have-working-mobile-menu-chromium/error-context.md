@@ -1,0 +1,181 @@
+# Page snapshot
+
+```yaml
+- navigation:
+  - link "ONE FOR ALL COACHING":
+    - /url: /
+    - img
+    - text: ONE FOR ALL COACHING
+  - button:
+    - img
+- img "Dave Cornock - All Weather Professional Football Coach"
+- text: ONE FOR ALL COACHING
+- heading "UNLOCK YOUR POTENTIAL" [level=1]
+- heading "WHERE PERSONAL GROWTH MEETS PROFESSIONAL STANDARDS" [level=2]
+- paragraph: Professional football coaching that meets you where you are and takes you where you want to be.
+- blockquote: "\"Your journey is unique. Your development should be too.\""
+- link "Start Your Journey":
+  - /url: /individual-coaching
+  - button "Start Your Journey"
+- button "Learn More"
+- heading "WHAT TO EXPECT" [level=2]:
+  - img
+  - text: WHAT TO EXPECT
+- text: 🎯
+- heading "Personalised Training Plans" [level=3]
+- paragraph: Tailored to your strengths and goals
+- text: 💪
+- heading "Technical & Physical Development" [level=3]
+- paragraph: That matches your playing style
+- text: 📈
+- heading "Honest Feedback" [level=3]
+- paragraph: And consistent progression tracking
+- text: 🧠
+- heading "Mental Focus" [level=3]
+- paragraph: And confidence-building woven into every session
+- paragraph: Whether you're looking to improve your skills, aiming to stand out at grassroots level, or just want to play with more purpose — we're here to guide you.
+- text: YOUR JOURNEY. YOUR STANDARD. YOUR BEST VERSION
+- heading "OUR SERVICES" [level=2]
+- paragraph: Tailored training and development for players and coaches
+- img
+- heading "💪 1-2-1 Individual Program Learning" [level=3]
+- paragraph: Personalised Coaching. Real Progress.
+- paragraph: Led by a UEFA B License coach, our 1-2-1 sessions are built around you — your position, your goals, your pace.
+- img
+- text: Custom technical/tactical training
+- img
+- text: Physical conditioning & mindset coaching
+- img
+- text: Performance tracking and video feedback
+- img
+- text: Focused, player-first approach
+- paragraph: Become the best version of yourself — one session at a time.
+- link "Book Individual Session":
+  - /url: /contact
+  - button "Book Individual Session"
+- img
+- heading "👥 Group Sessions" [level=3]
+- paragraph: Learn Together. Push Each Other. Grow as One.
+- paragraph: Ideal for small teams or friend groups, our sessions focus on shared development with individual attention.
+- img
+- text: Game-relevant drills and scenario play
+- img
+- text: Communication and decision-making focus
+- img
+- text: Fitness, teamwork, and leadership training
+- img
+- text: Custom sessions for all ability levels
+- link "Book Group Session":
+  - /url: /contact
+  - button "Book Group Session"
+- img
+- heading "🎓 Coach Education" [level=3]
+- paragraph: Better Coaches. Stronger Players.
+- paragraph: We support coaches at every level with workshops, session planning, and ongoing development built on real football principles.
+- img
+- text: Coaching methodology & practice design
+- img
+- text: Long-Term Player Development (LTPD) guidance
+- img
+- text: Game analysis and reflection tools
+- img
+- text: CPD-style education tailored to your environment
+- link "Learn More":
+  - /url: /contact
+  - button "Learn More"
+- img
+- heading "🤝 Coach Mentorship" [level=3]
+- paragraph: You Coach Others. We Coach You.
+- paragraph: Our mentorship program is designed to support, challenge, and grow coaches through regular 1-to-1 support.
+- img
+- text: Monthly check-ins and development goals
+- img
+- text: Session reviews & tactical discussions
+- img
+- text: Career support and leadership development
+- img
+- text: A space to reflect, improve, and stay accountable
+- paragraph: Because great coaches never stop learning.
+- link "Apply for Mentorship":
+  - /url: /contact
+  - button "Apply for Mentorship"
+- img "Dave Cornock - Celebrating Success with Players"
+- heading "WHY CHOOSE ONE FOR ALL?" [level=2]
+- paragraph: At One For All Coaching, we are passionate about helping young players grow both on and off the pitch. Whether your child is just starting out or looking to develop their skills further, our programmes are built around fun, personal growth and long-term progression.
+- img
+- heading "Experienced and FA-qualified coaches" [level=4]
+- paragraph: Our team includes semi-professional players and highly trained coaches focused on grassroots development and individual player growth.
+- img
+- heading "Tailored coaching for all ages" [level=4]
+- paragraph: From toddler football (ages 2 and up) to personalized one-to-one sessions, every programme builds confidence, skill and a lifelong love for the game.
+- img
+- heading "Trusted by parents and clubs" [level=4]
+- paragraph: We deliver reliable sessions and holiday camps with a focus on quality, safety and a positive learning environment.
+- link "Meet Your Coach":
+  - /url: /about
+  - button "Meet Your Coach"
+- contentinfo:
+  - link "ONE FOR ALL COACHING":
+    - /url: /
+    - img
+    - text: ONE FOR ALL COACHING
+  - paragraph: Helping You Become the Best Version of Yourself through professional football coaching and development.
+  - link:
+    - /url: "#"
+    - img
+  - link:
+    - /url: "#"
+    - img
+  - link:
+    - /url: "#"
+    - img
+  - link:
+    - /url: "#"
+    - img
+  - heading "Services" [level=4]
+  - list:
+    - listitem:
+      - link "1-2-1 Coaching":
+        - /url: /individual-coaching
+    - listitem:
+      - link "Group Sessions":
+        - /url: /group-sessions
+    - listitem:
+      - link "Coach Education":
+        - /url: /about
+    - listitem:
+      - link "Coach Mentorship":
+        - /url: /about
+  - heading "Quick Links" [level=4]
+  - list:
+    - listitem:
+      - link "About Dave":
+        - /url: /about
+    - listitem:
+      - link "Contact":
+        - /url: /contact
+    - listitem:
+      - link "Book Now":
+        - /url: /contact
+  - heading "Parents" [level=4]
+  - list:
+    - listitem:
+      - link "Parent Login":
+        - /url: /login
+    - listitem:
+      - link "Create Account":
+        - /url: /register
+  - paragraph: Already registered?
+  - link "Access Parent Dashboard":
+    - /url: /login
+    - button "Access Parent Dashboard"
+  - paragraph:
+    - text: © 2025 One For All Coaching. All rights reserved. |
+    - link "Privacy Policy":
+      - /url: "#"
+    - text: "|"
+    - link "Terms of Service":
+      - /url: "#"
+- region "Notifications (F8)":
+  - list
+```
