@@ -6,7 +6,7 @@ import { Menu, Trophy } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Navigation() {
-  const [location] = useLocation();
+  const [location, navigate] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
   // Scroll to top when location changes
@@ -40,6 +40,12 @@ export function Navigation() {
   };
 
   const handleAnchorClick = (anchor: string) => {
+    if (location !== "/") {
+      // Navigate to home with hash so browser will scroll after route change
+      navigate(`/#${anchor}`);
+      setIsOpen(false);
+      return;
+    }
     const element = document.getElementById(anchor);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
