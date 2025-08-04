@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  /* Light mode - Liverpool FC inspired */
+  /* Light mode - Liverpool FC inspired with improved contrast */
   --background: hsl(0, 0%, 100%);
   --foreground: hsl(222.2, 84%, 4.9%);
   --card: hsl(0, 0%, 100%);
@@ -15,7 +15,7 @@
   --secondary: hsl(210, 40%, 96%);
   --secondary-foreground: hsl(222.2, 84%, 4.9%);
   --muted: hsl(210, 40%, 96%);
-  --muted-foreground: hsl(215.4, 16.3%, 46.9%);
+  --muted-foreground: hsl(215.4, 16.3%, 56.9%); /* Improved contrast */
   --accent: hsl(210, 40%, 96%);
   --accent-foreground: hsl(222.2, 84%, 4.9%);
   --destructive: hsl(0, 84.2%, 60.2%);
@@ -31,7 +31,7 @@
 }
 
 .dark {
-  /* Dark mode - Athletic night theme */
+  /* Dark mode - Athletic night theme with improved contrast */
   --background: hsl(222.2, 84%, 4.1%); /* Deep navy */
   --foreground: hsl(210, 40%, 98%);
   --card: hsl(222.2, 84%, 4.9%);
@@ -43,7 +43,7 @@
   --secondary: hsl(217.2, 32.6%, 17.5%);
   --secondary-foreground: hsl(210, 40%, 98%);
   --muted: hsl(217.2, 32.6%, 17.5%);
-  --muted-foreground: hsl(215, 20.2%, 65.1%);
+  --muted-foreground: hsl(215, 20.2%, 75.1%); /* Improved contrast for dark mode */
   --accent: hsl(217.2, 32.6%, 17.5%);
   --accent-foreground: hsl(210, 40%, 98%);
   --destructive: hsl(0, 62.8%, 30.6%);
@@ -157,5 +157,70 @@
     background-color: white;
     color: black;
     border-color: white;
+  }
+
+  /* Improved visibility for ghost buttons */
+  .btn-ghost {
+    color: hsl(var(--foreground));
+    background-color: transparent;
+    border: 1px solid transparent;
+  }
+  
+  .btn-ghost:hover {
+    background-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+    border-color: hsl(var(--border));
+  }
+
+  /* Enhanced card styling for better text visibility */
+  .card-enhanced {
+    background-color: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    border: 1px solid hsl(var(--border));
+  }
+
+  .card-enhanced .card-description {
+    color: hsl(var(--foreground));
+    opacity: 0.8;
+  }
+
+  /* Improved text contrast utilities */
+  .text-high-contrast {
+    color: hsl(var(--foreground));
+  }
+
+  .text-medium-contrast {
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Enhanced icon visibility */
+  .icon-primary {
+    color: hsl(var(--primary));
+  }
+
+  .icon-foreground {
+    color: hsl(var(--foreground));
+  }
+
+  .icon-muted {
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Better form element visibility */
+  .input-enhanced {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border));
+  }
+
+  .input-enhanced:focus {
+    border-color: hsl(var(--ring));
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  .input-enhanced::placeholder {
+    color: hsl(var(--muted-foreground));
+    opacity: 0.8;
   }
 }

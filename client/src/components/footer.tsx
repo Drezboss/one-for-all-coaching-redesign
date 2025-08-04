@@ -30,34 +30,34 @@ export function Footer() {
               <div className="text-3xl font-bold text-white">
                 <Trophy className="inline-block w-8 h-8 text-lfc-red mr-2" />
                 ONE FOR ALL
-                <span className="block text-lg text-gray-300 font-normal">COACHING</span>
+                <span className="block text-lg text-white/70 font-normal">COACHING</span>
               </div>
             </Link>
-            <p className="text-gray-400 mb-6 max-w-md">
+            <p className="text-white/80 mb-6 max-w-md font-medium">
               Helping You Become the Best Version of Yourself through professional football coaching and development.
             </p>
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200"
+                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200 shadow-md"
               >
                 <Facebook className="w-5 h-5 text-white" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200"
+                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200 shadow-md"
               >
                 <Twitter className="w-5 h-5 text-white" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200"
+                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200 shadow-md"
               >
                 <Instagram className="w-5 h-5 text-white" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200"
+                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200 shadow-md"
               >
                 <Linkedin className="w-5 h-5 text-white" />
               </a>
@@ -71,7 +71,7 @@ export function Footer() {
                 <li key={service.name}>
                   <Link
                     href={service.href}
-                    className="text-gray-400 hover:text-lfc-red transition-colors duration-200"
+                    className="text-white/80 hover:text-lfc-red transition-colors duration-200 font-medium"
                   >
                     {service.name}
                   </Link>
@@ -87,7 +87,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-lfc-red transition-colors duration-200"
+                    className="text-white/80 hover:text-lfc-red transition-colors duration-200 font-medium"
                   >
                     {link.name}
                   </Link>
@@ -103,17 +103,17 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-lfc-red transition-colors duration-200"
+                    className="text-white/80 hover:text-lfc-red transition-colors duration-200 font-medium"
                   >
                     {link.name}
                   </Link>
                 </li>
               ))}
             </ul>
-            <div className="mt-4 p-3 bg-almost-black rounded-lg border border-gray-700">
-              <p className="text-sm text-gray-400 mb-2">Already registered?</p>
+            <div className="mt-4 p-3 bg-almost-black rounded-lg border border-gray-700 shadow-md">
+              <p className="text-sm text-white/80 mb-2 font-medium">Already registered?</p>
               <Link href="/login">
-                <Button variant="outline" className="w-full border-lfc-red text-lfc-red hover:bg-lfc-red hover:text-white text-sm">
+                <Button variant="outline" className="w-full border-lfc-red text-lfc-red hover:bg-lfc-red hover:text-white text-sm font-semibold">
                   Access Parent Dashboard
                 </Button>
               </Link>
@@ -122,13 +122,13 @@ export function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400">
+          <p className="text-white/80 font-medium">
             © 2025 One For All Coaching. All rights reserved. |{" "}
-            <a href="#" className="text-lfc-red hover:text-bright-red transition-colors duration-200">
+            <a href="#" className="text-lfc-red hover:text-bright-red transition-colors duration-200 font-semibold">
               Privacy Policy
             </a>{" "}
             |{" "}
-            <a href="#" className="text-lfc-red hover:text-bright-red transition-colors duration-200">
+            <a href="#" className="text-lfc-red hover:text-bright-red transition-colors duration-200 font-semibold">
               Terms of Service
             </a>
           </p>
