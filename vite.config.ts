@@ -8,7 +8,8 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "client", "src"),
       "@shared": path.resolve(__dirname, "shared"),
-      "@assets": path.resolve(__dirname, "attached_assets"),
+      // Expose the public assets directory to the source code (if ever needed)
+      "@assets": path.resolve(__dirname, "public", "attached_assets"),
     },
   },
   // root: path.resolve(__dirname, "client"), // <-- REMOVE or COMMENT OUT this line
@@ -24,5 +25,6 @@ export default defineConfig({
       }
     }
   },
-  publicDir: path.resolve(__dirname, "attached_assets")
+  // Ensure Vite copies everything from the standard public folder (including `attached_assets`) to the build output
+  publicDir: path.resolve(__dirname, "public")
 });
