@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Medal, Users, Shield } from "lucide-react";
 import { siteContent } from "@shared/content";
+import { Image } from "@/components/ui/image";
 
 
 export default function Home() {
@@ -19,10 +20,10 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="rounded-lg shadow-2xl w-full h-96 overflow-hidden">
-                <img 
+                <Image 
                   src={siteContent.images.coach.celebration}
                   alt="Dave Cornock - Celebrating Success with Players"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full"
                 />
               </div>
             </div>

@@ -68,6 +68,42 @@
 }
 
 @layer components {
+  /* Mobile-specific image optimizations */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Ensure images are visible on mobile */
+  @media (max-width: 768px) {
+    img {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: cover !important;
+      display: block !important;
+      max-width: 100vw !important;
+    }
+    
+    /* Fix for hero section images on mobile */
+    .hero-image {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+    
+    /* Ensure image containers don't overflow on mobile */
+    .overflow-hidden {
+      overflow: hidden !important;
+    }
+    
+    /* Fix for grid layouts on mobile */
+    .grid img {
+      width: 100% !important;
+      height: auto !important;
+    }
+  }
+  
   /* Button styling improvements for better visibility */
   .btn-primary {
     background-color: hsl(355, 87%, 48%) !important;
