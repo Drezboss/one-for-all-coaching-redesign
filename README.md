@@ -1,49 +1,70 @@
-# Directus CMS Docker Scaffold
+# One For All Coaching
 
-This is a Docker-based scaffold for setting up a Directus CMS backend, designed to work with a frontend deployed on Vercel.
+A modern coaching website built with React, TypeScript, and Vite, designed for seamless deployment on Vercel.
 
 ## 🚀 Quick Start
 
-1. Clone this repo
-2. Create a `.env` file based on `.env.example`
-3. Run:
+1. Clone this repository
+2. Install dependencies:
 
 ```bash
-docker-compose up -d
+npm install
 ```
 
-4. Visit Directus at [http://localhost:8055](http://localhost:8055) and log in with:
-   - Email: `admin@example.com`
-   - Password: `strongpassword`
+3. Start the development server:
 
-## 🗃️ Collections to Create
-
-In the Directus Admin UI, create these collections:
-- `team_members` — name, role, bio, photo
-- `programs` — title, description, slug, image
-- `testimonials` — author_name, author_title, quote, photo
-- `blog_posts` — title, content, cover_image, published_date, slug
-
-## 🧩 Frontend Integration
-
-Fetch content in your Vercel (Next.js) frontend using REST or GraphQL:
-
-Example REST:
-```
-GET http://localhost:8055/items/programs
+```bash
+npm run dev
 ```
 
-Example GraphQL:
-```graphql
-query {
-  programs {
-    id
-    title
-    slug
-  }
-}
+4. Visit [http://localhost:5173](http://localhost:5173) to view the application
+
+## 🛠️ Development Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run check` - Type checking with TypeScript
+
+## 🚀 Deployment
+
+This project is optimized for deployment on Vercel:
+
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Vercel will automatically detect the Vite configuration and deploy
+
+The `vercel.json` configuration handles:
+- Build settings
+- Route handling for SPA
+- Admin route configuration
+
+## 🧩 Tech Stack
+
+- **Frontend**: React 18, TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: Radix UI, Lucide React
+- **Forms**: React Hook Form with Zod validation
+- **Animations**: Framer Motion
+- **Charts**: Recharts
+- **Routing**: Wouter
+- **Build Tool**: Vite
+
+## 📁 Project Structure
+
+```
+├── client/          # React frontend application
+├── shared/          # Shared utilities and types
+├── api/             # API routes for Vercel functions
+├── public/          # Static assets
+└── vercel.json      # Vercel deployment configuration
 ```
 
-## ✅ Notes
-- Default PostgreSQL DB credentials are in `docker-compose.yml`.
-- Make sure to update the frontend to use the correct API URL in production.
+## ✅ Features
+
+- Responsive design optimized for all devices
+- Modern UI with smooth animations
+- Contact forms with validation
+- User registration and authentication
+- Admin dashboard
+- Performance optimized for web vitals
