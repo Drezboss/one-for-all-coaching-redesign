@@ -64,27 +64,99 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground transition-colors duration-300;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Improved typography hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+    line-height: 1.1;
+  }
+
+  h1 {
+    @apply text-4xl md:text-6xl lg:text-7xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-lfc-red ring-offset-2 ring-offset-background;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-lfc-red rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-bright-red;
   }
 }
 
 @layer components {
-  /* Button styling improvements for better visibility */
+  /* Enhanced button styling */
   .btn-primary {
-    background-color: hsl(355, 87%, 48%) !important;
-    color: white !important;
-    border: 2px solid hsl(355, 87%, 48%) !important;
-    font-weight: 600 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
+    @apply bg-lfc-red text-white border-2 border-lfc-red font-bold uppercase tracking-wider px-8 py-4 transition-all duration-300 hover:bg-bright-red hover:border-bright-red hover:scale-105 focus:ring-4 focus:ring-lfc-red/30;
+    box-shadow: 0 4px 14px 0 rgba(200, 16, 46, 0.3);
   }
   
   .btn-primary:hover {
-    background-color: hsl(355, 87%, 40%) !important;
-    border-color: hsl(355, 87%, 40%) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px rgba(200, 16, 46, 0.4) !important;
+    box-shadow: 0 6px 20px 0 rgba(200, 16, 46, 0.4);
   }
 
+  .btn-secondary {
+    @apply bg-transparent text-white border-2 border-white font-bold uppercase tracking-wider px-8 py-4 transition-all duration-300 hover:bg-white hover:text-black hover:scale-105;
+  }
+
+  /* Card enhancements */
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+  }
+
+  /* Loading animations */
+  .loading-pulse {
+    @apply animate-pulse bg-gray-700 rounded;
+  }
+
+  .loading-spinner {
+    @apply animate-spin rounded-full border-2 border-gray-300 border-t-lfc-red;
+  }
+
+  /* Text gradient effects */
+  .text-gradient {
+    @apply bg-gradient-to-r from-lfc-red to-bright-red bg-clip-text text-transparent;
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+
+  /* Custom color utilities */
   .lfc-red {
     color: hsl(355, 87%, 48%);
   }
@@ -133,29 +205,124 @@
     background-color: hsl(0, 0%, 7%);
   }
 
-  /* Button specific styling for better contrast */
-  .btn-primary {
-    background-color: hsl(355, 87%, 48%);
-    color: white;
-    border: none;
-    font-weight: 700;
+  /* Form enhancements */
+  .form-input {
+    @apply bg-black/50 border-gray-700 text-white placeholder-gray-400 focus:border-lfc-red focus:ring-2 focus:ring-lfc-red/20 transition-all duration-200;
   }
-  
-  .btn-primary:hover {
-    background-color: hsl(355, 87%, 42%);
-    color: white;
+
+  /* Navigation enhancements */
+  .nav-link {
+    @apply relative font-medium transition-colors duration-200 hover:text-lfc-red;
   }
-  
-  .btn-outline {
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-    font-weight: 700;
+
+  .nav-link::after {
+    @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5 bg-lfc-red transition-all duration-300;
   }
-  
-  .btn-outline:hover {
-    background-color: white;
-    color: black;
-    border-color: white;
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  /* Hero section enhancements */
+  .hero-gradient {
+    background: linear-gradient(135deg, 
+      hsl(0, 0%, 0%) 0%, 
+      hsl(220, 47%, 9%) 50%, 
+      hsl(0, 0%, 7%) 100%
+    );
+  }
+
+  /* Animation keyframes */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes loading-bar {
+    0% {
+      width: 0%;
+    }
+    50% {
+      width: 70%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out;
+  }
+
+  /* Responsive text utilities */
+  .responsive-text {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+  }
+
+  .responsive-text-sm {
+    @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
+  }
+}
+
+@layer utilities {
+  /* Custom utilities */
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+  }
+
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+  }
+
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px);
+  }
+
+  .backdrop-blur-lg {
+    backdrop-filter: blur(16px);
   }
 }
