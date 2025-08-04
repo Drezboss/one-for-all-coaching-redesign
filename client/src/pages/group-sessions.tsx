@@ -95,7 +95,7 @@ export default function GroupSessions() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white">
+          <div className="min-h-screen section-dark">
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-black via-dark-navy to-almost-black">
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
@@ -336,14 +336,14 @@ export default function GroupSessions() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
-              <Button className="bg-white text-black hover:bg-gray-100 font-bold text-lg px-8 py-4 transition-all duration-200">
+              <Button className="bg-primary-foreground text-background hover:bg-muted font-bold text-lg px-8 py-4 transition-all duration-200">
                 Book Group Session
               </Button>
             </Link>
             <Link href="/individual-coaching">
               <Button
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-black font-bold text-lg px-8 py-4 transition-all duration-200"
+                className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-background font-bold text-lg px-8 py-4 transition-all duration-200"
               >
                 Compare with 1-2-1
               </Button>

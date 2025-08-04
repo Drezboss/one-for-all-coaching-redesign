@@ -141,7 +141,7 @@ export default function Contact() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white">
+          <div className="min-h-screen section-dark">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-black via-dark-navy to-almost-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -167,7 +167,7 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {contactInfo.map((info, index) => (
-              <Card key={index} className="bg-black border-gray-800 hover:border-lfc-red transition-colors duration-200">
+              <Card key={index} className="bg-card border-border hover:border-primary transition-colors duration-200">
                 <CardContent className="p-6 text-center">
                   <div className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mx-auto mb-4">
                     <info.icon className="w-6 h-6 text-white" />

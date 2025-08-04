@@ -23,25 +23,25 @@ export function HeroSection() {
           <div className="text-sm text-lfc-red font-semibold tracking-wider uppercase mb-4">
             {siteContent.site.name.toUpperCase()}
           </div>
-          <h1 className="text-6xl md:text-8xl font-black text-white leading-none mb-6">
+          <h1 className="text-6xl md:text-8xl font-black text-primary-foreground leading-none mb-6">
             {siteContent.home.hero.title.split(' ').map((word, index) => 
               word === 'POTENTIAL' ? 
-                <span key={index} className="text-lfc-red">{word}</span> : 
+                <span key={index} className="text-primary">{word}</span> : 
                 word + (index < siteContent.home.hero.title.split(' ').length - 1 ? ' ' : '')
             )}
           </h1>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-6">
             {siteContent.site.tagline.toUpperCase()}
           </h2>
-          <p className="text-lg text-gray-300 mb-8 max-w-2xl leading-relaxed">
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl leading-relaxed">
             {siteContent.home.hero.subtitle}
           </p>
-          <blockquote className="text-2xl md:text-3xl font-bold text-lfc-red mb-10 max-w-2xl italic">
+          <blockquote className="text-2xl md:text-3xl font-bold text-primary mb-10 max-w-2xl italic">
             "{siteContent.coach.quote}"
           </blockquote>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/individual-coaching">
-              <Button className="btn-primary bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4 transition-all duration-200">
+              <Button className="btn-primary bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg px-8 py-4 transition-all duration-200">
                 {siteContent.home.hero.primaryButton}
               </Button>
             </Link>
@@ -52,7 +52,7 @@ export function HeroSection() {
                   element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
-              className="border-2 border-white text-white hover:bg-white hover:text-black font-bold text-lg px-8 py-4 transition-all duration-200 rounded-md"
+              className="border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground font-bold text-lg px-8 py-4 transition-all duration-200 rounded-md"
             >
               {siteContent.home.hero.secondaryButton}
             </button>
@@ -91,8 +91,8 @@ export function ExpectationSection() {
     <section id="expectations" className="py-20 bg-almost-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            <Rocket className="inline-block w-12 h-12 text-lfc-red mr-4" />
+          <h2 className="text-4xl md:text-5xl font-black text-primary-foreground mb-4">
+            <Rocket className="inline-block w-12 h-12 text-primary mr-4" />
             WHAT TO EXPECT
           </h2>
         </div>
@@ -106,17 +106,17 @@ export function ExpectationSection() {
               <div className="w-16 h-16 bg-lfc-red rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-bright-red transition-colors duration-200">
                 <span className="text-2xl">{item.icon}</span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">{item.title}</h3>
-              <p className="text-gray-300">{item.description}</p>
+              <h3 className="text-xl font-bold text-primary-foreground mb-4">{item.title}</h3>
+              <p className="text-muted-foreground">{item.description}</p>
             </div>
           ))}
         </div>
 
         <div className="text-center mt-16">
-          <p className="text-xl text-gray-200 mb-8">
+          <p className="text-xl text-foreground mb-8">
             Whether you're looking to improve your skills, aiming to stand out at grassroots level, or just want to play with more purpose — we're here to guide you.
           </p>
-          <div className="text-2xl font-bold text-lfc-red">
+          <div className="text-2xl font-bold text-primary">
             YOUR JOURNEY. YOUR STANDARD. YOUR BEST VERSION
           </div>
         </div>
