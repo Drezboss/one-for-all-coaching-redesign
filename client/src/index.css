@@ -159,3 +159,180 @@
     border-color: white;
   }
 }
+
+@layer utilities {
+  .bg-lfc-red {
+    background-color: hsl(355, 87%, 48%);
+  }
+  
+  .bg-bright-red {
+    background-color: hsl(0, 100%, 50%);
+  }
+  
+  .bg-dark-navy {
+    background-color: hsl(220, 47%, 9%);
+  }
+  
+  .bg-almost-black {
+    background-color: hsl(0, 0%, 7%);
+  }
+
+  .text-lfc-red {
+    color: hsl(355, 87%, 48%);
+  }
+  
+  .text-bright-red {
+    color: hsl(0, 100%, 50%);
+  }
+  
+  .text-dark-navy {
+    color: hsl(220, 47%, 9%);
+  }
+  
+  .text-almost-black {
+    color: hsl(0, 0%, 7%);
+  }
+
+  .border-lfc-red {
+    border-color: hsl(355, 87%, 48%);
+  }
+}
+
+/* Mobile navigation animations */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Hero section animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseSlow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-pulse-subtle {
+  animation: pulseSlow 3s ease-in-out infinite;
+}
+
+/* Accessibility improvements */
+/* Better focus indicators for keyboard navigation */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip to main content link for screen readers */
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 999;
+  padding: 1rem;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  text-decoration: none;
+}
+
+.skip-to-main:focus {
+  left: 0;
+}
+
+/* Ensure interactive elements have minimum touch target size */
+button, a, [role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .text-lfc-red {
+    color: hsl(0, 100%, 50%);
+  }
+  
+  .bg-lfc-red {
+    background-color: hsl(0, 100%, 50%);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-bounce {
+    animation: none;
+  }
+}
+
+/* Safe area padding for devices with notches */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Smooth transitions for theme changes */
+* {
+  @apply transition-colors duration-300;
+}
