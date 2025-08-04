@@ -8,7 +8,7 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "client", "src"),
       "@shared": path.resolve(__dirname, "shared"),
-      "@assets": path.resolve(__dirname, "attached_assets"),
+      "@assets": path.resolve(__dirname, "public", "attached_assets"),
     },
   },
   // root: path.resolve(__dirname, "client"), // <-- REMOVE or COMMENT OUT this line
@@ -23,6 +23,5 @@ export default defineConfig({
         }
       }
     }
-  },
-  publicDir: path.resolve(__dirname, "attached_assets")
+  }
 });
