@@ -20,7 +20,7 @@ export const siteContent = {
   coach: {
     name: "Dave Cornock",
     title: "UEFA B Licensed Football Coach",
-    bio: "I'm Dave Graham, a UEFA B Licensed football coach with a broad coaching background that spans all levels of the game. My journey has taken me from grassroots football and local leagues, through the Junior Premier League (JPL) and Hellenic League, to coaching elite Tier 2 women's university teams and UDA overseas students.",
+    bio: "I'm Dave Cornock, a UEFA B Licensed football coach with a broad coaching background that spans all levels of the game. My journey has taken me from grassroots football and local leagues, through the Junior Premier League (JPL) and Hellenic League, to coaching elite Tier 2 women's university teams and UDA overseas students.",
     philosophy: "I'm passionate about helping players and coaches unlock their full potential. Whether it's delivering tailored 1-to-1 sessions, designing structured training plans, or mentoring coaches throughout a season, I'm here to support your growth and development.",
     quote: "Your journey is unique. Your development should be too.",
     credentials: [
