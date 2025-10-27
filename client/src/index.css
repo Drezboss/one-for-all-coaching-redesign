@@ -65,6 +65,24 @@
   body {
     @apply font-sans antialiased bg-background text-foreground transition-colors duration-300;
   }
+
+  /* Mobile-specific improvements */
+  @media (max-width: 768px) {
+    html {
+      font-size: 16px; /* Prevent zoom on iOS */
+    }
+    
+    /* Ensure minimum touch target size */
+    button, a, input, textarea, select {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Improve form field spacing on mobile */
+    input, textarea {
+      font-size: 16px; /* Prevent zoom on iOS */
+    }
+  }
 }
 
 @layer components {
@@ -83,6 +101,25 @@
     border-color: hsl(355, 87%, 40%) !important;
     transform: translateY(-1px) !important;
     box-shadow: 0 4px 12px rgba(200, 16, 46, 0.4) !important;
+  }
+
+  /* Mobile-first card styling */
+  .mobile-card {
+    @apply bg-white rounded-lg shadow-sm p-4 sm:p-6;
+    @apply border border-gray-100;
+  }
+
+  /* Mobile-friendly form styling */
+  .mobile-form-input {
+    @apply border-b border-gray-300 rounded-none px-0 py-3;
+    @apply focus:border-gray-900 focus:ring-0 bg-transparent;
+    @apply text-base sm:text-sm;
+  }
+
+  /* Mobile menu styling */
+  .mobile-menu {
+    @apply lg:hidden bg-white border-t border-gray-200;
+    @apply shadow-lg;
   }
 
   .lfc-red {
@@ -114,7 +151,7 @@
   }
   
   .hover\:bg-bright-red:hover {
-    background-color: hsl(0, 100%, 50%);
+    background-color: hsl(0, 100%, 45%);
   }
   
   .dark-navy {
@@ -132,30 +169,25 @@
   .bg-almost-black {
     background-color: hsl(0, 0%, 7%);
   }
-
-  /* Button specific styling for better contrast */
+  
+  /* Enhanced button styles */
   .btn-primary {
-    background-color: hsl(355, 87%, 48%);
-    color: white;
-    border: none;
-    font-weight: 700;
+    @apply bg-lfc-red text-white font-bold px-6 py-3 rounded-lg;
+    @apply hover:bg-bright-red transition-all duration-200;
+    @apply transform hover:scale-105;
   }
   
   .btn-primary:hover {
-    background-color: hsl(355, 87%, 42%);
-    color: white;
+    @apply shadow-lg;
   }
   
   .btn-outline {
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-    font-weight: 700;
+    @apply border-2 border-white text-white font-bold px-6 py-3 rounded-lg;
+    @apply hover:bg-white hover:text-black transition-all duration-200;
+    @apply transform hover:scale-105;
   }
   
   .btn-outline:hover {
-    background-color: white;
-    color: black;
-    border-color: white;
+    @apply shadow-lg;
   }
 }
