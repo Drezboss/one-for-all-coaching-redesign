@@ -15,7 +15,7 @@ interface ContentUpdateResponse {
 
 // Simulate content storage (in production, this would connect to a database)
 let contentStore: Record<string, any> = {
-  "site.name": "One For All Coaching",
+      "site.name": "All for One Coaching",
   "site.tagline": "Where personal growth meets professional standards",
   "coach.name": "Dave Cornock",
   "coach.title": "UEFA B Licensed Football Coach",
