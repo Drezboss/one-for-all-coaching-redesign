@@ -4,6 +4,11 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    host: true, // Allow external connections
+    port: 3000, // Set to port 3000
+    strictPort: true, // Fail if port is already in use
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "client", "src"),
