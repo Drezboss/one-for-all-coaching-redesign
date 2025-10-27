@@ -24,5 +24,7 @@ export default defineConfig({
       }
     }
   },
-  publicDir: path.resolve(__dirname, "attached_assets")
+  // Serve static assets from the conventional `public` directory so that
+  // images are correctly included in both dev and production builds.
+  publicDir: path.resolve(__dirname, "public")
 });
