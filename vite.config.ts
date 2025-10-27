@@ -24,5 +24,12 @@ export default defineConfig({
       }
     }
   },
-  publicDir: path.resolve(__dirname, "attached_assets")
+  publicDir: path.resolve(__dirname, "attached_assets"),
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./client/src/test/setup.ts'],
+    css: true,
+    exclude: ['tests/e2e/**', 'node_modules/**'],
+  }
 });

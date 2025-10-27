@@ -1,0 +1,162 @@
+# Page snapshot
+
+```yaml
+- navigation:
+  - link "ONE FOR ALL COACHING":
+    - /url: /
+    - img
+    - text: ONE FOR ALL COACHING
+  - link "Home":
+    - /url: /
+  - link "About Dave":
+    - /url: /about
+  - link "1-2-1 Coaching":
+    - /url: /individual-coaching
+  - link "Group Sessions":
+    - /url: /group-sessions
+  - link "Contact":
+    - /url: /contact
+  - button "Switch to dark mode":
+    - img
+    - img
+  - link "Parent Login":
+    - /url: /login
+    - button "Parent Login"
+  - link "Book Now":
+    - /url: /contact
+    - button "Book Now"
+- heading "MEET DAVE" [level=1]
+- paragraph: Your dedicated coach with the experience, qualifications, and passion to help you unlock your potential on and off the pitch.
+- link "Book a Session":
+  - /url: /contact
+  - button "Book a Session"
+- link "View Services":
+  - /url: /individual-coaching
+  - button "View Services"
+- img "Dave Cornock - UEFA B Licensed Football Coach in Professional Setting"
+- heading "PROFESSIONAL CREDENTIALS" [level=2]
+- paragraph: Qualified, experienced, and committed to excellence
+- img
+- text: UEFA B License qualified
+- img
+- text: FA Level 2 Coaching Badge
+- img
+- text: Semi-professional playing experience
+- img
+- text: Grassroots to elite level coaching
+- img
+- text: DBS checked and safeguarding certified
+- img
+- text: First Aid qualified
+- heading "ABOUT ME – DAVE CORNOCK" [level=2]
+- paragraph: I'm Dave Cornock, a UEFA B Licensed football coach with a broad coaching background that spans all levels of the game. My journey has taken me from grassroots football and local leagues, through the Junior Premier League (JPL) and Hellenic League, to coaching elite Tier 2 women's university teams and UDA overseas students.
+- paragraph: I'm passionate about helping players and coaches unlock their full potential. Whether it's delivering tailored 1-to-1 sessions, designing structured training plans, or mentoring coaches throughout a season, I'm here to support your growth and development.
+- paragraph: Let's build a stronger, smarter game — together.
+- blockquote: "\"Your journey is unique. Your development should be too.\""
+- text: — Dave, Head Coach
+- img "Dave Cornock - Professional Coaching from the Sidelines"
+- heading "PROVEN RESULTS" [level=2]
+- paragraph: Track record of excellence in player development
+- img
+- heading "Player Development" [level=3]
+- paragraph: Dedicated to helping players at all levels reach their potential through personalized coaching approaches
+- img
+- heading "Individual Focus" [level=3]
+- paragraph: Every session is tailored to the specific needs and goals of each player
+- img
+- heading "UEFA B Licensed" [level=3]
+- paragraph: Qualified with UEFA B License, bringing professional standards to every training session
+- img
+- heading "Grassroots Excellence" [level=3]
+- paragraph: Passionate about developing football at the grassroots level across all age groups
+- heading "COACHING PHILOSOPHY" [level=2]
+- img
+- heading "Individual Focus" [level=3]
+- paragraph: Every player is unique with their own strengths, challenges, and goals. Our approach is tailored to bring out the best in each individual.
+- img
+- heading "Technical Excellence" [level=3]
+- paragraph: Building solid technical foundations while developing tactical understanding that will serve players throughout their football journey.
+- img
+- heading "Holistic Development" [level=3]
+- paragraph: Football is a vehicle for personal growth. We focus on confidence, discipline, and life skills that extend beyond the pitch.
+- heading "COACHING IN ACTION" [level=2]
+- paragraph: See Dave's professional coaching across all levels and age groups
+- img "Dave coaching young players - Tiny Titans session"
+- img "Dave with young player - individual attention"
+- img "Dave coaching U7s outdoor session"
+- img "Dave coaching indoor skills session"
+- img "Dave observing and analyzing player performance"
+- img "Dave at community football event"
+- heading "READY TO START YOUR JOURNEY?" [level=2]
+- paragraph: Take the first step towards becoming the best version of yourself with professional coaching that makes a difference.
+- link "Book Your First Session":
+  - /url: /contact
+  - button "Book Your First Session"
+- link "View Services":
+  - /url: /individual-coaching
+  - button "View Services"
+- contentinfo:
+  - link "ONE FOR ALL COACHING":
+    - /url: /
+    - img
+    - text: ONE FOR ALL COACHING
+  - paragraph: Helping You Become the Best Version of Yourself through professional football coaching and development.
+  - link:
+    - /url: "#"
+    - img
+  - link:
+    - /url: "#"
+    - img
+  - link:
+    - /url: "#"
+    - img
+  - link:
+    - /url: "#"
+    - img
+  - heading "Services" [level=4]
+  - list:
+    - listitem:
+      - link "1-2-1 Coaching":
+        - /url: /individual-coaching
+    - listitem:
+      - link "Group Sessions":
+        - /url: /group-sessions
+    - listitem:
+      - link "Coach Education":
+        - /url: /about
+    - listitem:
+      - link "Coach Mentorship":
+        - /url: /about
+  - heading "Quick Links" [level=4]
+  - list:
+    - listitem:
+      - link "About Dave":
+        - /url: /about
+    - listitem:
+      - link "Contact":
+        - /url: /contact
+    - listitem:
+      - link "Book Now":
+        - /url: /contact
+  - heading "Parents" [level=4]
+  - list:
+    - listitem:
+      - link "Parent Login":
+        - /url: /login
+    - listitem:
+      - link "Create Account":
+        - /url: /register
+  - paragraph: Already registered?
+  - link "Access Parent Dashboard":
+    - /url: /login
+    - button "Access Parent Dashboard"
+  - paragraph:
+    - text: © 2025 One For All Coaching. All rights reserved. |
+    - link "Privacy Policy":
+      - /url: "#"
+    - text: "|"
+    - link "Terms of Service":
+      - /url: "#"
+- region "Notifications (F8)":
+  - list
+```
