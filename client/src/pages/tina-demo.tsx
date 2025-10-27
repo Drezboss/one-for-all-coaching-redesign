@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Save, RefreshCw, Trash2 } from "lucide-react";
+import { usePageMeta } from "@/hooks/useMetaDescription";
 
 interface ContentItem {
   path: string;
@@ -14,6 +15,11 @@ interface ContentItem {
 }
 
 export default function TinaDemo() {
+  usePageMeta(
+    "Content Management Demo",
+    "Demo page for content management features. One For All Coaching - Professional football coaching services in North London."
+  );
+
   const [content, setContent] = useState<Record<string, any>>({});
   const [loading, setLoading] = useState(false);
   const [selectedPath, setSelectedPath] = useState<string>("");

@@ -8,8 +8,14 @@ import { Clock, User, Phone, Mail, Calendar as CalendarIcon } from "lucide-react
 import { format, startOfDay, endOfDay } from "date-fns";
 import type { Appointment } from "@shared/schema";
 import 'react-calendar/dist/Calendar.css';
+import { usePageMeta } from "@/hooks/useMetaDescription";
 
 export default function CalendarPage() {
+  usePageMeta(
+    "Training Calendar",
+    "View available football coaching sessions and book your spot. Check our training schedule for individual and group sessions with UEFA B Licensed coach Dave Cornock in North London."
+  );
+
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const { data: appointments = [] } = useQuery<Appointment[]>({

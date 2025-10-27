@@ -4,9 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Medal, Users, Shield } from "lucide-react";
 import { siteContent } from "@shared/content";
+import { usePageMeta } from "@/hooks/useMetaDescription";
 
 
 export default function Home() {
+  usePageMeta(
+    "Home",
+    "Professional football coaching with UEFA B Licensed coach Dave Cornock. Transform your game through personalized individual coaching and dynamic group sessions in North London. Building better players, one session at a time."
+  );
+
   return (
     <div className="min-h-screen bg-black text-white">
       <HeroSection />

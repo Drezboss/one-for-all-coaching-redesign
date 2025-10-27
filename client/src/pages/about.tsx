@@ -2,8 +2,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Medal, Trophy, Users, Target, CheckCircle, Star, Award } from "lucide-react";
+import { usePageMeta } from "@/hooks/useMetaDescription";
 
 export default function About() {
+  usePageMeta(
+    "About Dave Cornock",
+    "Meet Dave Cornock, UEFA B Licensed football coach with semi-professional playing experience. Passionate about player development from grassroots to elite level. DBS checked, safeguarding certified, and first aid qualified."
+  );
+
   const credentials = [
     "UEFA B License qualified",
     "FA Level 2 Coaching Badge",

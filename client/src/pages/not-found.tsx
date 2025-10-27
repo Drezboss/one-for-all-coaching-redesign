@@ -1,7 +1,13 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
+import { usePageMeta } from "@/hooks/useMetaDescription";
 
 export default function NotFound() {
+  usePageMeta(
+    "Page Not Found",
+    "The page you're looking for doesn't exist. Return to One For All Coaching to explore our professional football coaching services in North London."
+  );
+
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
       <Card className="w-full max-w-md mx-4">

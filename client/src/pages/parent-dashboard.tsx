@@ -28,8 +28,14 @@ import type {
   PaymentRecord, 
   Appointment 
 } from "@shared/schema";
+import { usePageMeta } from "@/hooks/useMetaDescription";
 
 export default function ParentDashboard() {
+  usePageMeta(
+    "Parent Dashboard",
+    "Monitor your child's football development journey. Track attendance, view progress reports, manage bookings, and stay informed about their coaching sessions with One For All Coaching."
+  );
+
   const [, setLocation] = useLocation();
   const [user, setUser] = useState<UserType | null>(null);
 

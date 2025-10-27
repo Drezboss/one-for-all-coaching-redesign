@@ -11,6 +11,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { z } from "zod";
 import { User, Shield, Eye, EyeOff } from "lucide-react";
 import { useLocation } from "wouter";
+import { usePageMeta } from "@/hooks/useMetaDescription";
 
 const loginSchema = z.object({
   username: z.string().min(1, "Username is required"),
@@ -20,6 +21,11 @@ const loginSchema = z.object({
 type LoginFormData = z.infer<typeof loginSchema>;
 
 export default function Login() {
+  usePageMeta(
+    "Login",
+    "Login to your One For All Coaching account. Access your training schedule, manage bookings, and track your football development progress."
+  );
+
   const [, setLocation] = useLocation();
   const [showPassword, setShowPassword] = useState(false);
   const { toast } = useToast();

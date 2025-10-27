@@ -2,8 +2,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Target, Video, TrendingUp, Brain, Clock, MapPin, CheckCircle, Star } from "lucide-react";
+import { usePageMeta } from "@/hooks/useMetaDescription";
 
 export default function IndividualCoaching() {
+  usePageMeta(
+    "Individual Football Coaching",
+    "Personalized one-on-one football coaching sessions tailored to your position and goals. Video analysis, progress tracking, mental conditioning, and technical development with UEFA B Licensed coach Dave Cornock."
+  );
+
   const features = [
     {
       icon: Target,
