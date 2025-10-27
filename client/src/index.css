@@ -3,58 +3,60 @@
 @tailwind utilities;
 
 :root {
-  /* Light mode - Liverpool FC inspired */
+  /* Light mode - NECoaching inspired blue and yellow */
   --background: hsl(0, 0%, 100%);
-  --foreground: hsl(222.2, 84%, 4.9%);
+  --foreground: hsl(222, 47%, 11%);
   --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(222.2, 84%, 4.9%);
+  --card-foreground: hsl(222, 47%, 11%);
   --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(222.2, 84%, 4.9%);
-  --primary: hsl(351, 83%, 42%); /* Liverpool Red */
-  --primary-foreground: hsl(210, 40%, 98%);
-  --secondary: hsl(210, 40%, 96%);
-  --secondary-foreground: hsl(222.2, 84%, 4.9%);
+  --popover-foreground: hsl(222, 47%, 11%);
+  --primary: hsl(213, 69%, 34%); /* Professional Blue */
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(45, 100%, 51%); /* Energetic Yellow */
+  --secondary-foreground: hsl(222, 47%, 11%);
   --muted: hsl(210, 40%, 96%);
   --muted-foreground: hsl(215.4, 16.3%, 46.9%);
-  --accent: hsl(210, 40%, 96%);
-  --accent-foreground: hsl(222.2, 84%, 4.9%);
+  --accent: hsl(45, 100%, 51%); /* Yellow accent */
+  --accent-foreground: hsl(222, 47%, 11%);
   --destructive: hsl(0, 84.2%, 60.2%);
   --destructive-foreground: hsl(210, 40%, 98%);
   --border: hsl(214.3, 31.8%, 91.4%);
   --input: hsl(214.3, 31.8%, 91.4%);
-  --ring: hsl(351, 83%, 42%);
+  --ring: hsl(213, 69%, 34%);
   --radius: 0.5rem;
-  --lfc-red: hsl(355, 87%, 48%);
-  --bright-red: hsl(0, 100%, 50%);
-  --dark-navy: hsl(220, 47%, 9%);
-  --almost-black: hsl(0, 0%, 7%);
+  --ne-blue: hsl(213, 69%, 34%);
+  --ne-blue-dark: hsl(213, 69%, 24%);
+  --ne-yellow: hsl(45, 100%, 51%);
+  --ne-yellow-light: hsl(45, 100%, 61%);
+  --ne-gray-light: hsl(210, 25%, 97%);
 }
 
 .dark {
-  /* Dark mode - Athletic night theme */
-  --background: hsl(222.2, 84%, 4.1%); /* Deep navy */
+  /* Dark mode - NECoaching night theme */
+  --background: hsl(222, 47%, 8%); /* Very dark blue */
   --foreground: hsl(210, 40%, 98%);
-  --card: hsl(222.2, 84%, 4.9%);
+  --card: hsl(222, 47%, 11%);
   --card-foreground: hsl(210, 40%, 98%);
-  --popover: hsl(222.2, 84%, 4.9%);
+  --popover: hsl(222, 47%, 11%);
   --popover-foreground: hsl(210, 40%, 98%);
-  --primary: hsl(351, 83%, 52%); /* Brighter red for dark mode */
-  --primary-foreground: hsl(222.2, 84%, 4.1%);
-  --secondary: hsl(217.2, 32.6%, 17.5%);
-  --secondary-foreground: hsl(210, 40%, 98%);
+  --primary: hsl(213, 69%, 44%); /* Brighter blue for dark mode */
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(45, 100%, 51%); /* Keep yellow bright */
+  --secondary-foreground: hsl(222, 47%, 11%);
   --muted: hsl(217.2, 32.6%, 17.5%);
   --muted-foreground: hsl(215, 20.2%, 65.1%);
-  --accent: hsl(217.2, 32.6%, 17.5%);
-  --accent-foreground: hsl(210, 40%, 98%);
+  --accent: hsl(45, 100%, 51%);
+  --accent-foreground: hsl(222, 47%, 11%);
   --destructive: hsl(0, 62.8%, 30.6%);
   --destructive-foreground: hsl(210, 40%, 98%);
   --border: hsl(217.2, 32.6%, 17.5%);
   --input: hsl(217.2, 32.6%, 17.5%);
-  --ring: hsl(351, 83%, 52%);
-  --lfc-red: hsl(355, 87%, 48%);
-  --bright-red: hsl(0, 100%, 50%);
-  --dark-navy: hsl(220, 47%, 9%);
-  --almost-black: hsl(0, 0%, 7%);
+  --ring: hsl(213, 69%, 44%);
+  --ne-blue: hsl(213, 69%, 44%);
+  --ne-blue-dark: hsl(213, 69%, 24%);
+  --ne-yellow: hsl(45, 100%, 51%);
+  --ne-yellow-light: hsl(45, 100%, 61%);
+  --ne-gray-light: hsl(222, 47%, 15%);
 }
 
 @layer base {
@@ -68,94 +70,103 @@
 }
 
 @layer components {
-  /* Button styling improvements for better visibility */
+  /* Modern button styling inspired by NECoaching */
   .btn-primary {
-    background-color: hsl(355, 87%, 48%) !important;
+    background-color: hsl(213, 69%, 34%) !important;
     color: white !important;
-    border: 2px solid hsl(355, 87%, 48%) !important;
+    border: none !important;
     font-weight: 600 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
+    padding: 12px 32px !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
   }
   
   .btn-primary:hover {
-    background-color: hsl(355, 87%, 40%) !important;
-    border-color: hsl(355, 87%, 40%) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px rgba(200, 16, 46, 0.4) !important;
+    background-color: hsl(213, 69%, 24%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3) !important;
   }
 
-  .lfc-red {
-    color: hsl(355, 87%, 48%);
+  .btn-secondary {
+    background-color: hsl(45, 100%, 51%) !important;
+    color: hsl(222, 47%, 11%) !important;
+    border: none !important;
+    font-weight: 600 !important;
+    padding: 12px 32px !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
   }
   
-  .bg-lfc-red {
-    background-color: hsl(355, 87%, 48%);
+  .btn-secondary:hover {
+    background-color: hsl(45, 100%, 45%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(255, 193, 7, 0.3) !important;
+  }
+
+  .ne-blue {
+    color: hsl(213, 69%, 34%);
   }
   
-  .border-lfc-red {
-    border-color: hsl(355, 87%, 48%);
+  .bg-ne-blue {
+    background-color: hsl(213, 69%, 34%);
   }
   
-  .hover\:bg-lfc-red:hover {
-    background-color: hsl(355, 87%, 48%);
+  .border-ne-blue {
+    border-color: hsl(213, 69%, 34%);
   }
   
-  .hover\:text-lfc-red:hover {
-    color: hsl(355, 87%, 48%);
+  .hover\:bg-ne-blue:hover {
+    background-color: hsl(213, 69%, 34%);
   }
   
-  .bright-red {
-    color: hsl(0, 100%, 50%);
+  .hover\:text-ne-blue:hover {
+    color: hsl(213, 69%, 34%);
   }
   
-  .bg-bright-red {
-    background-color: hsl(0, 100%, 50%);
+  .ne-yellow {
+    color: hsl(45, 100%, 51%);
   }
   
-  .hover\:bg-bright-red:hover {
-    background-color: hsl(0, 100%, 50%);
+  .bg-ne-yellow {
+    background-color: hsl(45, 100%, 51%);
   }
   
-  .dark-navy {
-    color: hsl(220, 47%, 9%);
+  .hover\:bg-ne-yellow:hover {
+    background-color: hsl(45, 100%, 51%);
   }
   
-  .bg-dark-navy {
-    background-color: hsl(220, 47%, 9%);
+  .bg-ne-gray-light {
+    background-color: hsl(210, 25%, 97%);
+  }
+
+  /* Modern card styling */
+  .modern-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
   }
   
-  .almost-black {
-    color: hsl(0, 0%, 7%);
-  }
-  
-  .bg-almost-black {
-    background-color: hsl(0, 0%, 7%);
+  .modern-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   }
 
   /* Button specific styling for better contrast */
-  .btn-primary {
-    background-color: hsl(355, 87%, 48%);
-    color: white;
-    border: none;
-    font-weight: 700;
-  }
-  
-  .btn-primary:hover {
-    background-color: hsl(355, 87%, 42%);
-    color: white;
-  }
-  
   .btn-outline {
     background-color: transparent;
-    color: white;
-    border: 2px solid white;
-    font-weight: 700;
+    color: hsl(213, 69%, 34%);
+    border: 2px solid hsl(213, 69%, 34%);
+    font-weight: 600;
+    padding: 10px 28px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
   }
   
   .btn-outline:hover {
-    background-color: white;
-    color: black;
-    border-color: white;
+    background-color: hsl(213, 69%, 34%);
+    color: white;
+    transform: translateY(-2px);
   }
 }

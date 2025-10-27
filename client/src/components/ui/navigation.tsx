@@ -8,16 +8,26 @@ import { ThemeToggle } from "@/components/theme-toggle";
 export function Navigation() {
   const [location] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   // Scroll to top when location changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location]);
 
+  // Add scroll effect to navigation
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "About Dave", href: "/about" },
-    { name: "1-2-1 Coaching", href: "/individual-coaching" },
+    { name: "About", href: "/about" },
+    { name: "Individual Coaching", href: "/individual-coaching" },
     { name: "Group Sessions", href: "/group-sessions" },
     { name: "Contact", href: "/contact" },
   ];
@@ -48,121 +58,105 @@ export function Navigation() {
   };
 
   return (
-    <nav className="bg-card border-b border-border sticky top-0 z-50 transition-colors">
+    <nav className={`sticky top-0 z-50 transition-all duration-300 ${
+      scrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center">
-            <div className="text-2xl font-bold text-foreground">
-              <Trophy className="inline-block w-6 h-6 text-primary mr-2" />
-              ONE FOR ALL
-              <span className="block text-sm text-muted-foreground font-normal">COACHING</span>
+        <div className="flex justify-between items-center h-20">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2 group">
+            <div className="flex items-center">
+              <Trophy className="w-10 h-10 text-ne-blue transition-transform group-hover:scale-110" />
+              <div className="ml-3">
+                <span className="text-2xl font-bold text-gray-900">ONE FOR ALL</span>
+                <span className="block text-xs text-gray-600 uppercase tracking-wider">Coaching</span>
+              </div>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
+          <div className="hidden md:flex items-center space-x-1">
+            {navigation.map((item) => (
+              <Link key={item.name} href={item.href}>
+                <a
                   onClick={() => handleLinkClick(item.href)}
-                  className={`transition-colors duration-200 font-medium ${
+                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                     isActive(item.href)
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-primary"
+                      ? "text-ne-blue bg-ne-gray-light"
+                      : "text-gray-700 hover:text-ne-blue hover:bg-gray-100"
                   }`}
                 >
                   {item.name}
-                </Link>
-              ))}
-              {/* Home page section links */}
-              {location === "/" && (
-                <div className="flex items-center space-x-4 text-sm">
-                  {homeSections.map((section) => (
-                    <button
-                      key={section.anchor}
-                      onClick={() => handleAnchorClick(section.anchor)}
-                      className="text-muted-foreground hover:text-primary transition-colors duration-200"
-                    >
-                      {section.name}
-                    </button>
-                  ))}
-                  <div className="w-px h-4 bg-border"></div>
-                </div>
-              )}
-              <ThemeToggle />
-              <Link href="/login" onClick={() => handleLinkClick("/login")}>
-                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold">
-                  Parent Login
-                </Button>
+                </a>
               </Link>
-              <Link href="/contact" onClick={() => handleLinkClick("/contact")}>
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
+            ))}
+
+            <div className="ml-6 flex items-center space-x-4">
+              <ThemeToggle />
+              <Link href="/contact">
+                <Button className="btn-primary bg-ne-blue hover:bg-ne-blue-dark text-white">
                   Book Now
                 </Button>
               </Link>
             </div>
           </div>
 
-          {/* Mobile Navigation */}
-          <div className="md:hidden">
+          {/* Mobile menu button */}
+          <div className="flex md:hidden items-center space-x-4">
+            <ThemeToggle />
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-foreground hover:text-primary">
+                <Button variant="ghost" size="icon" className="text-gray-700">
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-card border-border">
-                <div className="flex flex-col space-y-4 mt-8">
+              <SheetContent side="right" className="w-[300px] bg-white">
+                <div className="flex flex-col space-y-1 mt-8">
                   {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => handleLinkClick(item.href)}
-                      className={`text-lg font-medium transition-colors duration-200 ${
-                        isActive(item.href)
-                          ? "text-primary"
-                          : "text-muted-foreground hover:text-primary"
-                      }`}
-                    >
-                      {item.name}
+                    <Link key={item.name} href={item.href}>
+                      <a
+                        onClick={() => handleLinkClick(item.href)}
+                        className={`px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 ${
+                          isActive(item.href)
+                            ? "text-ne-blue bg-ne-gray-light"
+                            : "text-gray-700 hover:text-ne-blue hover:bg-gray-100"
+                        }`}
+                      >
+                        {item.name}
+                      </a>
                     </Link>
                   ))}
-                  
-                  {/* Home page section links for mobile */}
-                  {location === "/" && (
-                    <>
-                      <div className="border-t border-border my-4"></div>
-                      <div className="text-sm text-muted-foreground font-semibold mb-2">Quick Links:</div>
-                      {homeSections.map((section) => (
-                        <button
-                          key={section.anchor}
-                          onClick={() => handleAnchorClick(section.anchor)}
-                          className="text-left text-muted-foreground hover:text-primary transition-colors duration-200 py-1"
-                        >
-                          → {section.name}
-                        </button>
-                      ))}
-                    </>
-                  )}
-                  
-                  <div className="border-t border-border my-4"></div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm text-muted-foreground">Theme:</span>
-                    <ThemeToggle />
+
+                  <div className="pt-6 border-t">
+                    <Link href="/contact">
+                      <Button 
+                        onClick={() => setIsOpen(false)}
+                        className="w-full btn-primary bg-ne-blue hover:bg-ne-blue-dark text-white"
+                      >
+                        Book Now
+                      </Button>
+                    </Link>
                   </div>
-                  
-                  <Link href="/login" onClick={() => handleLinkClick("/login")}>
-                    <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold w-full mb-2">
-                      Parent Login
-                    </Button>
-                  </Link>
-                  <Link href="/contact" onClick={() => handleLinkClick("/contact")}>
-                    <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold w-full">
-                      Book Now
-                    </Button>
-                  </Link>
+
+                  {/* Parent portal links for mobile */}
+                  <div className="pt-4 space-y-2">
+                    <Link href="/login">
+                      <a
+                        onClick={() => handleLinkClick("/login")}
+                        className="block px-4 py-2 text-sm text-gray-600 hover:text-ne-blue"
+                      >
+                        Parent Login
+                      </a>
+                    </Link>
+                    <Link href="/register">
+                      <a
+                        onClick={() => handleLinkClick("/register")}
+                        className="block px-4 py-2 text-sm text-gray-600 hover:text-ne-blue"
+                      >
+                        Create Account
+                      </a>
+                    </Link>
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>

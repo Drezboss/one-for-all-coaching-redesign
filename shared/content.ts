@@ -1,6 +1,8 @@
 // Central Content Management System
 // Edit this file to update all website content in one place
 
+import { Target, Brain, Trophy } from "lucide-react";
+
 export const siteContent = {
   // Site-wide settings
   site: {
@@ -56,6 +58,26 @@ export const siteContent = {
         {
           title: "Trusted by parents and clubs",
           description: "We deliver reliable sessions and holiday camps with a focus on quality, safety and a positive learning environment."
+        }
+      ]
+    },
+    expectations: {
+      title: "What to Expect",
+      items: [
+        {
+          icon: Target,
+          title: "Personalised Training Plans",
+          description: "Tailored to your strengths and goals"
+        },
+        {
+          icon: Brain,
+          title: "Mental & Physical Development",
+          description: "Building confidence and technical skills together"
+        },
+        {
+          icon: Trophy,
+          title: "Clear Progress Tracking",
+          description: "Regular feedback and milestone achievements"
         }
       ]
     }
@@ -181,6 +203,7 @@ export const siteContent = {
   // Images and assets
   images: {
     coach: {
+      hero: "/attached_assets/Coach dave on sidelines_1753424086964.jpg",
       main: "/attached_assets/In the dugouts_1753424086963.jpg",
       sideline: "/attached_assets/Coach dave on sidelines_1753424086964.jpg",
       celebration: "/attached_assets/3-0 goals Coach Dave_1753424086963.jpg"

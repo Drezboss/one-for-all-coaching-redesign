@@ -1,61 +1,84 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Rocket } from "lucide-react";
+import { ArrowRight, Calendar, Star } from "lucide-react";
 import { siteContent } from "@shared/content";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-dark-navy to-almost-black"></div>
-      <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-      <div className="absolute top-0 right-0 w-1/2 h-full">
-        <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 opacity-50 overflow-hidden">
-          <img 
-            src="/attached_assets/Coach dave all weather coaching_1753424086964.jpg"
-            alt="Dave Cornock - All Weather Professional Football Coach"
-            className="w-full h-full object-cover opacity-60"
-          />
-        </div>
+    <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 right-0 w-96 h-96 bg-ne-yellow/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-ne-blue/10 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative z-10 text-left max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
-          <div className="text-sm text-lfc-red font-semibold tracking-wider uppercase mb-4">
-            {siteContent.site.name.toUpperCase()}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Content */}
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <div className="inline-flex items-center px-4 py-2 bg-ne-yellow/20 text-ne-blue rounded-full text-sm font-semibold">
+                <Star className="w-4 h-4 mr-2" />
+                Professional Football Coaching
+              </div>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
+                Unlock Your
+                <span className="text-ne-blue block">Full Potential</span>
+              </h1>
+              <p className="text-xl text-gray-600 leading-relaxed max-w-xl">
+                {siteContent.home.hero.subtitle}
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/contact">
+                <Button className="btn-primary bg-ne-blue hover:bg-ne-blue-dark text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200">
+                  Start Your Journey
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+              <Link href="/calendar">
+                <Button variant="outline" className="border-2 border-gray-300 hover:border-ne-blue text-gray-700 hover:text-ne-blue px-8 py-6 text-lg rounded-xl transition-all duration-200">
+                  <Calendar className="mr-2 w-5 h-5" />
+                  View Schedule
+                </Button>
+              </Link>
+            </div>
+
+            {/* Trust indicators */}
+            <div className="flex items-center space-x-8 pt-8 border-t border-gray-200">
+              <div>
+                <div className="text-3xl font-bold text-gray-900">10+</div>
+                <div className="text-sm text-gray-600">Years Experience</div>
+              </div>
+              <div className="w-px h-12 bg-gray-300"></div>
+              <div>
+                <div className="text-3xl font-bold text-gray-900">500+</div>
+                <div className="text-sm text-gray-600">Players Coached</div>
+              </div>
+              <div className="w-px h-12 bg-gray-300"></div>
+              <div>
+                <div className="text-3xl font-bold text-gray-900">5★</div>
+                <div className="text-sm text-gray-600">Average Rating</div>
+              </div>
+            </div>
           </div>
-          <h1 className="text-6xl md:text-8xl font-black text-white leading-none mb-6">
-            {siteContent.home.hero.title.split(' ').map((word, index) => 
-              word === 'POTENTIAL' ? 
-                <span key={index} className="text-lfc-red">{word}</span> : 
-                word + (index < siteContent.home.hero.title.split(' ').length - 1 ? ' ' : '')
-            )}
-          </h1>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            {siteContent.site.tagline.toUpperCase()}
-          </h2>
-          <p className="text-lg text-gray-300 mb-8 max-w-2xl leading-relaxed">
-            {siteContent.home.hero.subtitle}
-          </p>
-          <blockquote className="text-2xl md:text-3xl font-bold text-lfc-red mb-10 max-w-2xl italic">
-            "{siteContent.coach.quote}"
-          </blockquote>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/individual-coaching">
-              <Button className="btn-primary bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4 transition-all duration-200">
-                {siteContent.home.hero.primaryButton}
-              </Button>
-            </Link>
-            <button
-              onClick={() => {
-                const element = document.getElementById('services');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-              }}
-              className="border-2 border-white text-white hover:bg-white hover:text-black font-bold text-lg px-8 py-4 transition-all duration-200 rounded-md"
-            >
-              {siteContent.home.hero.secondaryButton}
-            </button>
+
+          {/* Hero Image */}
+          <div className="relative">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src={siteContent.images.coach.hero}
+                alt="Professional Football Coaching"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-ne-blue/20 to-transparent"></div>
+            </div>
+            {/* Floating accent card */}
+            <div className="absolute -bottom-6 -left-6 bg-ne-yellow p-6 rounded-xl shadow-xl">
+              <div className="text-2xl font-bold text-gray-900">UEFA Qualified</div>
+              <div className="text-sm text-gray-700">Professional Coach</div>
+            </div>
           </div>
         </div>
       </div>
@@ -64,61 +87,31 @@ export function HeroSection() {
 }
 
 export function ExpectationSection() {
-  const expectations = [
-    {
-      icon: "🎯",
-      title: "Personalised Training Plans",
-      description: "Tailored to your strengths and goals",
-    },
-    {
-      icon: "💪",
-      title: "Technical & Physical Development",
-      description: "That matches your playing style",
-    },
-    {
-      icon: "📈",
-      title: "Honest Feedback",
-      description: "And consistent progression tracking",
-    },
-    {
-      icon: "🧠",
-      title: "Mental Focus",
-      description: "And confidence-building woven into every session",
-    },
-  ];
-
   return (
-    <section id="expectations" className="py-20 bg-almost-black">
+    <section className="py-20 bg-ne-gray-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            <Rocket className="inline-block w-12 h-12 text-lfc-red mr-4" />
-            WHAT TO EXPECT
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            What to Expect
           </h2>
+          <p className="text-xl text-gray-600 leading-relaxed">
+            Your journey to excellence starts with a comprehensive approach to football development
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {expectations.map((item, index) => (
+        <div className="grid md:grid-cols-3 gap-8">
+          {siteContent.home.expectations.items.map((item, index) => (
             <div
               key={index}
-              className="text-center group hover:transform hover:scale-105 transition-all duration-200"
+              className="modern-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300"
             >
-              <div className="w-16 h-16 bg-lfc-red rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-bright-red transition-colors duration-200">
-                <span className="text-2xl">{item.icon}</span>
+              <div className="w-16 h-16 bg-ne-blue/10 rounded-xl flex items-center justify-center mb-6">
+                <item.icon className="w-8 h-8 text-ne-blue" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">{item.title}</h3>
-              <p className="text-gray-300">{item.description}</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">{item.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{item.description}</p>
             </div>
           ))}
-        </div>
-
-        <div className="text-center mt-16">
-          <p className="text-xl text-gray-200 mb-8">
-            Whether you're looking to improve your skills, aiming to stand out at grassroots level, or just want to play with more purpose — we're here to guide you.
-          </p>
-          <div className="text-2xl font-bold text-lfc-red">
-            YOUR JOURNEY. YOUR STANDARD. YOUR BEST VERSION
-          </div>
         </div>
       </div>
     </section>
