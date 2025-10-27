@@ -68,21 +68,35 @@
 }
 
 @layer components {
-  /* Button styling improvements for better visibility */
+  /* Enhanced button styling for better visibility and contrast */
   .btn-primary {
     background-color: hsl(355, 87%, 48%) !important;
     color: white !important;
     border: 2px solid hsl(355, 87%, 48%) !important;
-    font-weight: 600 !important;
+    font-weight: 700 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.05em !important;
+    box-shadow: 0 4px 12px rgba(200, 16, 46, 0.3) !important;
   }
   
   .btn-primary:hover {
     background-color: hsl(355, 87%, 40%) !important;
     border-color: hsl(355, 87%, 40%) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px rgba(200, 16, 46, 0.4) !important;
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 0 8px 20px rgba(200, 16, 46, 0.5) !important;
+  }
+
+  /* Enhanced navigation styling */
+  .nav-enhanced {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Enhanced footer styling for better theme support */
+  .footer-enhanced {
+    background: linear-gradient(135deg, hsl(var(--muted)/0.1), hsl(var(--muted)/0.3));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   .lfc-red {

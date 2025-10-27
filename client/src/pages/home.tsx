@@ -54,7 +54,7 @@ export default function Home() {
 
               <div className="mt-8">
                 <Link href="/about">
-                  <Button className="btn-primary bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4 transition-all duration-200">
+                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg px-8 py-4 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
                     Meet Your Coach
                   </Button>
                 </Link>

@@ -131,7 +131,7 @@ export default function Login() {
 
               <Button
                 type="submit"
-                className="w-full bg-lfc-red hover:bg-bright-red text-white font-bold py-3 text-lg"
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-200"
                 disabled={loginMutation.isPending}
               >
                 {loginMutation.isPending ? "Signing In..." : "Sign In"}

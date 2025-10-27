@@ -41,7 +41,7 @@ export function HeroSection() {
           </blockquote>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/individual-coaching">
-              <Button className="btn-primary bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4 transition-all duration-200">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg px-8 py-4 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
                 {siteContent.home.hero.primaryButton}
               </Button>
             </Link>
@@ -52,7 +52,7 @@ export function HeroSection() {
                   element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
-              className="border-2 border-white text-white hover:bg-white hover:text-black font-bold text-lg px-8 py-4 transition-all duration-200 rounded-md"
+              className="border-2 border-white text-white hover:bg-white hover:text-black font-bold text-lg px-8 py-4 transition-all duration-200 rounded-md shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               {siteContent.home.hero.secondaryButton}
             </button>

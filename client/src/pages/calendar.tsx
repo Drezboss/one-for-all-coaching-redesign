@@ -200,7 +200,7 @@ export default function CalendarPage() {
                 <CardTitle className="text-white">Quick Actions</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <Button className="w-full bg-lfc-red hover:bg-bright-red text-white">
+                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-200">
                   Add New Session
                 </Button>
                 <Button variant="outline" className="w-full border-gray-600 text-white hover:bg-gray-700">

@@ -297,7 +297,7 @@ export default function Admin() {
                             <Button
                               size="sm"
                               onClick={() => openReplyDialog(contact)}
-                              className="bg-lfc-red hover:bg-bright-red text-white"
+                              className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-200"
                             >
                               <Reply className="w-4 h-4 mr-2" />
                               Reply
@@ -415,7 +415,7 @@ export default function Admin() {
                       </Button>
                       <Button
                         type="submit"
-                        className="bg-lfc-red hover:bg-bright-red text-white"
+                        className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-200"
                         disabled={replyMutation.isPending}
                       >
                         <Send className="w-4 h-4 mr-2" />

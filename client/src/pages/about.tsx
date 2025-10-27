@@ -51,7 +51,7 @@ export default function About() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/contact">
-                  <Button className="bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4">
+                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg px-8 py-4 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105">
                     Book a Session
                   </Button>
                 </Link>

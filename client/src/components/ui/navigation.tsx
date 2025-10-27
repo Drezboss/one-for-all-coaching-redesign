@@ -48,7 +48,7 @@ export function Navigation() {
   };
 
   return (
-    <nav className="bg-card border-b border-border sticky top-0 z-50 transition-colors">
+    <nav className="bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50 transition-colors shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center">
@@ -93,12 +93,12 @@ export function Navigation() {
               )}
               <ThemeToggle />
               <Link href="/login" onClick={() => handleLinkClick("/login")}>
-                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold">
+                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold shadow-sm">
                   Parent Login
                 </Button>
               </Link>
               <Link href="/contact" onClick={() => handleLinkClick("/contact")}>
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-md hover:shadow-lg transition-all duration-200">
                   Book Now
                 </Button>
               </Link>
@@ -154,12 +154,12 @@ export function Navigation() {
                   </div>
                   
                   <Link href="/login" onClick={() => handleLinkClick("/login")}>
-                    <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold w-full mb-2">
+                    <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold w-full mb-2 shadow-sm">
                       Parent Login
                     </Button>
                   </Link>
                   <Link href="/contact" onClick={() => handleLinkClick("/contact")}>
-                    <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold w-full">
+                    <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold w-full shadow-md hover:shadow-lg transition-all duration-200">
                       Book Now
                     </Button>
                   </Link>

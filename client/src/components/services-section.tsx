@@ -97,7 +97,7 @@ export function ServicesSection() {
                   <p className="text-white font-semibold mb-6">{service.ctaAction}</p>
                 )}
                 <Link href="/contact">
-                  <Button className="bg-lfc-red text-white hover:bg-bright-red font-semibold">
+                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105">
                     {service.ctaText}
                   </Button>
                 </Link>

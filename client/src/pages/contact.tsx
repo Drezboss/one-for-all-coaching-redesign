@@ -305,7 +305,7 @@ export default function Contact() {
                       <Button
                         type="submit"
                         disabled={contactMutation.isPending}
-                        className="btn-primary w-full bg-lfc-red text-white hover:bg-bright-red font-bold text-lg py-4 transition-all duration-200"
+                        className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg py-4 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
                       >
                         {contactMutation.isPending ? "Sending..." : "Send Message"}
                       </Button>
@@ -447,7 +447,7 @@ export default function Contact() {
                       <Button
                         type="submit"
                         disabled={bookingMutation.isPending}
-                        className="btn-primary w-full bg-lfc-red text-white hover:bg-bright-red font-bold text-lg py-4 transition-all duration-200"
+                        className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg py-4 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
                       >
                         {bookingMutation.isPending ? "Submitting..." : "Submit Booking Inquiry"}
                       </Button>
@@ -537,14 +537,14 @@ export default function Contact() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
-              className="bg-white text-lfc-red hover:bg-gray-100 font-bold text-lg px-8 py-4"
+              className="bg-white text-primary hover:bg-gray-100 font-bold text-lg px-8 py-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
               onClick={() => setActiveTab("booking")}
             >
               Book Your Session Now
             </Button>
             <Button
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-lfc-red font-bold text-lg px-8 py-4"
+              className="border-white text-white hover:bg-white hover:text-primary font-bold text-lg px-8 py-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
               onClick={() => setActiveTab("contact")}
             >
               Ask a Question First
