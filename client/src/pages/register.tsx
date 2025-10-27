@@ -82,7 +82,7 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-almost-black flex items-center justify-center p-4">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4 text-foreground">
       <div className="w-full max-w-2xl">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center text-lfc-red hover:text-bright-red mb-4">

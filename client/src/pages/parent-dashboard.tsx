@@ -80,7 +80,7 @@ export default function ParentDashboard() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-almost-black flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center text-foreground">
         <div className="animate-spin w-8 h-8 border-4 border-lfc-red border-t-transparent rounded-full"></div>
       </div>
     );
@@ -92,7 +92,7 @@ export default function ParentDashboard() {
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())[0];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-almost-black">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <div className="bg-almost-black border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
