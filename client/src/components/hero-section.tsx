@@ -13,6 +13,7 @@ export function HeroSection() {
           <img 
             src="/attached_assets/Coach dave all weather coaching_1753424086964.jpg"
             alt="Dave Cornock - All Weather Professional Football Coach"
+            loading="lazy"
             className="w-full h-full object-cover opacity-60"
           />
         </div>

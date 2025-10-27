@@ -39,25 +39,37 @@ export function Footer() {
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200"
+                aria-label="Follow us on Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
               >
                 <Facebook className="w-5 h-5 text-white" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200"
+                aria-label="Follow us on Twitter"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
               >
                 <Twitter className="w-5 h-5 text-white" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200"
+                aria-label="Follow us on Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
               >
                 <Instagram className="w-5 h-5 text-white" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200"
+                aria-label="Connect with us on LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center hover:bg-bright-red transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
               >
                 <Linkedin className="w-5 h-5 text-white" />
               </a>

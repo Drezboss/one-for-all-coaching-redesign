@@ -39,6 +39,7 @@ export default function Contact() {
 
   const contactForm = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
+    mode: "onBlur",
     defaultValues: {
       name: "",
       email: "",
@@ -49,6 +50,7 @@ export default function Contact() {
 
   const bookingForm = useForm<BookingFormData>({
     resolver: zodResolver(bookingFormSchema),
+    mode: "onBlur",
     defaultValues: {
       name: "",
       email: "",
