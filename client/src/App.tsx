@@ -6,6 +6,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ErrorBoundary } from "@/components/ui/error-boundary";
+import { SEO } from "@/components/ui/seo";
 import Home from "@/pages/home";
 import About from "@/pages/about";
 import IndividualCoaching from "@/pages/individual-coaching";
@@ -40,18 +42,27 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <TooltipProvider>
-          <div className="min-h-screen bg-background text-foreground">
-            <Navigation />
-            <Router />
-            <Footer />
-          </div>
-          <Toaster />
-        </TooltipProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <TooltipProvider>
+            <SEO />
+            {/* Skip to main content link for accessibility */}
+            <a href="#main-content" className="skip-link">
+              Skip to main content
+            </a>
+            <div className="min-h-screen bg-background text-foreground">
+              <Navigation />
+              <main id="main-content" role="main">
+                <Router />
+              </main>
+              <Footer />
+            </div>
+            <Toaster />
+          </TooltipProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }
 

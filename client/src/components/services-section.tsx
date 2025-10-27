@@ -62,42 +62,75 @@ export function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="py-20 bg-black">
+    <section 
+      id="services" 
+      className="py-20 bg-black"
+      role="region"
+      aria-labelledby="services-heading"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+        <header className="text-center mb-16">
+          <h2 
+            id="services-heading"
+            className="text-4xl md:text-5xl font-black text-white mb-4"
+          >
             OUR <span className="text-lfc-red">SERVICES</span>
           </h2>
-          <p className="text-xl text-gray-300">Tailored training and development for players and coaches</p>
-        </div>
+          <p className="text-xl text-gray-300">
+            Tailored training and development for players and coaches
+          </p>
+        </header>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-8" role="list">
           {services.map((service, index) => (
-            <Card key={index} className="bg-almost-black border-gray-800 hover:border-lfc-red transition-colors duration-200">
+            <Card 
+              key={index} 
+              className="bg-almost-black border-gray-800 hover:border-lfc-red transition-colors duration-200 focus-within:border-lfc-red"
+              role="listitem"
+              tabIndex={0}
+            >
               <CardContent className="p-8">
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mr-4">
+                <header className="flex items-center mb-6">
+                  <div 
+                    className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mr-4"
+                    aria-hidden="true"
+                  >
                     <service.icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-white">{service.title}</h3>
-                </div>
-                <p className="text-lg text-lfc-red font-semibold mb-4">{service.subtitle}</p>
-                <p className="text-gray-300 mb-6">{service.description}</p>
+                </header>
+                
+                <p className="text-lg text-lfc-red font-semibold mb-4">
+                  {service.subtitle}
+                </p>
+                
+                <p className="text-gray-300 mb-6">
+                  {service.description}
+                </p>
 
-                <div className="space-y-3 mb-8">
+                <ul className="space-y-3 mb-8" role="list">
                   {service.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-center text-gray-200">
-                      <Check className="w-5 h-5 text-lfc-red mr-3" />
+                    <li key={featureIndex} className="flex items-center text-gray-200">
+                      <Check 
+                        className="w-5 h-5 text-lfc-red mr-3 flex-shrink-0" 
+                        aria-hidden="true"
+                      />
                       <span>{feature}</span>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
 
                 {service.ctaAction && (
-                  <p className="text-white font-semibold mb-6">{service.ctaAction}</p>
+                  <p className="text-white font-semibold mb-6">
+                    {service.ctaAction}
+                  </p>
                 )}
+                
                 <Link href="/contact">
-                  <Button className="bg-lfc-red text-white hover:bg-bright-red font-semibold">
+                  <Button 
+                    className="bg-lfc-red text-white hover:bg-bright-red font-semibold focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                    aria-label={`${service.ctaText} for ${service.title}`}
+                  >
                     {service.ctaText}
                   </Button>
                 </Link>
