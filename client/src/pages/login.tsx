@@ -91,7 +91,7 @@ export default function Login() {
                         <Input
                           {...field}
                           placeholder="Enter your username"
-                          className="bg-black border-gray-700 text-white pl-10 focus:border-lfc-red"
+                          className="bg-input border-border text-foreground pl-10 focus:border-primary"
                         />
                       </div>
                     </FormControl>
@@ -113,7 +113,7 @@ export default function Login() {
                           {...field}
                           type={showPassword ? "text" : "password"}
                           placeholder="Enter your password"
-                          className="bg-black border-gray-700 text-white pl-10 pr-10 focus:border-lfc-red"
+                                                      className="bg-input border-border text-foreground pl-10 pr-10 focus:border-primary"
                         />
                         <button
                           type="button"

@@ -118,7 +118,7 @@ export default function Admin() {
   );
 
   return (
-    <div className="min-h-screen bg-black text-white">
+          <div className="min-h-screen section-dark">
       {/* Header */}
       <header className="bg-almost-black border-b border-gray-800 p-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
