@@ -58,6 +58,26 @@ export const siteContent = {
           description: "We deliver reliable sessions and holiday camps with a focus on quality, safety and a positive learning environment."
         }
       ]
+    },
+    services: {
+      individual: {
+        title: "1-2-1 Individual Coaching",
+        description: "Personalized coaching sessions tailored to your unique needs, goals, and playing style. Get dedicated attention and accelerate your development.",
+        features: [
+          "Custom training plans designed for your position and goals",
+          "Technical skills development and tactical awareness",
+          "Video analysis and detailed performance feedback"
+        ]
+      },
+      group: {
+        title: "Group Training Sessions",
+        description: "Dynamic small-group sessions that combine individual development with the energy of training alongside peers. Perfect for friends or teams.",
+        features: [
+          "Game-realistic scenarios and competitive drills",
+          "Team communication and decision-making skills",
+          "Fun, high-energy sessions with personalized feedback"
+        ]
+      }
     }
   },
 
