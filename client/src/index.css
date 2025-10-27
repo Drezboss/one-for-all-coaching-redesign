@@ -2,160 +2,413 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* Light mode - Liverpool FC inspired */
-  --background: hsl(0, 0%, 100%);
-  --foreground: hsl(222.2, 84%, 4.9%);
-  --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(222.2, 84%, 4.9%);
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(222.2, 84%, 4.9%);
-  --primary: hsl(351, 83%, 42%); /* Liverpool Red */
-  --primary-foreground: hsl(210, 40%, 98%);
-  --secondary: hsl(210, 40%, 96%);
-  --secondary-foreground: hsl(222.2, 84%, 4.9%);
-  --muted: hsl(210, 40%, 96%);
-  --muted-foreground: hsl(215.4, 16.3%, 46.9%);
-  --accent: hsl(210, 40%, 96%);
-  --accent-foreground: hsl(222.2, 84%, 4.9%);
-  --destructive: hsl(0, 84.2%, 60.2%);
-  --destructive-foreground: hsl(210, 40%, 98%);
-  --border: hsl(214.3, 31.8%, 91.4%);
-  --input: hsl(214.3, 31.8%, 91.4%);
-  --ring: hsl(351, 83%, 42%);
-  --radius: 0.5rem;
-  --lfc-red: hsl(355, 87%, 48%);
-  --bright-red: hsl(0, 100%, 50%);
-  --dark-navy: hsl(220, 47%, 9%);
-  --almost-black: hsl(0, 0%, 7%);
-}
-
-.dark {
-  /* Dark mode - Athletic night theme */
-  --background: hsl(222.2, 84%, 4.1%); /* Deep navy */
-  --foreground: hsl(210, 40%, 98%);
-  --card: hsl(222.2, 84%, 4.9%);
-  --card-foreground: hsl(210, 40%, 98%);
-  --popover: hsl(222.2, 84%, 4.9%);
-  --popover-foreground: hsl(210, 40%, 98%);
-  --primary: hsl(351, 83%, 52%); /* Brighter red for dark mode */
-  --primary-foreground: hsl(222.2, 84%, 4.1%);
-  --secondary: hsl(217.2, 32.6%, 17.5%);
-  --secondary-foreground: hsl(210, 40%, 98%);
-  --muted: hsl(217.2, 32.6%, 17.5%);
-  --muted-foreground: hsl(215, 20.2%, 65.1%);
-  --accent: hsl(217.2, 32.6%, 17.5%);
-  --accent-foreground: hsl(210, 40%, 98%);
-  --destructive: hsl(0, 62.8%, 30.6%);
-  --destructive-foreground: hsl(210, 40%, 98%);
-  --border: hsl(217.2, 32.6%, 17.5%);
-  --input: hsl(217.2, 32.6%, 17.5%);
-  --ring: hsl(351, 83%, 52%);
-  --lfc-red: hsl(355, 87%, 48%);
-  --bright-red: hsl(0, 100%, 50%);
-  --dark-navy: hsl(220, 47%, 9%);
-  --almost-black: hsl(0, 0%, 7%);
-}
-
+/* Modern CSS Reset and Base Styles */
 @layer base {
   * {
-    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground transition-colors duration-300;
+    min-height: 100vh;
+    line-height: 1.6;
+    font-feature-settings: "kern" on, "liga" on, "clig" on, "calt" on;
+    overflow-x: hidden;
+  }
+
+  /* Enhanced Focus Styles for Accessibility */
+  :focus-visible {
+    outline: 2px solid #dc2626;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Skip Link for Screen Readers */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #dc2626;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 9999;
+  }
+
+  .skip-link:focus {
+    top: 6px;
   }
 }
 
+/* Enhanced Component Styles */
 @layer components {
-  /* Button styling improvements for better visibility */
+  /* Modern Button Styles with Better Touch Targets */
   .btn-primary {
-    background-color: hsl(355, 87%, 48%) !important;
-    color: white !important;
-    border: 2px solid hsl(355, 87%, 48%) !important;
-    font-weight: 600 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-  }
-  
-  .btn-primary:hover {
-    background-color: hsl(355, 87%, 40%) !important;
-    border-color: hsl(355, 87%, 40%) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px rgba(200, 16, 46, 0.4) !important;
+    @apply inline-flex items-center justify-center px-6 py-3 min-h-[44px] min-w-[44px] text-base font-semibold rounded-lg transition-all duration-300 ease-out;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply active:scale-95 transform;
   }
 
-  .lfc-red {
-    color: hsl(355, 87%, 48%);
-  }
-  
-  .bg-lfc-red {
-    background-color: hsl(355, 87%, 48%);
-  }
-  
-  .border-lfc-red {
-    border-color: hsl(355, 87%, 48%);
-  }
-  
-  .hover\:bg-lfc-red:hover {
-    background-color: hsl(355, 87%, 48%);
-  }
-  
-  .hover\:text-lfc-red:hover {
-    color: hsl(355, 87%, 48%);
-  }
-  
-  .bright-red {
-    color: hsl(0, 100%, 50%);
-  }
-  
-  .bg-bright-red {
-    background-color: hsl(0, 100%, 50%);
-  }
-  
-  .hover\:bg-bright-red:hover {
-    background-color: hsl(0, 100%, 50%);
-  }
-  
-  .dark-navy {
-    color: hsl(220, 47%, 9%);
-  }
-  
-  .bg-dark-navy {
-    background-color: hsl(220, 47%, 9%);
-  }
-  
-  .almost-black {
-    color: hsl(0, 0%, 7%);
-  }
-  
-  .bg-almost-black {
-    background-color: hsl(0, 0%, 7%);
+  .btn-secondary {
+    @apply btn-primary border-2 bg-transparent;
+    @apply hover:bg-opacity-10;
   }
 
-  /* Button specific styling for better contrast */
-  .btn-primary {
-    background-color: hsl(355, 87%, 48%);
-    color: white;
-    border: none;
-    font-weight: 700;
+  /* Enhanced Card Styles */
+  .card-modern {
+    @apply bg-gradient-to-br from-gray-900/80 to-black/90 backdrop-blur-sm;
+    @apply border border-gray-800/50 rounded-2xl p-6 md:p-8;
+    @apply transition-all duration-500 ease-out;
+    @apply hover:border-red-500/30 hover:shadow-2xl hover:shadow-red-500/10;
+    @apply hover:-translate-y-2;
   }
-  
-  .btn-primary:hover {
-    background-color: hsl(355, 87%, 42%);
-    color: white;
+
+  /* Mobile-First Typography */
+  .heading-xl {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl;
+    @apply font-black tracking-tight leading-none;
   }
-  
-  .btn-outline {
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-    font-weight: 700;
+
+  .heading-lg {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+    @apply font-bold tracking-tight;
   }
+
+  .heading-md {
+    @apply text-2xl sm:text-3xl md:text-4xl;
+    @apply font-bold;
+  }
+
+  .heading-sm {
+    @apply text-xl sm:text-2xl md:text-3xl;
+    @apply font-semibold;
+  }
+
+  .body-lg {
+    @apply text-lg md:text-xl lg:text-2xl;
+    @apply leading-relaxed;
+  }
+
+  .body-md {
+    @apply text-base md:text-lg;
+    @apply leading-relaxed;
+  }
+
+  /* Enhanced Navigation */
+  .nav-link {
+    @apply relative px-3 py-2 md:px-4 md:py-2 rounded-lg;
+    @apply text-sm md:text-base font-medium;
+    @apply transition-all duration-300 ease-out;
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+    @apply focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-black;
+  }
+
+  .nav-link.active {
+    @apply text-red-500 bg-red-500/10;
+  }
+
+  .nav-link:not(.active) {
+    @apply text-gray-300 hover:text-white hover:bg-white/5;
+  }
+
+  /* Enhanced Form Elements */
+  .form-input {
+    @apply w-full px-4 py-3 md:px-6 md:py-4 min-h-[44px];
+    @apply bg-gray-900/50 border border-gray-700;
+    @apply rounded-lg text-white placeholder-gray-400;
+    @apply transition-all duration-300 ease-out;
+    @apply focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500;
+    @apply backdrop-blur-sm;
+  }
+
+  .form-textarea {
+    @apply form-input min-h-[120px] resize-vertical;
+  }
+
+  .form-label {
+    @apply block text-sm md:text-base font-medium text-gray-200 mb-2;
+  }
+
+  /* Loading States */
+  .loading-spinner {
+    @apply inline-block w-4 h-4 border-2 border-current border-r-transparent rounded-full;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* Enhanced Hover Effects */
+  .hover-lift {
+    @apply transition-all duration-300 ease-out;
+    @apply hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-300 ease-out;
+    @apply hover:scale-105 active:scale-95;
+  }
+
+  /* Modern Glass Effect */
+  .glass-effect {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+    @apply shadow-xl shadow-black/25;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-red-500 via-red-400 to-red-500;
+    @apply bg-clip-text text-transparent;
+  }
+
+  /* Mobile-First Spacing Utilities */
+  .section-padding {
+    @apply py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32;
+  }
+
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .grid-responsive {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8;
+  }
+
+  /* Enhanced Mobile Menu */
+  .mobile-menu-item {
+    @apply flex items-center w-full px-4 py-3 min-h-[44px];
+    @apply text-left font-medium transition-all duration-300;
+    @apply rounded-xl hover:bg-white/5;
+    @apply focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-black;
+  }
+
+  .mobile-menu-item.active {
+    @apply text-red-500 bg-red-500/10 border border-red-500/20;
+  }
+
+  /* Improved Touch Targets */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+    @apply cursor-pointer select-none;
+    @apply transition-all duration-200 ease-out;
+    @apply active:scale-95;
+  }
+
+  /* High Contrast Mode Support */
+  @media (prefers-contrast: high) {
+    .gradient-text {
+      @apply text-red-500;
+      background: none;
+    }
+    
+    .card-modern {
+      @apply border-2 border-white;
+    }
+    
+    .btn-primary {
+      @apply border-2 border-current;
+    }
+  }
+
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Print Styles */
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+    
+    * {
+      color: black !important;
+      background: white !important;
+    }
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  /* Screen Reader Only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Show on Focus for Skip Links */
+  .sr-only-focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* Text Utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Animation Utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from { 
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to { 
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+
+  /* Interactive States */
+  .interactive {
+    @apply transition-all duration-300 ease-out cursor-pointer;
+    @apply hover:scale-105 active:scale-95;
+    @apply focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2;
+  }
+
+  /* Custom Scrollbar */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #dc2626 #1f2937;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #1f2937;
+    border-radius: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #dc2626, #ef4444);
+    border-radius: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #b91c1c, #dc2626);
+  }
+}
+
+/* Theme Variables */
+:root {
+  --color-primary: #dc2626;
+  --color-primary-dark: #b91c1c;
+  --color-primary-light: #ef4444;
+  --color-secondary: #6b7280;
+  --color-accent: #f59e0b;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
   
-  .btn-outline:hover {
-    background-color: white;
-    color: black;
-    border-color: white;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  --transition-fast: 150ms ease-out;
+  --transition-normal: 300ms ease-out;
+  --transition-slow: 500ms ease-out;
+}
+
+/* Dark Mode Variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #000000;
+    --color-bg-secondary: #111111;
+    --color-text: #ffffff;
+    --color-text-secondary: #d1d5db;
+    --color-border: #374151;
+  }
+}
+
+/* Light Mode Variables */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg: #ffffff;
+    --color-bg-secondary: #f9fafb;
+    --color-text: #111827;
+    --color-text-secondary: #6b7280;
+    --color-border: #e5e7eb;
   }
 }
