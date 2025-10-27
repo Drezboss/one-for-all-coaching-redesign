@@ -2,8 +2,18 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Users, MessageSquare, Trophy, Target, Clock, MapPin, CheckCircle, Star } from "lucide-react";
+import { SEO } from "@/components/seo";
 
 export default function GroupSessions() {
+  return (
+    <>
+      <SEO 
+        title="Group Football Sessions - Team Training & Development | One For All Coaching"
+        description="Join our dynamic group football sessions for shared learning, communication skills, and competitive training. Perfect for friends, siblings, and small teams with UEFA B Licensed coaching."
+        keywords="group football sessions, team training, shared learning, communication skills, competitive training, friends training, siblings football, small team coaching"
+        canonical="https://oneforallcoaching.com/group-sessions"
+      />
+      <div className="min-h-screen bg-black text-white">
   const benefits = [
     {
       icon: Users,
@@ -351,6 +361,7 @@ export default function GroupSessions() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

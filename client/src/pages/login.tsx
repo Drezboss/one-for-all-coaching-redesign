@@ -11,6 +11,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { z } from "zod";
 import { User, Shield, Eye, EyeOff } from "lucide-react";
 import { useLocation } from "wouter";
+import { SEO } from "@/components/seo";
 
 const loginSchema = z.object({
   username: z.string().min(1, "Username is required"),
@@ -65,7 +66,14 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-4">
+    <>
+      <SEO 
+        title="Coach Login - Access Your Dashboard | One For All Coaching"
+        description="Secure login portal for coaches and administrators. Access your coaching dashboard to manage sessions, track progress, and coordinate training programs."
+        keywords="coach login, coaching dashboard, administrator portal, secure access, training management, session coordination"
+        canonical="https://oneforallcoaching.com/login"
+      />
+      <div className="min-h-screen bg-black flex items-center justify-center px-4">
       <Card className="w-full max-w-md bg-almost-black border-gray-800">
         <CardHeader className="text-center">
           <div className="w-16 h-16 bg-lfc-red rounded-full flex items-center justify-center mx-auto mb-4">
@@ -146,6 +154,7 @@ export default function Login() {
           </div>
         </CardContent>
       </Card>
-    </div>
+      </div>
+    </>
   );
 }

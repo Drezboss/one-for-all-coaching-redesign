@@ -2,8 +2,18 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Medal, Trophy, Users, Target, CheckCircle, Star, Award } from "lucide-react";
+import { SEO } from "@/components/seo";
 
 export default function About() {
+  return (
+    <>
+      <SEO 
+        title="Meet Dave Cornock - UEFA B Licensed Football Coach | One For All Coaching"
+        description="Meet Dave Cornock, your dedicated UEFA B Licensed football coach with professional credentials and passion for player development. Qualified, experienced, and committed to excellence."
+        keywords="Dave Cornock, UEFA B license, football coach, professional credentials, player development, coaching experience, football training qualifications"
+        canonical="https://oneforallcoaching.com/about"
+      />
+      <div className="min-h-screen bg-black text-white">
   const credentials = [
     "UEFA B License qualified",
     "FA Level 2 Coaching Badge",
@@ -287,6 +297,7 @@ export default function About() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }
