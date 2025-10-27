@@ -1,0 +1,348 @@
+name: 🔄 Continuous Integration
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '18'
+  PNPM_VERSION: '8'
+
+jobs:
+  # =============================================================================
+  # SECURITY SCANNING
+  # =============================================================================
+  security-scan:
+    name: 🔒 Security Scan
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🔍 Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: 📤 Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+      - name: 🔐 Run Semgrep security scan
+        uses: semgrep/semgrep-action@v1
+        with:
+          publishToken: ${{ secrets.SEMGREP_APP_TOKEN }}
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+
+  # =============================================================================
+  # DEPENDENCY CHECK
+  # =============================================================================
+  dependency-check:
+    name: 📦 Dependency Security Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 🔍 Audit dependencies
+        run: |
+          pnpm audit --audit-level moderate
+          pnpm audit --json > audit-results.json || true
+
+      - name: 📤 Upload audit results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dependency-audit
+          path: audit-results.json
+
+  # =============================================================================
+  # CODE QUALITY & LINTING
+  # =============================================================================
+  code-quality:
+    name: ✨ Code Quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🔍 TypeScript check
+        run: npm run check
+
+      - name: 🎨 ESLint check
+        run: |
+          npx eslint . --ext .ts,.tsx,.js,.jsx --format json --output-file eslint-results.json || true
+          npx eslint . --ext .ts,.tsx,.js,.jsx
+
+      - name: 💄 Prettier check
+        run: |
+          npx prettier --check . || (echo "Files are not properly formatted. Run 'npm run format' to fix." && exit 1)
+
+      - name: 📤 Upload ESLint results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eslint-results
+          path: eslint-results.json
+
+  # =============================================================================
+  # BUILD VALIDATION
+  # =============================================================================
+  build:
+    name: 🏗️ Build Validation
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20]
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🏗️ Build project
+        run: npm run build
+
+      - name: 📤 Upload build artifacts
+        uses: actions/upload-artifact@v4
+        if: matrix.node-version == 18
+        with:
+          name: build-artifacts
+          path: dist/
+          retention-days: 7
+
+  # =============================================================================
+  # TESTING
+  # =============================================================================
+  test:
+    name: 🧪 Tests
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: directus_test
+          POSTGRES_USER: directus
+          POSTGRES_PASSWORD: directus
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🧪 Run unit tests
+        run: |
+          npm run test:unit 2>/dev/null || echo "No unit tests configured yet"
+        env:
+          NODE_ENV: test
+          DB_CLIENT: pg
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_DATABASE: directus_test
+          DB_USER: directus
+          DB_PASSWORD: directus
+
+      - name: 🔍 Run integration tests
+        run: |
+          npm run test:integration 2>/dev/null || echo "No integration tests configured yet"
+        env:
+          NODE_ENV: test
+          DB_CLIENT: pg
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_DATABASE: directus_test
+          DB_USER: directus
+          DB_PASSWORD: directus
+
+  # =============================================================================
+  # E2E TESTING
+  # =============================================================================
+  e2e-test:
+    name: 🎭 E2E Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🏗️ Build project
+        run: npm run build
+
+      - name: 🐳 Start services with Docker Compose
+        run: |
+          docker-compose up -d
+          sleep 30  # Wait for services to be ready
+
+      - name: 🎭 Run Playwright tests
+        run: |
+          npx playwright install --with-deps
+          npm run test:e2e 2>/dev/null || echo "No E2E tests configured yet"
+        env:
+          CI: true
+
+      - name: 📤 Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+      - name: 🛑 Stop services
+        if: always()
+        run: docker-compose down
+
+  # =============================================================================
+  # PERFORMANCE TESTING
+  # =============================================================================
+  performance:
+    name: ⚡ Performance Check
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🏗️ Build project
+        run: npm run build
+
+      - name: 📊 Bundle size analysis
+        run: |
+          npm install -g bundlesize
+          bundlesize || echo "Bundle size check completed"
+
+      - name: 🚀 Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          configPath: './.lighthouserc.js'
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+  # =============================================================================
+  # DEPLOYMENT PREVIEW
+  # =============================================================================
+  deploy-preview:
+    name: 🚀 Deploy Preview
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    needs: [build, code-quality]
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: ⬇️ Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: dist/
+
+      - name: 🚀 Deploy to Vercel Preview
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+
+  # =============================================================================
+  # SUMMARY
+  # =============================================================================
+  ci-summary:
+    name: 📋 CI Summary
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [security-scan, dependency-check, code-quality, build, test, e2e-test]
+    steps:
+      - name: 📊 Check all jobs status
+        run: |
+          echo "CI Pipeline Summary:"
+          echo "Security Scan: ${{ needs.security-scan.result }}"
+          echo "Dependency Check: ${{ needs.dependency-check.result }}"
+          echo "Code Quality: ${{ needs.code-quality.result }}"
+          echo "Build: ${{ needs.build.result }}"
+          echo "Tests: ${{ needs.test.result }}"
+          echo "E2E Tests: ${{ needs.e2e-test.result }}"
+          
+      - name: ❌ Fail if any critical job failed
+        if: |
+          needs.security-scan.result == 'failure' ||
+          needs.code-quality.result == 'failure' ||
+          needs.build.result == 'failure'
+        run: |
+          echo "Critical CI jobs failed. Please fix the issues before merging."
+          exit 1

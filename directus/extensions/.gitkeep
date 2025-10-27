@@ -1,0 +1,5 @@
+# This file ensures the directus/extensions directory is tracked by Git
+# while keeping the directory empty of custom extensions.
+# 
+# This directory is used by Directus CMS to store custom extensions.
+# Custom extensions should be properly versioned and documented.
