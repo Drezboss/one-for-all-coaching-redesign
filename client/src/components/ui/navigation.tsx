@@ -48,7 +48,7 @@ export function Navigation() {
   };
 
   return (
-    <nav className="bg-card border-b border-border sticky top-0 z-50 transition-colors">
+    <nav className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border-b border-gray-700 sticky top-0 z-50 transition-colors backdrop-blur-sm bg-opacity-95">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center">
@@ -93,12 +93,12 @@ export function Navigation() {
               )}
               <ThemeToggle />
               <Link href="/login" onClick={() => handleLinkClick("/login")}>
-                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold">
+                <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-lfc-red font-semibold transition-all duration-300 shadow-md hover:shadow-lg">
                   Parent Login
                 </Button>
               </Link>
               <Link href="/contact" onClick={() => handleLinkClick("/contact")}>
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
+                <Button className="btn-primary bg-lfc-red text-white hover:bg-bright-red font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                   Book Now
                 </Button>
               </Link>
@@ -113,7 +113,7 @@ export function Navigation() {
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-card border-border">
+              <SheetContent side="right" className="bg-gradient-to-b from-gray-900 to-gray-800 border-gray-700">
                 <div className="flex flex-col space-y-4 mt-8">
                   {navigation.map((item) => (
                     <Link
@@ -154,12 +154,12 @@ export function Navigation() {
                   </div>
                   
                   <Link href="/login" onClick={() => handleLinkClick("/login")}>
-                    <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold w-full mb-2">
+                    <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-lfc-red font-semibold w-full mb-2 shadow-md hover:shadow-lg transition-all duration-300">
                       Parent Login
                     </Button>
                   </Link>
                   <Link href="/contact" onClick={() => handleLinkClick("/contact")}>
-                    <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold w-full">
+                    <Button className="btn-primary bg-lfc-red text-white hover:bg-bright-red font-bold w-full shadow-lg hover:shadow-xl transition-all duration-300">
                       Book Now
                     </Button>
                   </Link>

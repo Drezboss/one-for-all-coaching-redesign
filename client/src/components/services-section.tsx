@@ -62,7 +62,7 @@ export function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="py-20 bg-black">
+    <section id="services" className="py-20 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
@@ -73,7 +73,7 @@ export function ServicesSection() {
 
         <div className="grid lg:grid-cols-2 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="bg-almost-black border-gray-800 hover:border-lfc-red transition-colors duration-200">
+            <Card key={index} className="bg-gray-800 bg-opacity-90 border-gray-700 hover:border-lfc-red transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-[1.02]">
               <CardContent className="p-8">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mr-4">
@@ -97,7 +97,7 @@ export function ServicesSection() {
                   <p className="text-white font-semibold mb-6">{service.ctaAction}</p>
                 )}
                 <Link href="/contact">
-                  <Button className="bg-lfc-red text-white hover:bg-bright-red font-semibold">
+                  <Button className="btn-primary bg-lfc-red text-white hover:bg-bright-red font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                     {service.ctaText}
                   </Button>
                 </Link>
