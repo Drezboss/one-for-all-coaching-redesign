@@ -1,9 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Rocket } from "lucide-react";
-import { siteContent } from "@shared/content";
+import { useSiteInfo, useHomeContent } from "@/hooks/useContent";
+import { ContentLoader, InlineContentLoader } from "@/components/ui/content-loader";
 
 export function HeroSection() {
+  const siteInfo = useSiteInfo();
+  const homeContent = useHomeContent();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-black via-dark-navy to-almost-black"></div>
@@ -21,28 +25,40 @@ export function HeroSection() {
       <div className="relative z-10 text-left max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <div className="text-sm text-lfc-red font-semibold tracking-wider uppercase mb-4">
-            {siteContent.site.name.toUpperCase()}
+            <InlineContentLoader loading={siteInfo.loading} error={siteInfo.error} onRetry={siteInfo.reload}>
+              {siteInfo.data?.site.name.toUpperCase()}
+            </InlineContentLoader>
           </div>
           <h1 className="text-6xl md:text-8xl font-black text-white leading-none mb-6">
-            {siteContent.home.hero.title.split(' ').map((word, index) => 
-              word === 'POTENTIAL' ? 
-                <span key={index} className="text-lfc-red">{word}</span> : 
-                word + (index < siteContent.home.hero.title.split(' ').length - 1 ? ' ' : '')
-            )}
+            <ContentLoader loading={homeContent.loading} error={homeContent.error} onRetry={homeContent.reload}>
+              {homeContent.data?.hero.title.split(' ').map((word, index) => 
+                word === 'POTENTIAL' ? 
+                  <span key={index} className="text-lfc-red">{word}</span> : 
+                  word + (index < homeContent.data.hero.title.split(' ').length - 1 ? ' ' : '')
+              )}
+            </ContentLoader>
           </h1>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            {siteContent.site.tagline.toUpperCase()}
+            <InlineContentLoader loading={siteInfo.loading} error={siteInfo.error} onRetry={siteInfo.reload}>
+              {siteInfo.data?.site.tagline.toUpperCase()}
+            </InlineContentLoader>
           </h2>
           <p className="text-lg text-gray-300 mb-8 max-w-2xl leading-relaxed">
-            {siteContent.home.hero.subtitle}
+            <InlineContentLoader loading={homeContent.loading} error={homeContent.error} onRetry={homeContent.reload}>
+              {homeContent.data?.hero.subtitle}
+            </InlineContentLoader>
           </p>
           <blockquote className="text-2xl md:text-3xl font-bold text-lfc-red mb-10 max-w-2xl italic">
-            "{siteContent.coach.quote}"
+            <InlineContentLoader loading={siteInfo.loading} error={siteInfo.error} onRetry={siteInfo.reload}>
+              "{siteInfo.data?.coach.quote}"
+            </InlineContentLoader>
           </blockquote>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/individual-coaching">
               <Button className="btn-primary bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4 transition-all duration-200">
-                {siteContent.home.hero.primaryButton}
+                <InlineContentLoader loading={homeContent.loading} error={homeContent.error} loadingText="Loading...">
+                  {homeContent.data?.hero.primaryButton || "Start Your Journey"}
+                </InlineContentLoader>
               </Button>
             </Link>
             <button
@@ -54,7 +70,9 @@ export function HeroSection() {
               }}
               className="border-2 border-white text-white hover:bg-white hover:text-black font-bold text-lg px-8 py-4 transition-all duration-200 rounded-md"
             >
-              {siteContent.home.hero.secondaryButton}
+              <InlineContentLoader loading={homeContent.loading} error={homeContent.error} loadingText="Loading...">
+                {homeContent.data?.hero.secondaryButton || "Learn More"}
+              </InlineContentLoader>
             </button>
           </div>
         </div>

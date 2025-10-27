@@ -1,0 +1,44 @@
+{
+  "hero": {
+    "title": "UNLOCK YOUR POTENTIAL",
+    "subtitle": "Professional football coaching that meets you where you are and takes you where you want to be.",
+    "primaryButton": "Start Your Journey",
+    "secondaryButton": "Learn More"
+  },
+  "whyChoose": {
+    "title": "WHY CHOOSE ONE FOR ALL?",
+    "description": "At One For All Coaching, we are passionate about helping young players grow both on and off the pitch. Whether your child is just starting out or looking to develop their skills further, our programmes are built around fun, personal growth and long-term progression.",
+    "features": [
+      {
+        "title": "Experienced and FA-qualified coaches",
+        "description": "Our team includes semi-professional players and highly trained coaches focused on grassroots development and individual player growth."
+      },
+      {
+        "title": "Tailored coaching for all ages",
+        "description": "From toddler football (ages 2 and up) to personalized one-to-one sessions, every programme builds confidence, skill and a lifelong love for the game."
+      },
+      {
+        "title": "Trusted by parents and clubs",
+        "description": "We deliver reliable sessions and holiday camps with a focus on quality, safety and a positive learning environment."
+      }
+    ]
+  },
+  "achievements": [
+    {
+      "title": "Player Development",
+      "description": "Dedicated to helping players at all levels reach their potential through personalized coaching approaches"
+    },
+    {
+      "title": "Individual Focus",
+      "description": "Every session is tailored to the specific needs and goals of each player"
+    },
+    {
+      "title": "UEFA B Licensed",
+      "description": "Qualified with UEFA B License, bringing professional standards to every training session"
+    },
+    {
+      "title": "Grassroots Excellence",
+      "description": "Passionate about developing football at the grassroots level across all age groups"
+    }
+  ]
+}
