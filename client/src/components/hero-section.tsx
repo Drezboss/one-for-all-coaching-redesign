@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Rocket } from "lucide-react";
 import { siteContent } from "@shared/content";
+import { Image } from "@/components/ui/image";
 
 export function HeroSection() {
   return (
@@ -10,10 +11,10 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       <div className="absolute top-0 right-0 w-1/2 h-full">
         <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 opacity-50 overflow-hidden">
-          <img 
+          <Image 
             src="/attached_assets/Coach dave all weather coaching_1753424086964.jpg"
             alt="Dave Cornock - All Weather Professional Football Coach"
-            className="w-full h-full object-cover opacity-60"
+            className="w-full h-full opacity-60 hero-image"
           />
         </div>
       </div>
