@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/footer";
+import { StickyCTA } from "@/components/sticky-cta";
 import { ThemeProvider } from "@/components/theme-provider";
 import Home from "@/pages/home";
 import About from "@/pages/about";
@@ -44,9 +45,15 @@ function App() {
       <ThemeProvider>
         <TooltipProvider>
           <div className="min-h-screen bg-background text-foreground">
+            <a href="#main-content" className="skip-to-main">
+              Skip to main content
+            </a>
             <Navigation />
-            <Router />
+            <main id="main-content" role="main">
+              <Router />
+            </main>
             <Footer />
+            <StickyCTA />
           </div>
           <Toaster />
         </TooltipProvider>
