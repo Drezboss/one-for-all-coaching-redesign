@@ -37,14 +37,14 @@ export default function CalendarPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white text-gray-900">
       {/* Header */}
-      <header className="bg-almost-black border-b border-gray-800 p-4">
+      <header className="bg-gray-50 border-b border-gray-200 p-4">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-3xl font-black">
-            COACHING <span className="text-lfc-red">CALENDAR</span>
+          <h1 className="text-3xl font-black text-gray-900">
+            SESSION <span className="text-lfc-red">CALENDAR</span>
           </h1>
-          <p className="text-gray-300">Manage your training sessions and appointments</p>
+          <p className="text-gray-600">View and book available training sessions</p>
         </div>
       </header>
 
@@ -52,9 +52,9 @@ export default function CalendarPage() {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Calendar */}
           <div className="lg:col-span-2">
-            <Card className="bg-almost-black border-gray-800">
+            <Card className="bg-gray-50 border-gray-200">
               <CardHeader>
-                <CardTitle className="text-white">Session Calendar</CardTitle>
+                <CardTitle className="text-gray-900">Session Calendar</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="calendar-container">
@@ -98,11 +98,11 @@ export default function CalendarPage() {
                   />
                 </div>
                 
-                <div className="mt-6 p-4 bg-black rounded-lg border border-gray-700">
-                  <h3 className="text-lg font-semibold text-white mb-2">
-                    {format(selectedDate, "EEEE, MMMM do, yyyy")}
-                  </h3>
-                  <p className="text-gray-300">
+                                  <div className="mt-6 p-4 bg-gray-100 rounded-lg border border-gray-200">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      {format(selectedDate, "EEEE, MMMM do, yyyy")}
+                    </h3>
+                    <p className="text-gray-600">
                     {dayAppointments.length} session{dayAppointments.length !== 1 ? 's' : ''} scheduled
                   </p>
                 </div>
@@ -112,9 +112,9 @@ export default function CalendarPage() {
 
           {/* Day's Appointments */}
           <div>
-            <Card className="bg-almost-black border-gray-800">
+            <Card className="bg-gray-50 border-gray-200">
               <CardHeader>
-                <CardTitle className="text-white flex items-center">
+                <CardTitle className="text-gray-900 flex items-center">
                   <Clock className="w-5 h-5 mr-2 text-lfc-red" />
                   Today's Sessions
                 </CardTitle>
@@ -133,10 +133,10 @@ export default function CalendarPage() {
                     {dayAppointments
                       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
                       .map((appointment) => (
-                        <div key={appointment.id} className="border border-gray-700 rounded-lg p-4">
+                        <div key={appointment.id} className="border border-gray-200 rounded-lg p-4">
                           <div className="space-y-3">
                             <div className="flex items-center justify-between">
-                              <h4 className="text-lg font-semibold text-white">
+                              <h4 className="text-lg font-semibold text-gray-900">
                                 {appointment.clientName}
                               </h4>
                               <Badge 
@@ -148,41 +148,41 @@ export default function CalendarPage() {
                             </div>
                             
                             <div className="space-y-2 text-sm">
-                              <div className="flex items-center text-gray-300">
+                              <div className="flex items-center text-gray-600">
                                 <Clock className="w-4 h-4 mr-2" />
                                 {format(new Date(appointment.date), "HH:mm")} 
                                 <span className="ml-1">({appointment.duration} min)</span>
                               </div>
                               
-                              <div className="flex items-center text-gray-300">
+                              <div className="flex items-center text-gray-600">
                                 <User className="w-4 h-4 mr-2" />
                                 {appointment.serviceType}
                               </div>
                               
-                              <div className="flex items-center text-gray-300">
+                              <div className="flex items-center text-gray-600">
                                 <Mail className="w-4 h-4 mr-2" />
                                 {appointment.clientEmail}
                               </div>
                               
                               {appointment.clientPhone && (
-                                <div className="flex items-center text-gray-300">
-                                  <Phone className="w-4 h-4 mr-2" />
-                                  {appointment.clientPhone}
-                                </div>
+                                                              <div className="flex items-center text-gray-600">
+                                <Phone className="w-4 h-4 mr-2" />
+                                {appointment.clientPhone}
+                              </div>
                               )}
                             </div>
                             
                             {appointment.notes && (
-                              <div className="mt-3 p-3 bg-black rounded border border-gray-700">
-                                <p className="text-gray-200 text-sm">{appointment.notes}</p>
+                                                              <div className="mt-3 p-3 bg-gray-100 rounded border border-gray-200">
+                                                                  <p className="text-gray-600 text-sm">{appointment.notes}</p>
                               </div>
                             )}
                             
                             <div className="flex space-x-2 mt-3">
-                              <Button size="sm" variant="outline" className="border-gray-600 text-white hover:bg-gray-700">
+                              <Button size="sm" variant="outline" className="border-gray-600 text-gray-900 hover:bg-gray-100">
                                 Edit
                               </Button>
-                              <Button size="sm" variant="outline" className="border-gray-600 text-white hover:bg-gray-700">
+                              <Button size="sm" variant="outline" className="border-gray-600 text-gray-900 hover:bg-gray-100">
                                 Contact
                               </Button>
                             </div>
@@ -195,18 +195,18 @@ export default function CalendarPage() {
             </Card>
 
             {/* Quick Actions */}
-            <Card className="bg-almost-black border-gray-800 mt-6">
+            <Card className="bg-gray-50 border-gray-200 mt-6">
               <CardHeader>
-                <CardTitle className="text-white">Quick Actions</CardTitle>
+                <CardTitle className="text-gray-900">Quick Actions</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <Button className="w-full bg-lfc-red hover:bg-bright-red text-white">
                   Add New Session
                 </Button>
-                <Button variant="outline" className="w-full border-gray-600 text-white hover:bg-gray-700">
+                <Button variant="outline" className="w-full border-gray-600 text-gray-900 hover:bg-gray-100">
                   View All Appointments
                 </Button>
-                <Button variant="outline" className="w-full border-gray-600 text-white hover:bg-gray-700">
+                <Button variant="outline" className="w-full border-gray-600 text-gray-900 hover:bg-gray-100">
                   Set Availability
                 </Button>
               </CardContent>

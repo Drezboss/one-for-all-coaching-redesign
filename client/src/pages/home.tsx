@@ -8,13 +8,13 @@ import { siteContent } from "@shared/content";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white text-gray-900">
       <HeroSection />
       <ExpectationSection />
       <ServicesSection />
       
       {/* About Section */}
-      <section id="about" className="py-20 bg-almost-black">
+      <section id="about" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -27,10 +27,10 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
                 {siteContent.home.whyChoose.title}
               </h2>
-              <p className="text-lg text-gray-300 mb-6">
+              <p className="text-lg text-gray-600 mb-6">
                 {siteContent.home.whyChoose.description}
               </p>
 
@@ -44,8 +44,8 @@ export default function Home() {
                         <Icon className="w-4 h-4 text-white" />
                       </div>
                       <div>
-                        <h4 className="text-xl font-bold text-white mb-2">{feature.title}</h4>
-                        <p className="text-gray-300">{feature.description}</p>
+                        <h4 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h4>
+                        <p className="text-gray-600">{feature.description}</p>
                       </div>
                     </div>
                   );

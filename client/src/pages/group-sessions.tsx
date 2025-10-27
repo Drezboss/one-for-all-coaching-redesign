@@ -95,10 +95,10 @@ export default function GroupSessions() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white text-gray-900">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-black via-dark-navy to-almost-black">
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+      <section className="relative py-20 bg-gradient-to-br from-gray-50 via-gray-100 to-white">
+        <div className="absolute inset-0 bg-white bg-opacity-40"></div>
         <div className="absolute top-0 right-0 w-1/2 h-full">
           <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 opacity-50 overflow-hidden">
             <img 
@@ -114,15 +114,15 @@ export default function GroupSessions() {
             <div className="text-sm text-lfc-red font-semibold tracking-wider uppercase mb-4">
               GROUP SESSIONS
             </div>
-            <h1 className="text-6xl md:text-8xl font-black text-white leading-none mb-6">
+            <h1 className="text-6xl md:text-8xl font-black text-gray-900 leading-none mb-6">
               👥 GROUP
               <br />
               <span className="text-lfc-red">SESSIONS</span>
             </h1>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Learn Together. Push Each Other. Grow as One.
             </h2>
-            <p className="text-xl text-gray-200 mb-8 max-w-2xl">
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl">
               Ideal for small teams or friend groups, our sessions focus on shared development with individual attention.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -137,26 +137,26 @@ export default function GroupSessions() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-almost-black">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-              WHY CHOOSE <span className="text-lfc-red">GROUP SESSIONS</span>?
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+              WHY GROUP <span className="text-lfc-red">SESSIONS</span>?
             </h2>
-            <p className="text-xl text-gray-300">The power of training together with professional guidance</p>
+            <p className="text-xl text-gray-600">The power of training together with professional guidance</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {benefits.map((benefit, index) => (
-              <Card key={index} className="bg-black border-gray-800 hover:border-lfc-red transition-colors duration-200">
+              <Card key={index} className="bg-white border-gray-200 hover:border-lfc-red transition-colors duration-200">
                 <CardContent className="p-8">
                   <div className="flex items-center mb-6">
                     <div className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mr-4">
                       <benefit.icon className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-white">{benefit.title}</h3>
+                    <h3 className="text-2xl font-bold text-gray-900">{benefit.title}</h3>
                   </div>
-                  <p className="text-gray-300 text-lg">{benefit.description}</p>
+                  <p className="text-gray-600 text-lg">{benefit.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -165,60 +165,66 @@ export default function GroupSessions() {
       </section>
 
       {/* Session Structure */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-              SESSION <span className="text-lfc-red">BREAKDOWN</span>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+              SESSION <span className="text-lfc-red">COMPONENTS</span>
             </h2>
-            <p className="text-xl text-gray-300">90 minutes of structured, engaging group development</p>
+            <p className="text-xl text-gray-600">90 minutes of structured, engaging group development</p>
           </div>
 
           <div className="space-y-6">
             {sessionComponents.map((component, index) => (
-              <Card key={index} className="bg-almost-black border-gray-800">
+              <Card key={index} className="bg-gray-50 border-gray-200">
                 <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center">
-                      <div className="w-8 h-8 bg-lfc-red rounded-full flex items-center justify-center mr-4">
-                        <span className="text-white font-bold">{index + 1}</span>
-                      </div>
-                      <h3 className="text-xl font-bold text-white">{component.title}</h3>
+                  <div className="flex items-start">
+                    <div className="w-10 h-10 bg-lfc-red rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                      <span className="text-white font-bold">{index + 1}</span>
                     </div>
-                    <div className="flex items-center text-lfc-red">
-                      <Clock className="w-5 h-5 mr-2" />
-                      <span className="font-semibold">{component.duration}</span>
-                    </div>
+                    <h3 className="text-xl font-bold text-gray-900">{component.title}</h3>
                   </div>
-                  <p className="text-gray-300 ml-12">{component.description}</p>
+                  <div className="flex items-center text-lfc-red">
+                    <Clock className="w-5 h-5 mr-2" />
+                    <span className="font-semibold">{component.duration}</span>
+                  </div>
+                  <p className="text-gray-600 ml-12">{component.description}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
 
           <div className="text-center mt-12">
-            <div className="bg-almost-black p-8 rounded-lg border border-gray-800">
-              <h3 className="text-2xl font-bold text-white mb-4">Group Session Details</h3>
-              <div className="grid md:grid-cols-4 gap-6 text-center">
-                <div>
-                  <Users className="w-8 h-8 text-lfc-red mx-auto mb-2" />
-                  <div className="text-white font-semibold">Group Size</div>
-                  <div className="text-gray-300">2-6 players</div>
+            <div className="bg-gray-50 p-8 rounded-lg border border-gray-200">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Group Session Details</h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                  <div className="flex items-center">
+                    <Users className="w-5 h-5 text-lfc-red mr-3" />
+                    <div className="text-gray-900 font-semibold">Group Size</div>
+                  </div>
+                  <div className="text-gray-600">2-6 players</div>
                 </div>
-                <div>
-                  <Clock className="w-8 h-8 text-lfc-red mx-auto mb-2" />
-                  <div className="text-white font-semibold">Duration</div>
-                  <div className="text-gray-300">90 minutes</div>
+                <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                  <div className="flex items-center">
+                    <Clock className="w-5 h-5 text-lfc-red mr-3" />
+                    <div className="text-gray-900 font-semibold">Duration</div>
+                  </div>
+                  <div className="text-gray-600">90 minutes</div>
                 </div>
-                <div>
-                  <MapPin className="w-8 h-8 text-lfc-red mx-auto mb-2" />
-                  <div className="text-white font-semibold">Location</div>
-                  <div className="text-gray-300">Professional facilities</div>
+                <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                  <div className="flex items-center">
+                    <MapPin className="w-5 h-5 text-lfc-red mr-3" />
+                    <div className="text-gray-900 font-semibold">Location</div>
+                  </div>
+                  <div className="text-gray-600">Professional facilities</div>
                 </div>
-                <div>
-                  <Target className="w-8 h-8 text-lfc-red mx-auto mb-2" />
-                  <div className="text-white font-semibold">Focus</div>
-                  <div className="text-gray-300">Individual within group</div>
+                <div className="flex justify-between items-center py-3">
+                  <div className="flex items-center">
+                    <Target className="w-5 h-5 text-lfc-red mr-3" />
+                    <div className="text-gray-900 font-semibold">Focus</div>
+                  </div>
+                  <div className="text-gray-600">Individual within group</div>
                 </div>
               </div>
             </div>
@@ -227,34 +233,34 @@ export default function GroupSessions() {
       </section>
 
       {/* Group Types */}
-      <section className="py-20 bg-almost-black">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
               GROUP <span className="text-lfc-red">OPTIONS</span>
             </h2>
-            <p className="text-xl text-gray-300">Find the perfect group setup for your needs</p>
+            <p className="text-xl text-gray-600">Find the perfect group setup for your needs</p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
             {groupTypes.map((type, index) => (
-              <Card key={index} className="bg-black border-gray-800 hover:border-lfc-red transition-colors duration-200">
+              <Card key={index} className="bg-white border-gray-200 hover:border-lfc-red transition-colors duration-200">
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-white mb-4">{type.title}</h3>
-                  <p className="text-gray-300 mb-6">{type.description}</p>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{type.title}</h3>
+                  <p className="text-gray-600 mb-6">{type.description}</p>
                   
                   <div className="space-y-3 mb-6">
                     {type.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center text-gray-200">
+                                              <div key={featureIndex} className="flex items-center text-gray-600">
                         <CheckCircle className="w-5 h-5 text-lfc-red mr-3" />
                         <span>{feature}</span>
                       </div>
                     ))}
                   </div>
                   
-                  <div className="bg-almost-black p-4 rounded-lg border border-gray-800">
-                    <div className="text-lfc-red font-semibold text-sm uppercase tracking-wide mb-1">Ideal For</div>
-                    <div className="text-white">{type.ideal}</div>
+                  <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                    <div className="text-sm text-gray-500 mb-1">Ideal For:</div>
+                    <div className="text-gray-900">{type.ideal}</div>
                   </div>
                 </CardContent>
               </Card>
@@ -264,10 +270,10 @@ export default function GroupSessions() {
       </section>
 
       {/* What's Included */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
               WHAT'S <span className="text-lfc-red">INCLUDED</span>
             </h2>
           </div>
@@ -283,10 +289,10 @@ export default function GroupSessions() {
               "Professional equipment provided",
               "Video analysis when appropriate",
             ].map((item, index) => (
-              <Card key={index} className="bg-almost-black border-gray-800 text-center">
+              <Card key={index} className="bg-gray-50 border-gray-200 text-center">
                 <CardContent className="p-6">
                   <CheckCircle className="w-8 h-8 text-lfc-red mx-auto mb-4" />
-                  <p className="text-white font-medium">{item}</p>
+                  <p className="text-gray-900 font-medium">{item}</p>
                 </CardContent>
               </Card>
             ))}
@@ -295,28 +301,28 @@ export default function GroupSessions() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-almost-black">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-              SUCCESS <span className="text-lfc-red">STORIES</span>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+              GROUP SUCCESS <span className="text-lfc-red">STORIES</span>
             </h2>
-            <p className="text-xl text-gray-300">Groups that train together, succeed together</p>
+            <p className="text-xl text-gray-600">Groups that train together, succeed together</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-black border-gray-800">
+              <Card key={index} className="bg-white border-gray-200">
                 <CardContent className="p-8">
                   <div className="flex items-center mb-4">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 text-lfc-red fill-current" />
                     ))}
                   </div>
-                  <blockquote className="text-gray-200 mb-6 italic">"{testimonial.text}"</blockquote>
+                  <blockquote className="text-gray-600 mb-6 italic">"{testimonial.text}"</blockquote>
                   <div>
-                    <div className="text-white font-semibold">{testimonial.name}</div>
-                    <div className="text-gray-400 text-sm">{testimonial.role}</div>
+                    <div className="text-gray-900 font-semibold">{testimonial.name}</div>
+                    <div className="text-gray-500 text-sm">{testimonial.role}</div>
                   </div>
                 </CardContent>
               </Card>
@@ -326,10 +332,10 @@ export default function GroupSessions() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-lfc-red">
+      <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
-            READY TO TRAIN AS A GROUP?
+            READY TO JOIN A <span className="text-lfc-red">GROUP</span>?
           </h2>
           <p className="text-xl text-white/90 mb-8">
             Bring your friends, siblings, or teammates together for an unforgettable training experience.
@@ -343,7 +349,7 @@ export default function GroupSessions() {
             <Link href="/individual-coaching">
               <Button
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-black font-bold text-lg px-8 py-4 transition-all duration-200"
+                className="border-white text-white hover:bg-white hover:text-gray-900 font-bold text-lg px-8 py-4 transition-all duration-200"
               >
                 Compare with 1-2-1
               </Button>

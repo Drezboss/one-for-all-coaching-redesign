@@ -82,23 +82,22 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-almost-black flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 flex items-center justify-center p-4">
       <div className="w-full max-w-2xl">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center text-lfc-red hover:text-bright-red mb-4">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Home
           </Link>
-          <div className="flex items-center justify-center mb-4">
-            <Trophy className="w-8 h-8 text-lfc-red mr-2" />
-            <h1 className="text-3xl font-bold text-white">ONE FOR ALL COACHING</h1>
-          </div>
-          <p className="text-gray-400">Create your parent account to track your child's progress</p>
+                      <h1 className="text-4xl font-black text-gray-900 mb-2">
+              START YOUR <span className="text-lfc-red">JOURNEY</span>
+            </h1>
+            <p className="text-gray-600">Join DC Football Coaching and unlock your potential</p>
         </div>
 
-        <Card className="bg-almost-black border-gray-700">
+        <Card className="bg-gray-50 border-gray-200">
           <CardHeader>
-            <CardTitle className="text-white text-center">
+            <CardTitle className="text-gray-900 text-center">
               <UserPlus className="w-6 h-6 inline-block mr-2" />
               Parent Registration
             </CardTitle>
@@ -118,11 +117,11 @@ export default function Register() {
                       name="username"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Username</FormLabel>
+                          <FormLabel className="text-gray-900 font-semibold">Username</FormLabel>
                           <FormControl>
                             <Input
                               {...field}
-                              className="bg-black border-gray-600 text-white focus:border-lfc-red"
+                              className="bg-gray-900 text-white border-gray-700 focus:border-lfc-red"
                               placeholder="Choose a username"
                             />
                           </FormControl>
@@ -136,13 +135,13 @@ export default function Register() {
                       name="password"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Password</FormLabel>
+                          <FormLabel className="text-gray-900 font-semibold">Password</FormLabel>
                           <FormControl>
                             <div className="relative">
                               <Input
                                 {...field}
                                 type={showPassword ? "text" : "password"}
-                                className="bg-black border-gray-600 text-white focus:border-lfc-red pr-10"
+                                className="bg-gray-900 text-white border-gray-700 focus:border-lfc-red pr-10"
                                 placeholder="Create a password"
                               />
                               <Button
@@ -171,12 +170,12 @@ export default function Register() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white">Email Address</FormLabel>
+                        <FormLabel className="text-gray-900 font-semibold">Email Address</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
                             type="email"
-                            className="bg-black border-gray-600 text-white focus:border-lfc-red"
+                            className="bg-gray-900 text-white border-gray-700 focus:border-lfc-red"
                             placeholder="your.email@example.com"
                           />
                         </FormControl>
@@ -198,11 +197,11 @@ export default function Register() {
                       name="parentName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Parent/Guardian Name</FormLabel>
+                          <FormLabel className="text-gray-900 font-semibold">Parent/Guardian Name</FormLabel>
                           <FormControl>
                             <Input
                               {...field}
-                              className="bg-black border-gray-600 text-white focus:border-lfc-red"
+                              className="bg-gray-900 text-white border-gray-700 focus:border-lfc-red"
                               placeholder="Your full name"
                             />
                           </FormControl>
@@ -216,11 +215,11 @@ export default function Register() {
                       name="phone"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Phone Number</FormLabel>
+                          <FormLabel className="text-gray-900 font-semibold">Phone Number</FormLabel>
                           <FormControl>
                             <Input
                               {...field}
-                              className="bg-black border-gray-600 text-white focus:border-lfc-red"
+                              className="bg-gray-900 text-white border-gray-700 focus:border-lfc-red"
                               placeholder="07123 456789"
                             />
                           </FormControl>
@@ -236,11 +235,11 @@ export default function Register() {
                       name="studentName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Student Name</FormLabel>
+                          <FormLabel className="text-gray-900 font-semibold">Student Name</FormLabel>
                           <FormControl>
                             <Input
                               {...field}
-                              className="bg-black border-gray-600 text-white focus:border-lfc-red"
+                              className="bg-gray-900 text-white border-gray-700 focus:border-lfc-red"
                               placeholder="Your child's name"
                             />
                           </FormControl>
@@ -254,14 +253,14 @@ export default function Register() {
                       name="studentAge"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Student Age</FormLabel>
+                          <FormLabel className="text-gray-900 font-semibold">Student Age</FormLabel>
                           <FormControl>
                             <Input
                               {...field}
                               type="number"
                               min="5"
                               max="18"
-                              className="bg-black border-gray-600 text-white focus:border-lfc-red"
+                              className="bg-gray-900 text-white border-gray-700 focus:border-lfc-red"
                               placeholder="Age"
                             />
                           </FormControl>
@@ -284,11 +283,11 @@ export default function Register() {
                       name="emergencyContact"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Emergency Contact Name</FormLabel>
+                          <FormLabel className="text-gray-900 font-semibold">Emergency Contact Name</FormLabel>
                           <FormControl>
                             <Input
                               {...field}
-                              className="bg-black border-gray-600 text-white focus:border-lfc-red"
+                              className="bg-gray-900 text-white border-gray-700 focus:border-lfc-red"
                               placeholder="Emergency contact name"
                             />
                           </FormControl>
@@ -302,11 +301,11 @@ export default function Register() {
                       name="emergencyPhone"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Emergency Contact Phone</FormLabel>
+                          <FormLabel className="text-gray-900 font-semibold">Emergency Contact Phone</FormLabel>
                           <FormControl>
                             <Input
                               {...field}
-                              className="bg-black border-gray-600 text-white focus:border-lfc-red"
+                              className="bg-gray-900 text-white border-gray-700 focus:border-lfc-red"
                               placeholder="07123 456789"
                             />
                           </FormControl>
@@ -335,10 +334,10 @@ export default function Register() {
                           />
                         </FormControl>
                         <div className="space-y-1 leading-none">
-                          <FormLabel className="text-white">
+                          <FormLabel className="text-gray-900 font-semibold">
                             GDPR Compliance Consent (Required) *
                           </FormLabel>
-                          <p className="text-gray-400 text-sm">
+                          <p className="text-gray-600 text-sm">
                             I consent to the processing of my personal data in accordance with GDPR regulations for the purpose of providing coaching services. This includes storing contact details, student information, and session records.
                           </p>
                           <FormMessage />
@@ -359,10 +358,10 @@ export default function Register() {
                           />
                         </FormControl>
                         <div className="space-y-1 leading-none">
-                          <FormLabel className="text-white">
+                          <FormLabel className="text-gray-900 font-semibold">
                             Data Processing Consent (Required) *
                           </FormLabel>
-                          <p className="text-gray-400 text-sm">
+                          <p className="text-gray-600 text-sm">
                             I consent to the processing of my data for session management, progress tracking, payment processing, and communication about sessions.
                           </p>
                           <FormMessage />
@@ -383,10 +382,10 @@ export default function Register() {
                           />
                         </FormControl>
                         <div className="space-y-1 leading-none">
-                          <FormLabel className="text-white">
+                          <FormLabel className="text-gray-900 font-semibold">
                             Marketing Communications (Optional)
                           </FormLabel>
-                          <p className="text-gray-400 text-sm">
+                          <p className="text-gray-600 text-sm">
                             I would like to receive marketing communications about new services, promotions, and coaching tips. You can withdraw this consent at any time.
                           </p>
                           <FormMessage />
@@ -395,8 +394,8 @@ export default function Register() {
                     )}
                   />
 
-                  <div className="bg-black p-4 rounded-lg">
-                    <p className="text-gray-400 text-xs">
+                  <div className="bg-gray-100 p-4 rounded-lg border border-gray-200">
+                    <p className="text-gray-600 text-xs">
                       <strong>Your Rights:</strong> You have the right to access, rectify, erase, restrict processing, data portability, and object to processing of your personal data. You can withdraw consent at any time. For privacy concerns, contact privacy@all-4one-coaching.com
                     </p>
                   </div>
@@ -410,9 +409,9 @@ export default function Register() {
                   {registerMutation.isPending ? "Creating Account..." : "Create Parent Account"}
                 </Button>
 
-                <div className="text-center text-gray-400">
-                  Already have an account?{" "}
-                  <Link href="/login" className="text-lfc-red hover:text-bright-red">
+                <div className="text-center text-gray-600">
+                  Already registered?{" "}
+                  <Link href="/contact" className="text-lfc-red hover:underline font-semibold">
                     Sign in here
                   </Link>
                 </div>
