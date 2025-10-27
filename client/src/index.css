@@ -28,6 +28,29 @@
   --bright-red: hsl(0, 100%, 50%);
   --dark-navy: hsl(220, 47%, 9%);
   --almost-black: hsl(0, 0%, 7%);
+  
+  /* Enhanced spacing system */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  /* Enhanced typography scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  
+  /* Animation durations */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
 }
 
 .dark {
@@ -62,100 +85,216 @@
     @apply border-border;
   }
 
+  html {
+    @apply scroll-smooth;
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply font-sans antialiased bg-background text-foreground transition-colors duration-300;
+    @apply font-sans antialiased bg-background text-foreground;
+    transition: background-color var(--duration-normal) ease, color var(--duration-normal) ease;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Improved focus styles for accessibility */
+  *:focus-visible {
+    @apply ring-2 ring-primary ring-offset-2 ring-offset-background outline-none;
+  }
+  
+  /* Custom selection color */
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+  
+  /* Improved heading hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold leading-tight;
+    text-wrap: balance;
+  }
+  
+  h1 { @apply text-4xl md:text-5xl; }
+  h2 { @apply text-3xl md:text-4xl; }
+  h3 { @apply text-2xl md:text-3xl; }
+  h4 { @apply text-xl md:text-2xl; }
+  h5 { @apply text-lg md:text-xl; }
+  h6 { @apply text-base md:text-lg; }
+  
+  /* Better paragraph spacing */
+  p {
+    @apply leading-relaxed;
+    text-wrap: pretty;
+  }
+  
+  /* Improved button focus states */
+  button:focus-visible,
+  [role="button"]:focus-visible {
+    @apply ring-2 ring-primary ring-offset-2 outline-none;
+  }
+  
+  /* Better link styling */
+  a:focus-visible {
+    @apply ring-2 ring-primary ring-offset-2 outline-none rounded-sm;
+  }
+  
+  /* Ensure images are responsive by default */
+  img {
+    @apply max-w-full h-auto;
+  }
+  
+  /* Better form control styling */
+  input, textarea, select {
+    @apply transition-colors duration-200;
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    @apply ring-2 ring-primary ring-offset-2 outline-none;
+  }
+  
+  /* Reduced motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
 @layer components {
-  /* Button styling improvements for better visibility */
-  .btn-primary {
-    background-color: hsl(355, 87%, 48%) !important;
-    color: white !important;
-    border: 2px solid hsl(355, 87%, 48%) !important;
-    font-weight: 600 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-  }
+  /* Enhanced brand color utilities */
+  .lfc-red { color: var(--lfc-red); }
+  .bg-lfc-red { background-color: var(--lfc-red); }
+  .border-lfc-red { border-color: var(--lfc-red); }
+  .hover\:bg-lfc-red:hover { background-color: var(--lfc-red); }
+  .hover\:text-lfc-red:hover { color: var(--lfc-red); }
   
-  .btn-primary:hover {
-    background-color: hsl(355, 87%, 40%) !important;
-    border-color: hsl(355, 87%, 40%) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px rgba(200, 16, 46, 0.4) !important;
-  }
+  .bright-red { color: var(--bright-red); }
+  .bg-bright-red { background-color: var(--bright-red); }
+  .hover\:bg-bright-red:hover { background-color: var(--bright-red); }
+  
+  .dark-navy { color: var(--dark-navy); }
+  .bg-dark-navy { background-color: var(--dark-navy); }
+  
+  .almost-black { color: var(--almost-black); }
+  .bg-almost-black { background-color: var(--almost-black); }
 
-  .lfc-red {
-    color: hsl(355, 87%, 48%);
-  }
-  
-  .bg-lfc-red {
-    background-color: hsl(355, 87%, 48%);
-  }
-  
-  .border-lfc-red {
-    border-color: hsl(355, 87%, 48%);
-  }
-  
-  .hover\:bg-lfc-red:hover {
-    background-color: hsl(355, 87%, 48%);
-  }
-  
-  .hover\:text-lfc-red:hover {
-    color: hsl(355, 87%, 48%);
-  }
-  
-  .bright-red {
-    color: hsl(0, 100%, 50%);
-  }
-  
-  .bg-bright-red {
-    background-color: hsl(0, 100%, 50%);
-  }
-  
-  .hover\:bg-bright-red:hover {
-    background-color: hsl(0, 100%, 50%);
-  }
-  
-  .dark-navy {
-    color: hsl(220, 47%, 9%);
-  }
-  
-  .bg-dark-navy {
-    background-color: hsl(220, 47%, 9%);
-  }
-  
-  .almost-black {
-    color: hsl(0, 0%, 7%);
-  }
-  
-  .bg-almost-black {
-    background-color: hsl(0, 0%, 7%);
-  }
-
-  /* Button specific styling for better contrast */
+  /* Enhanced button styles */
   .btn-primary {
-    background-color: hsl(355, 87%, 48%);
-    color: white;
-    border: none;
-    font-weight: 700;
-  }
-  
-  .btn-primary:hover {
-    background-color: hsl(355, 87%, 42%);
-    color: white;
+    @apply bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-md;
+    @apply hover:bg-primary/90 active:bg-primary/80;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+    @apply transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-lg;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
   }
   
   .btn-outline {
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-    font-weight: 700;
+    @apply bg-transparent border-2 border-current font-semibold px-6 py-3 rounded-md;
+    @apply hover:bg-current hover:text-background;
+    @apply focus:outline-none focus:ring-2 focus:ring-current focus:ring-offset-2;
+    @apply transition-all duration-200;
   }
   
-  .btn-outline:hover {
-    background-color: white;
-    color: black;
-    border-color: white;
+  /* Card component enhancements */
+  .card-elevated {
+    @apply bg-card border border-border rounded-lg p-6 shadow-lg;
+    @apply hover:shadow-xl transition-shadow duration-300;
+  }
+  
+  /* Section spacing utilities */
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+  
+  .section-padding-sm {
+    @apply py-8 md:py-12;
+  }
+  
+  /* Container utilities */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Accessibility utilities */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+  
+  /* Loading and skeleton utilities */
+  .loading-skeleton {
+    @apply animate-pulse bg-muted rounded;
+  }
+  
+  .loading-spinner {
+    @apply animate-spin rounded-full border-2 border-muted border-t-primary;
+  }
+  
+  /* Form enhancement utilities */
+  .form-field {
+    @apply space-y-2;
+  }
+  
+  .form-input {
+    @apply w-full px-3 py-2 border border-input rounded-md bg-background;
+    @apply focus:border-primary focus:ring-2 focus:ring-primary focus:ring-offset-2;
+    @apply transition-colors duration-200;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-foreground;
+  }
+  
+  .form-error {
+    @apply text-sm text-destructive;
+  }
+  
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn var(--duration-normal) ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp var(--duration-normal) ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
