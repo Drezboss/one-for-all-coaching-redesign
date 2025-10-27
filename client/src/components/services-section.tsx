@@ -73,10 +73,10 @@ export function ServicesSection() {
 
         <div className="grid lg:grid-cols-2 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="bg-almost-black border-gray-800 hover:border-lfc-red transition-colors duration-200">
+            <Card key={index} className="bg-almost-black border-gray-800 hover:border-lfc-red transition-colors duration-200 shadow-lg hover:shadow-xl">
               <CardContent className="p-8">
                 <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mr-4">
+                  <div className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mr-4 shadow-md">
                     <service.icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-white">{service.title}</h3>
@@ -97,7 +97,7 @@ export function ServicesSection() {
                   <p className="text-white font-semibold mb-6">{service.ctaAction}</p>
                 )}
                 <Link href="/contact">
-                  <Button className="bg-lfc-red text-white hover:bg-bright-red font-semibold">
+                  <Button className="bg-lfc-red text-white hover:bg-bright-red font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200">
                     {service.ctaText}
                   </Button>
                 </Link>

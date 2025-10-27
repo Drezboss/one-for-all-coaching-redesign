@@ -40,7 +40,7 @@ export default function Home() {
                   const Icon = icons[index];
                   return (
                     <div key={index} className="flex items-start">
-                      <div className="w-6 h-6 bg-lfc-red rounded-full flex items-center justify-center mr-4 mt-1">
+                      <div className="w-6 h-6 bg-lfc-red rounded-full flex items-center justify-center mr-4 mt-1 shadow-md">
                         <Icon className="w-4 h-4 text-white" />
                       </div>
                       <div>
@@ -54,7 +54,7 @@ export default function Home() {
 
               <div className="mt-8">
                 <Link href="/about">
-                  <Button className="btn-primary bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4 transition-all duration-200">
+                  <Button className="bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105">
                     Meet Your Coach
                   </Button>
                 </Link>

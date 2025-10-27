@@ -48,14 +48,14 @@ export function Navigation() {
   };
 
   return (
-    <nav className="bg-card border-b border-border sticky top-0 z-50 transition-colors">
+    <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50 transition-colors shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center">
-            <div className="text-2xl font-bold text-foreground">
-              <Trophy className="inline-block w-6 h-6 text-primary mr-2" />
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">
+              <Trophy className="inline-block w-6 h-6 text-lfc-red mr-2" />
               ONE FOR ALL
-              <span className="block text-sm text-muted-foreground font-normal">COACHING</span>
+              <span className="block text-sm text-gray-600 dark:text-gray-300 font-normal">COACHING</span>
             </div>
           </Link>
 
@@ -69,8 +69,8 @@ export function Navigation() {
                   onClick={() => handleLinkClick(item.href)}
                   className={`transition-colors duration-200 font-medium ${
                     isActive(item.href)
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-primary"
+                      ? "text-lfc-red"
+                      : "text-gray-700 dark:text-gray-300 hover:text-lfc-red dark:hover:text-lfc-red"
                   }`}
                 >
                   {item.name}
@@ -83,22 +83,22 @@ export function Navigation() {
                     <button
                       key={section.anchor}
                       onClick={() => handleAnchorClick(section.anchor)}
-                      className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                      className="text-gray-700 dark:text-gray-300 hover:text-lfc-red dark:hover:text-lfc-red transition-colors duration-200"
                     >
                       {section.name}
                     </button>
                   ))}
-                  <div className="w-px h-4 bg-border"></div>
+                  <div className="w-px h-4 bg-gray-300 dark:bg-gray-600"></div>
                 </div>
               )}
               <ThemeToggle />
               <Link href="/login" onClick={() => handleLinkClick("/login")}>
-                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold">
+                <Button variant="outline" className="border-lfc-red text-lfc-red hover:bg-lfc-red hover:text-white font-semibold">
                   Parent Login
                 </Button>
               </Link>
               <Link href="/contact" onClick={() => handleLinkClick("/contact")}>
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
+                <Button className="bg-lfc-red text-white hover:bg-bright-red font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
                   Book Now
                 </Button>
               </Link>
@@ -109,11 +109,11 @@ export function Navigation() {
           <div className="md:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-foreground hover:text-primary">
+                <Button variant="ghost" size="icon" className="text-gray-700 dark:text-white hover:text-lfc-red">
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-card border-border">
+              <SheetContent side="right" className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
                 <div className="flex flex-col space-y-4 mt-8">
                   {navigation.map((item) => (
                     <Link
@@ -122,8 +122,8 @@ export function Navigation() {
                       onClick={() => handleLinkClick(item.href)}
                       className={`text-lg font-medium transition-colors duration-200 ${
                         isActive(item.href)
-                          ? "text-primary"
-                          : "text-muted-foreground hover:text-primary"
+                          ? "text-lfc-red"
+                          : "text-gray-700 dark:text-gray-300 hover:text-lfc-red"
                       }`}
                     >
                       {item.name}
@@ -133,13 +133,13 @@ export function Navigation() {
                   {/* Home page section links for mobile */}
                   {location === "/" && (
                     <>
-                      <div className="border-t border-border my-4"></div>
-                      <div className="text-sm text-muted-foreground font-semibold mb-2">Quick Links:</div>
+                      <div className="border-t border-gray-200 dark:border-gray-700 my-4"></div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400 font-semibold mb-2">Quick Links:</div>
                       {homeSections.map((section) => (
                         <button
                           key={section.anchor}
                           onClick={() => handleAnchorClick(section.anchor)}
-                          className="text-left text-muted-foreground hover:text-primary transition-colors duration-200 py-1"
+                          className="text-left text-gray-700 dark:text-gray-300 hover:text-lfc-red transition-colors duration-200 py-1"
                         >
                           → {section.name}
                         </button>
@@ -147,19 +147,19 @@ export function Navigation() {
                     </>
                   )}
                   
-                  <div className="border-t border-border my-4"></div>
+                  <div className="border-t border-gray-200 dark:border-gray-700 my-4"></div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm text-muted-foreground">Theme:</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">Theme:</span>
                     <ThemeToggle />
                   </div>
                   
                   <Link href="/login" onClick={() => handleLinkClick("/login")}>
-                    <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold w-full mb-2">
+                    <Button variant="outline" className="border-lfc-red text-lfc-red hover:bg-lfc-red hover:text-white font-semibold w-full mb-2">
                       Parent Login
                     </Button>
                   </Link>
                   <Link href="/contact" onClick={() => handleLinkClick("/contact")}>
-                    <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold w-full">
+                    <Button className="bg-lfc-red text-white hover:bg-bright-red font-semibold w-full shadow-lg">
                       Book Now
                     </Button>
                   </Link>
