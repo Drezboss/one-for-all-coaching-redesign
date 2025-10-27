@@ -79,83 +79,124 @@
   }
   
   .btn-primary:hover {
-    background-color: hsl(355, 87%, 40%) !important;
-    border-color: hsl(355, 87%, 40%) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px rgba(200, 16, 46, 0.4) !important;
+    background-color: hsl(0, 100%, 50%) !important;
+    border-color: hsl(0, 100%, 50%) !important;
+    transform: scale(1.02) !important;
   }
 
-  .lfc-red {
-    color: hsl(355, 87%, 48%);
-  }
-  
-  .bg-lfc-red {
-    background-color: hsl(355, 87%, 48%);
-  }
-  
-  .border-lfc-red {
-    border-color: hsl(355, 87%, 48%);
-  }
-  
-  .hover\:bg-lfc-red:hover {
-    background-color: hsl(355, 87%, 48%);
-  }
-  
-  .hover\:text-lfc-red:hover {
-    color: hsl(355, 87%, 48%);
-  }
-  
-  .bright-red {
-    color: hsl(0, 100%, 50%);
-  }
-  
-  .bg-bright-red {
-    background-color: hsl(0, 100%, 50%);
-  }
-  
-  .hover\:bg-bright-red:hover {
-    background-color: hsl(0, 100%, 50%);
-  }
-  
-  .dark-navy {
-    color: hsl(220, 47%, 9%);
-  }
-  
-  .bg-dark-navy {
-    background-color: hsl(220, 47%, 9%);
-  }
-  
-  .almost-black {
-    color: hsl(0, 0%, 7%);
-  }
-  
-  .bg-almost-black {
-    background-color: hsl(0, 0%, 7%);
+  /* Enhanced card styles */
+  .enhanced-card {
+    @apply bg-card rounded-lg border border-border p-6 transition-all duration-300 hover:shadow-xl;
+    background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 100%);
+    backdrop-filter: blur(10px);
   }
 
-  /* Button specific styling for better contrast */
-  .btn-primary {
-    background-color: hsl(355, 87%, 48%);
-    color: white;
-    border: none;
-    font-weight: 700;
+  .enhanced-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--lfc-red);
   }
-  
-  .btn-primary:hover {
-    background-color: hsl(355, 87%, 42%);
-    color: white;
+
+  /* Gradient text effect */
+  .gradient-text {
+    @apply bg-gradient-to-r from-lfc-red to-bright-red bg-clip-text text-transparent;
   }
-  
-  .btn-outline {
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-    font-weight: 700;
+
+  /* Glow effect */
+  .glow {
+    box-shadow: 0 0 20px rgba(355, 87%, 48%, 0.5);
   }
-  
-  .btn-outline:hover {
-    background-color: white;
-    color: black;
-    border-color: white;
+
+  /* Loading animation */
+  .loading-spinner {
+    @apply animate-spin rounded-full h-8 w-8 border-b-2 border-primary;
+  }
+}
+
+@layer utilities {
+  /* Custom animations */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+    20%, 40%, 60%, 80% { transform: translateX(2px); }
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  .animate-slideInRight {
+    animation: slideInRight 0.5s ease-out;
+  }
+
+  .animate-slideInLeft {
+    animation: slideInLeft 0.5s ease-out;
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Shadow utilities */
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(355, 87%, 48%, 0.6);
+  }
+
+  .shadow-glow-lg {
+    box-shadow: 0 0 40px rgba(355, 87%, 48%, 0.8);
+  }
+
+  /* Backdrop blur */
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+  }
+
+  .backdrop-blur-md {
+    backdrop-filter: blur(8px);
+  }
+
+  .backdrop-blur-lg {
+    backdrop-filter: blur(16px);
   }
 }
