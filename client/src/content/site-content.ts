@@ -1,6 +1,6 @@
 export const siteContent = {
   site: {
-    name: "One For All Coaching",
+    name: "All for One Coaching",
   },
   home: {
     hero: {
