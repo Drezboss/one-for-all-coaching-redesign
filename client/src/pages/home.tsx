@@ -9,42 +9,58 @@ import { siteContent } from "@shared/content";
 export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* Hero Section */}
       <HeroSection />
+      
+      {/* What to Expect Section */}
       <ExpectationSection />
+      
+      {/* Services Section */}
       <ServicesSection />
       
-      {/* About Section */}
-      <section id="about" className="py-20 bg-almost-black">
+      {/* About Section with improved semantics */}
+      <section 
+        id="about" 
+        className="py-20 bg-almost-black"
+        aria-labelledby="about-heading"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="order-2 lg:order-1">
               <div className="rounded-lg shadow-2xl w-full h-96 overflow-hidden">
                 <img 
                   src={siteContent.images.coach.celebration}
-                  alt="Dave Cornock - Celebrating Success with Players"
+                  alt="Dave Cornock celebrating success with young football players on the training ground"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
             </div>
-            <div>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+            <div className="order-1 lg:order-2">
+              <h2 
+                id="about-heading"
+                className="text-display text-white mb-6"
+              >
                 {siteContent.home.whyChoose.title}
               </h2>
-              <p className="text-lg text-gray-300 mb-6">
+              <p className="text-lg text-gray-300 mb-6 leading-relaxed">
                 {siteContent.home.whyChoose.description}
               </p>
 
-              <div className="space-y-6">
+              <div className="space-y-6" role="list" aria-label="Why choose our coaching">
                 {siteContent.home.whyChoose.features.map((feature, index) => {
                   const icons = [Medal, Users, Shield];
                   const Icon = icons[index];
                   return (
-                    <div key={index} className="flex items-start">
-                      <div className="w-6 h-6 bg-lfc-red rounded-full flex items-center justify-center mr-4 mt-1">
+                    <div key={index} className="flex items-start" role="listitem">
+                      <div 
+                        className="w-6 h-6 bg-lfc-red rounded-full flex items-center justify-center mr-4 mt-1"
+                        aria-hidden="true"
+                      >
                         <Icon className="w-4 h-4 text-white" />
                       </div>
                       <div>
-                        <h4 className="text-xl font-bold text-white mb-2">{feature.title}</h4>
+                        <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
                         <p className="text-gray-300">{feature.description}</p>
                       </div>
                     </div>
@@ -54,7 +70,10 @@ export default function Home() {
 
               <div className="mt-8">
                 <Link href="/about">
-                  <Button className="btn-primary bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4 transition-all duration-200">
+                  <Button 
+                    className="btn-primary bg-lfc-red text-white hover:bg-bright-red font-bold text-lg px-8 py-4 transition-all duration-200 focus-ring"
+                    aria-label="Learn more about Dave Cornock, your football coach"
+                  >
                     Meet Your Coach
                   </Button>
                 </Link>
@@ -63,8 +82,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-
     </div>
   );
 }

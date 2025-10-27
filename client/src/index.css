@@ -23,11 +23,13 @@
   --border: hsl(214.3, 31.8%, 91.4%);
   --input: hsl(214.3, 31.8%, 91.4%);
   --ring: hsl(351, 83%, 42%);
-  --radius: 0.5rem;
+  --radius: 0.75rem;
   --lfc-red: hsl(355, 87%, 48%);
   --bright-red: hsl(0, 100%, 50%);
   --dark-navy: hsl(220, 47%, 9%);
   --almost-black: hsl(0, 0%, 7%);
+  --glass-bg: hsla(0, 0%, 100%, 0.1);
+  --glass-border: hsla(255, 255%, 255%, 0.2);
 }
 
 .dark {
@@ -55,6 +57,8 @@
   --bright-red: hsl(0, 100%, 50%);
   --dark-navy: hsl(220, 47%, 9%);
   --almost-black: hsl(0, 0%, 7%);
+  --glass-bg: hsla(0, 0%, 0%, 0.1);
+  --glass-border: hsla(255, 255%, 255%, 0.1);
 }
 
 @layer base {
@@ -64,27 +68,102 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground transition-colors duration-300;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Enhanced Typography System */
+  h1 {
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    @apply scroll-m-20 text-3xl font-bold tracking-tight lg:text-4xl;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+    line-height: 1.3;
+  }
+
+  h4 {
+    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+    line-height: 1.4;
+  }
+
+  p {
+    @apply leading-7;
+    margin-bottom: 1rem;
+  }
+
+  .text-hero {
+    @apply text-5xl md:text-6xl lg:text-7xl font-black leading-none tracking-tight;
+    letter-spacing: -0.03em;
+  }
+
+  .text-display {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight;
+    letter-spacing: -0.02em;
   }
 }
 
 @layer components {
-  /* Button styling improvements for better visibility */
+  /* Enhanced Button System */
   .btn-primary {
-    background-color: hsl(355, 87%, 48%) !important;
-    color: white !important;
-    border: 2px solid hsl(355, 87%, 48%) !important;
-    font-weight: 600 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-  }
-  
-  .btn-primary:hover {
-    background-color: hsl(355, 87%, 40%) !important;
-    border-color: hsl(355, 87%, 40%) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px rgba(200, 16, 46, 0.4) !important;
+    @apply relative overflow-hidden bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-lg transition-all duration-300 ease-out;
+    @apply hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5;
+    @apply active:translate-y-0 active:shadow-md;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+    text-transform: none;
+    letter-spacing: 0.025em;
   }
 
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+  }
+
+  .btn-primary:hover::before {
+    transform: translateX(100%);
+  }
+  
+  .btn-secondary {
+    @apply relative overflow-hidden bg-transparent border-2 border-white text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300;
+    @apply hover:bg-white hover:text-black hover:shadow-lg hover:-translate-y-0.5;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2;
+  }
+
+  /* Glass Morphism Effects */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-strong {
+    background: hsla(0, 0%, 0%, 0.2);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsla(255, 255%, 255%, 0.1);
+  }
+
+  /* Enhanced Card System */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+    @apply hover:shadow-xl hover:shadow-black/10 hover:-translate-y-1;
+    @apply dark:hover:shadow-white/5;
+  }
+
+  .card-interactive {
+    @apply card-hover cursor-pointer;
+    @apply hover:border-primary/50;
+  }
+
+  /* Color Utilities */
   .lfc-red {
     color: hsl(355, 87%, 48%);
   }
@@ -133,29 +212,60 @@
     background-color: hsl(0, 0%, 7%);
   }
 
-  /* Button specific styling for better contrast */
-  .btn-primary {
-    background-color: hsl(355, 87%, 48%);
-    color: white;
-    border: none;
-    font-weight: 700;
+  /* Animation Utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
   }
-  
-  .btn-primary:hover {
-    background-color: hsl(355, 87%, 42%);
-    color: white;
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
   }
-  
-  .btn-outline {
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-    font-weight: 700;
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
   }
-  
-  .btn-outline:hover {
-    background-color: white;
-    color: black;
-    border-color: white;
+}
+
+@layer utilities {
+  /* Custom animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Smooth scrolling */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom focus styles */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
   }
 }
