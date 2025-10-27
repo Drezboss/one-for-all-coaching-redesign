@@ -76,7 +76,7 @@ export default function Contact() {
     onError: () => {
       toast({
         title: "Please Contact Us Directly",
-        description: "Call +44 7750 887112 or email dave@all-4one-coaching.com",
+        description: "Call +44 7750 887112 or email dave@oneforallcoaching.com",
         variant: "destructive",
       });
     },
@@ -99,7 +99,7 @@ export default function Contact() {
     onError: () => {
       toast({
         title: "Please Contact Us Directly",
-        description: "Call +44 7750 887112 or email dave@all-4one-coaching.com",
+        description: "Call +44 7750 887112 or email dave@oneforallcoaching.com",
         variant: "destructive",
       });
     },

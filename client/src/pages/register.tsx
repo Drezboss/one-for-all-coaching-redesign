@@ -397,7 +397,7 @@ export default function Register() {
 
                   <div className="bg-black p-4 rounded-lg">
                     <p className="text-gray-400 text-xs">
-                      <strong>Your Rights:</strong> You have the right to access, rectify, erase, restrict processing, data portability, and object to processing of your personal data. You can withdraw consent at any time. For privacy concerns, contact privacy@all-4one-coaching.com
+                      <strong>Your Rights:</strong> You have the right to access, rectify, erase, restrict processing, data portability, and object to processing of your personal data. You can withdraw consent at any time. For privacy concerns, contact privacy@oneforallcoaching.com
                     </p>
                   </div>
                 </div>
