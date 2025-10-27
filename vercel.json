@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "npm run build && cp -r content dist/",
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "routes": [
