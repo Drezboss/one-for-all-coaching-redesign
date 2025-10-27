@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
-import { User, Users, GraduationCap, Handshake, Check } from "lucide-react";
+import { User, Users, GraduationCap, Handshake, Check, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function ServicesSection() {
   const services = [
@@ -18,6 +19,7 @@ export function ServicesSection() {
       ],
       ctaText: "Book Individual Session",
       ctaAction: "Become the best version of yourself — one session at a time.",
+      ariaLabel: "Book an individual coaching session"
     },
     {
       icon: Users,
@@ -31,6 +33,7 @@ export function ServicesSection() {
         "Custom sessions for all ability levels",
       ],
       ctaText: "Book Group Session",
+      ariaLabel: "Book a group training session"
     },
     {
       icon: GraduationCap,
@@ -44,6 +47,7 @@ export function ServicesSection() {
         "CPD-style education tailored to your environment",
       ],
       ctaText: "Learn More",
+      ariaLabel: "Learn more about coach education programs"
     },
     {
       icon: Handshake,
@@ -58,25 +62,35 @@ export function ServicesSection() {
       ],
       ctaText: "Apply for Mentorship",
       ctaAction: "Because great coaches never stop learning.",
+      ariaLabel: "Apply for the coach mentorship program"
     },
   ];
 
   return (
-    <section id="services" className="py-20 bg-black">
+    <section id="services" className="py-20 bg-black" aria-labelledby="services-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+          <h2 id="services-heading" className="text-4xl md:text-5xl font-black text-white mb-4">
             OUR <span className="text-lfc-red">SERVICES</span>
           </h2>
           <p className="text-xl text-gray-300">Tailored training and development for players and coaches</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-8" role="list">
           {services.map((service, index) => (
-            <Card key={index} className="bg-almost-black border-gray-800 hover:border-lfc-red transition-colors duration-200">
+            <Card 
+              key={index} 
+              role="listitem"
+              className={cn(
+                "bg-almost-black border-gray-800 transition-all duration-300",
+                "hover:border-lfc-red hover:shadow-2xl hover:shadow-lfc-red/20",
+                "hover:transform hover:-translate-y-1",
+                "group cursor-pointer"
+              )}
+            >
               <CardContent className="p-8">
                 <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mr-4">
+                  <div className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mr-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" aria-hidden="true">
                     <service.icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-white">{service.title}</h3>
@@ -84,21 +98,33 @@ export function ServicesSection() {
                 <p className="text-lg text-lfc-red font-semibold mb-4">{service.subtitle}</p>
                 <p className="text-gray-300 mb-6">{service.description}</p>
 
-                <div className="space-y-3 mb-8">
+                <ul className="space-y-3 mb-8" role="list">
                   {service.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-center text-gray-200">
-                      <Check className="w-5 h-5 text-lfc-red mr-3" />
+                    <li 
+                      key={featureIndex} 
+                      className="flex items-center text-gray-200 transition-all duration-200 hover:text-white hover:translate-x-1"
+                      style={{
+                        animationDelay: `${featureIndex * 100}ms`
+                      }}
+                    >
+                      <Check className="w-5 h-5 text-lfc-red mr-3 transition-transform duration-200 group-hover:scale-110" aria-hidden="true" />
                       <span>{feature}</span>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
 
                 {service.ctaAction && (
-                  <p className="text-white font-semibold mb-6">{service.ctaAction}</p>
+                  <p className="text-white font-semibold mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {service.ctaAction}
+                  </p>
                 )}
                 <Link href="/contact">
-                  <Button className="bg-lfc-red text-white hover:bg-bright-red font-semibold">
-                    {service.ctaText}
+                  <Button 
+                    className="bg-lfc-red text-white hover:bg-bright-red font-semibold group/btn"
+                    aria-label={service.ariaLabel}
+                  >
+                    <span>{service.ctaText}</span>
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover/btn:translate-x-1" aria-hidden="true" />
                   </Button>
                 </Link>
               </CardContent>
