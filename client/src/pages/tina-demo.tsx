@@ -30,7 +30,7 @@ export default function TinaDemo() {
       
       // Load demo content
       const demoContent = {
-        "site.name": "One For All Coaching",
+        "site.name": "All For One Coaching",
         "site.tagline": "Where personal growth meets professional standards",
         "coach.name": "Dave Cornock",
         "coach.title": "UEFA B Licensed Football Coach",
