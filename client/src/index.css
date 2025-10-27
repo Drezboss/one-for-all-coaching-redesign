@@ -28,6 +28,19 @@
   --bright-red: hsl(0, 100%, 50%);
   --dark-navy: hsl(220, 47%, 9%);
   --almost-black: hsl(0, 0%, 7%);
+
+  /* Enhanced Typography */
+  --font-heading: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* Spacing scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
 }
 
 .dark {
@@ -62,100 +75,219 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply font-sans antialiased bg-background text-foreground transition-colors duration-300;
+    font-family: var(--font-body);
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Enhanced focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+
+  /* Improved heading hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+
+  h1 {
+    @apply text-4xl md:text-6xl lg:text-7xl;
+    font-weight: 900;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+    font-weight: 800;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+    font-weight: 700;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+    font-weight: 600;
+  }
+
+  /* Enhanced button base styles */
+  button, [role="button"] {
+    @apply cursor-pointer transition-all duration-200;
+  }
+
+  button:disabled, [role="button"]:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+
+  /* Improved form controls */
+  input, textarea, select {
+    @apply transition-all duration-200;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    @apply ring-2 ring-primary ring-offset-2;
+  }
+
+  /* Better image handling */
+  img {
+    @apply max-w-full h-auto;
+  }
+
+  /* Reduced motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
 @layer components {
-  /* Button styling improvements for better visibility */
+  /* Enhanced button styling */
   .btn-primary {
-    background-color: hsl(355, 87%, 48%) !important;
-    color: white !important;
-    border: 2px solid hsl(355, 87%, 48%) !important;
+    @apply bg-lfc-red text-white border-2 border-lfc-red font-bold uppercase tracking-wide;
+    @apply hover:bg-bright-red hover:border-bright-red hover:-translate-y-0.5;
+    @apply focus:ring-2 focus:ring-lfc-red focus:ring-offset-2;
+    @apply transition-all duration-200 ease-out;
+    @apply shadow-md hover:shadow-lg;
     font-weight: 600 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.05em !important;
   }
   
   .btn-primary:hover {
-    background-color: hsl(355, 87%, 40%) !important;
-    border-color: hsl(355, 87%, 40%) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px rgba(200, 16, 46, 0.4) !important;
+    box-shadow: 0 8px 24px rgba(200, 16, 46, 0.3) !important;
   }
 
-  .lfc-red {
-    color: hsl(355, 87%, 48%);
-  }
-  
-  .bg-lfc-red {
-    background-color: hsl(355, 87%, 48%);
-  }
-  
-  .border-lfc-red {
-    border-color: hsl(355, 87%, 48%);
-  }
-  
-  .hover\:bg-lfc-red:hover {
-    background-color: hsl(355, 87%, 48%);
-  }
-  
-  .hover\:text-lfc-red:hover {
-    color: hsl(355, 87%, 48%);
-  }
-  
-  .bright-red {
-    color: hsl(0, 100%, 50%);
-  }
-  
-  .bg-bright-red {
-    background-color: hsl(0, 100%, 50%);
-  }
-  
-  .hover\:bg-bright-red:hover {
-    background-color: hsl(0, 100%, 50%);
-  }
-  
-  .dark-navy {
-    color: hsl(220, 47%, 9%);
-  }
-  
-  .bg-dark-navy {
-    background-color: hsl(220, 47%, 9%);
-  }
-  
-  .almost-black {
-    color: hsl(0, 0%, 7%);
-  }
-  
-  .bg-almost-black {
-    background-color: hsl(0, 0%, 7%);
-  }
-
-  /* Button specific styling for better contrast */
-  .btn-primary {
-    background-color: hsl(355, 87%, 48%);
-    color: white;
-    border: none;
-    font-weight: 700;
-  }
-  
-  .btn-primary:hover {
-    background-color: hsl(355, 87%, 42%);
-    color: white;
-  }
-  
   .btn-outline {
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
+    @apply bg-transparent text-white border-2 border-white font-bold;
+    @apply hover:bg-white hover:text-black hover:border-white;
+    @apply focus:ring-2 focus:ring-white focus:ring-offset-2;
+    @apply transition-all duration-200 ease-out;
     font-weight: 700;
   }
+
+  /* Color utilities */
+  .lfc-red { color: hsl(355, 87%, 48%); }
+  .bg-lfc-red { background-color: hsl(355, 87%, 48%); }
+  .border-lfc-red { border-color: hsl(355, 87%, 48%); }
+  .hover\:bg-lfc-red:hover { background-color: hsl(355, 87%, 48%); }
+  .hover\:text-lfc-red:hover { color: hsl(355, 87%, 48%); }
   
-  .btn-outline:hover {
-    background-color: white;
-    color: black;
-    border-color: white;
+  .bright-red { color: hsl(0, 100%, 50%); }
+  .bg-bright-red { background-color: hsl(0, 100%, 50%); }
+  .hover\:bg-bright-red:hover { background-color: hsl(0, 100%, 50%); }
+  
+  .dark-navy { color: hsl(220, 47%, 9%); }
+  .bg-dark-navy { background-color: hsl(220, 47%, 9%); }
+  
+  .almost-black { color: hsl(0, 0%, 7%); }
+  .bg-almost-black { background-color: hsl(0, 0%, 7%); }
+
+  /* Enhanced card styles */
+  .card-elevated {
+    @apply bg-card border border-border rounded-lg shadow-lg;
+    @apply hover:shadow-xl transition-all duration-300;
+  }
+
+  /* Better typography utilities */
+  .text-gradient {
+    @apply bg-gradient-to-r from-lfc-red to-bright-red bg-clip-text text-transparent;
+  }
+
+  /* Loading states */
+  .skeleton {
+    @apply animate-pulse bg-muted rounded;
+  }
+
+  /* Custom scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary)) hsl(var(--muted));
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--primary));
+    border-radius: 3px;
+  }
+
+  /* Responsive text utilities */
+  .text-responsive-sm {
+    @apply text-sm md:text-base;
+  }
+
+  .text-responsive-md {
+    @apply text-base md:text-lg;
+  }
+
+  .text-responsive-lg {
+    @apply text-lg md:text-xl;
+  }
+
+  .text-responsive-xl {
+    @apply text-xl md:text-2xl;
+  }
+
+  /* Enhanced hover effects */
+  .hover-lift {
+    @apply transition-transform duration-200 hover:-translate-y-1;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+
+  /* Better spacing utilities */
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Animation utilities */
+  .fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
