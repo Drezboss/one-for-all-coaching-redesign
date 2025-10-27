@@ -1,49 +1,46 @@
-# Directus CMS Docker Scaffold
+# One For All Coaching - Vercel Deployment
 
-This is a Docker-based scaffold for setting up a Directus CMS backend, designed to work with a frontend deployed on Vercel.
+This is a React-based frontend application designed to be deployed on Vercel.
 
 ## 🚀 Quick Start
 
 1. Clone this repo
-2. Create a `.env` file based on `.env.example`
-3. Run:
-
+2. Install dependencies:
 ```bash
-docker-compose up -d
+npm install
 ```
 
-4. Visit Directus at [http://localhost:8055](http://localhost:8055) and log in with:
-   - Email: `admin@example.com`
-   - Password: `strongpassword`
-
-## 🗃️ Collections to Create
-
-In the Directus Admin UI, create these collections:
-- `team_members` — name, role, bio, photo
-- `programs` — title, description, slug, image
-- `testimonials` — author_name, author_title, quote, photo
-- `blog_posts` — title, content, cover_image, published_date, slug
-
-## 🧩 Frontend Integration
-
-Fetch content in your Vercel (Next.js) frontend using REST or GraphQL:
-
-Example REST:
-```
-GET http://localhost:8055/items/programs
+3. Start the development server:
+```bash
+npm run dev
 ```
 
-Example GraphQL:
-```graphql
-query {
-  programs {
-    id
-    title
-    slug
-  }
-}
+4. Build for production:
+```bash
+npm run build
 ```
+
+## 🚀 Deploy to Vercel
+
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Vercel will automatically detect the build settings from `vercel.json`
+4. Deploy!
+
+## 🗃️ Content Management
+
+This application uses a headless CMS for content management. The CMS configuration is handled through the API routes in the `/api` directory.
+
+## 🧩 Features
+
+- Modern React application with TypeScript
+- Tailwind CSS for styling
+- Radix UI components
+- Form handling with React Hook Form
+- Responsive design
+- SEO optimized
 
 ## ✅ Notes
-- Default PostgreSQL DB credentials are in `docker-compose.yml`.
-- Make sure to update the frontend to use the correct API URL in production.
+- The application is configured for Vercel deployment with `vercel.json`
+- Build output goes to the `dist` directory
+- API routes are handled through Vercel's serverless functions
