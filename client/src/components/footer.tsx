@@ -123,7 +123,7 @@ export function Footer() {
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            © 2025 One For All Coaching. All rights reserved. |{" "}
+            © 2025 <span className="business-name-accent font-semibold">One For All Coaching</span>. All rights reserved. |{" "}
             <a href="#" className="text-lfc-red hover:text-bright-red transition-colors duration-200">
               Privacy Policy
             </a>{" "}

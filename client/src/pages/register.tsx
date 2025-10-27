@@ -90,8 +90,8 @@ export default function Register() {
             Back to Home
           </Link>
           <div className="flex items-center justify-center mb-4">
-            <Trophy className="w-8 h-8 text-lfc-red mr-2" />
-            <h1 className="text-3xl font-bold text-white">ONE FOR ALL COACHING</h1>
+            <Trophy className="w-8 h-8 text-lfc-red mr-2 trophy-icon" />
+            <h1 className="text-3xl business-name text-white">ONE FOR ALL COACHING</h1>
           </div>
           <p className="text-gray-400">Create your parent account to track your child's progress</p>
         </div>

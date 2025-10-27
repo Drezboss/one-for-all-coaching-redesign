@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Rocket } from "lucide-react";
+import { Rocket, Trophy } from "lucide-react";
 import { siteContent } from "@shared/content";
 
 export function HeroSection() {
@@ -20,8 +20,9 @@ export function HeroSection() {
 
       <div className="relative z-10 text-left max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
-          <div className="text-sm text-lfc-red font-semibold tracking-wider uppercase mb-4">
-            {siteContent.site.name.toUpperCase()}
+          <div className="text-lg text-lfc-red font-bold tracking-wider uppercase mb-4 flex items-center">
+            <Trophy className="w-6 h-6 mr-2 trophy-icon" />
+            <span className="business-name-accent">{siteContent.site.name.toUpperCase()}</span>
           </div>
           <h1 className="text-6xl md:text-8xl font-black text-white leading-none mb-6">
             {siteContent.home.hero.title.split(' ').map((word, index) => 
