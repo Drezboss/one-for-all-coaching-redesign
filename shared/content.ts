@@ -4,10 +4,10 @@
 export const siteContent = {
   // Site-wide settings
   site: {
-    name: "One For All Coaching",
-    tagline: "Where personal growth meets professional standards",
-    domain: "all-4one-coaching.com",
-    email: "dave@all-4one-coaching.com",
+    name: "Advance Player Development",
+    tagline: "Enter The Next Level",
+    domain: "advanceplayerdevelopment.co.uk",
+    email: "admin@advanceplayerdevelopment.co.uk",
     phone: "+44 7750 887112", // Update with real phone
     socialMedia: {
       facebook: "https://facebook.com/oneforallcoaching",
@@ -36,14 +36,14 @@ export const siteContent = {
   // Home page content
   home: {
     hero: {
-      title: "UNLOCK YOUR POTENTIAL",
-      subtitle: "Professional football coaching that meets you where you are and takes you where you want to be.",
-      primaryButton: "Start Your Journey",
-      secondaryButton: "Learn More"
+      title: "ENTER THE NEXT LEVEL",
+      subtitle: "Elite football coaching, training centres and academy programmes designed to elevate players of all abilities.",
+      primaryButton: "Join APD",
+      secondaryButton: "View Centres"
     },
     whyChoose: {
-      title: "WHY CHOOSE ONE FOR ALL?",
-      description: "At One For All Coaching, we are passionate about helping young players grow both on and off the pitch. Whether your child is just starting out or looking to develop their skills further, our programmes are built around fun, personal growth and long-term progression.",
+      title: "WHY CHOOSE APD?",
+      description: "At Advance Player Development (APD), we are passionate about helping young players grow both on and off the pitch. Whether your child is just starting out or looking to develop their skills further, our programmes are built around fun, personal growth and long-term progression.",
       features: [
         {
           title: "Experienced and FA-qualified coaches",

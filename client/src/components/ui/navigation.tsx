@@ -52,10 +52,10 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center">
-            <div className="text-2xl font-bold text-foreground">
+            <div className="text-2xl font-bold text-foreground leading-tight">
               <Trophy className="inline-block w-6 h-6 text-primary mr-2" />
-              ONE FOR ALL
-              <span className="block text-sm text-muted-foreground font-normal">COACHING</span>
+              ADVANCE PLAYER
+              <span className="block text-sm text-muted-foreground font-normal">DEVELOPMENT</span>
             </div>
           </Link>
 
