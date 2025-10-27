@@ -48,14 +48,14 @@ export function Navigation() {
   };
 
   return (
-    <nav className="bg-card border-b border-border sticky top-0 z-50 transition-colors">
+    <nav className="bg-card border-b border-border sticky top-0 z-50 transition-colors shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center">
             <div className="text-2xl font-bold text-foreground">
               <Trophy className="inline-block w-6 h-6 text-primary mr-2" />
               ONE FOR ALL
-              <span className="block text-sm text-muted-foreground font-normal">COACHING</span>
+              <span className="block text-sm text-foreground/70 font-normal">COACHING</span>
             </div>
           </Link>
 
@@ -67,10 +67,10 @@ export function Navigation() {
                   key={item.name}
                   href={item.href}
                   onClick={() => handleLinkClick(item.href)}
-                  className={`transition-colors duration-200 font-medium ${
+                  className={`transition-colors duration-200 font-semibold ${
                     isActive(item.href)
                       ? "text-primary"
-                      : "text-muted-foreground hover:text-primary"
+                      : "text-foreground/80 hover:text-primary"
                   }`}
                 >
                   {item.name}
@@ -83,7 +83,7 @@ export function Navigation() {
                     <button
                       key={section.anchor}
                       onClick={() => handleAnchorClick(section.anchor)}
-                      className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                      className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium"
                     >
                       {section.name}
                     </button>
@@ -109,7 +109,7 @@ export function Navigation() {
           <div className="md:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-foreground hover:text-primary">
+                <Button variant="ghost" size="icon" className="text-foreground hover:text-primary hover:bg-accent">
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
@@ -120,10 +120,10 @@ export function Navigation() {
                       key={item.name}
                       href={item.href}
                       onClick={() => handleLinkClick(item.href)}
-                      className={`text-lg font-medium transition-colors duration-200 ${
+                      className={`text-lg font-semibold transition-colors duration-200 ${
                         isActive(item.href)
                           ? "text-primary"
-                          : "text-muted-foreground hover:text-primary"
+                          : "text-foreground/80 hover:text-primary"
                       }`}
                     >
                       {item.name}
@@ -134,12 +134,12 @@ export function Navigation() {
                   {location === "/" && (
                     <>
                       <div className="border-t border-border my-4"></div>
-                      <div className="text-sm text-muted-foreground font-semibold mb-2">Quick Links:</div>
+                      <div className="text-sm text-foreground/70 font-semibold mb-2">Quick Links:</div>
                       {homeSections.map((section) => (
                         <button
                           key={section.anchor}
                           onClick={() => handleAnchorClick(section.anchor)}
-                          className="text-left text-muted-foreground hover:text-primary transition-colors duration-200 py-1"
+                          className="text-left text-foreground/80 hover:text-primary transition-colors duration-200 py-1 font-medium"
                         >
                           → {section.name}
                         </button>
@@ -149,7 +149,7 @@ export function Navigation() {
                   
                   <div className="border-t border-border my-4"></div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm text-muted-foreground">Theme:</span>
+                    <span className="text-sm text-foreground/70 font-semibold">Theme:</span>
                     <ThemeToggle />
                   </div>
                   

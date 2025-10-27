@@ -68,27 +68,27 @@ export function ServicesSection() {
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
             OUR <span className="text-lfc-red">SERVICES</span>
           </h2>
-          <p className="text-xl text-gray-300">Tailored training and development for players and coaches</p>
+          <p className="text-xl text-white/90 font-medium">Tailored training and development for players and coaches</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="bg-almost-black border-gray-800 hover:border-lfc-red transition-colors duration-200">
+            <Card key={index} className="bg-almost-black border-gray-800 hover:border-lfc-red transition-colors duration-200 shadow-lg">
               <CardContent className="p-8">
                 <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mr-4">
+                  <div className="w-12 h-12 bg-lfc-red rounded-lg flex items-center justify-center mr-4 shadow-md">
                     <service.icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-white">{service.title}</h3>
                 </div>
                 <p className="text-lg text-lfc-red font-semibold mb-4">{service.subtitle}</p>
-                <p className="text-gray-300 mb-6">{service.description}</p>
+                <p className="text-white/90 mb-6 font-medium">{service.description}</p>
 
                 <div className="space-y-3 mb-8">
                   {service.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-center text-gray-200">
-                      <Check className="w-5 h-5 text-lfc-red mr-3" />
-                      <span>{feature}</span>
+                    <div key={featureIndex} className="flex items-center text-white/95">
+                      <Check className="w-5 h-5 text-lfc-red mr-3 flex-shrink-0" />
+                      <span className="font-medium">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -97,7 +97,7 @@ export function ServicesSection() {
                   <p className="text-white font-semibold mb-6">{service.ctaAction}</p>
                 )}
                 <Link href="/contact">
-                  <Button className="bg-lfc-red text-white hover:bg-bright-red font-semibold">
+                  <Button className="bg-lfc-red text-white hover:bg-bright-red font-semibold shadow-md">
                     {service.ctaText}
                   </Button>
                 </Link>
